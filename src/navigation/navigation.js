@@ -2,7 +2,7 @@
  * Created by kurosaki on 2018/9/3.
  */
 import React from 'react';
-import { createBottomTabNavigator,createStackNavigator,createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator,createStackNavigator,createDrawerNavigator,createAppContainer } from 'react-navigation';
 import { Login,Reg,HomePage,News,PerCenter,School,Service } from '../container'
 import { Header } from 'native-base'
 import {
@@ -21,6 +21,8 @@ const styles = StyleSheet.create({
         height: 20,
     },
 });
+
+
 
 const TabNav = createBottomTabNavigator(
     {
@@ -118,6 +120,35 @@ const TabNav = createBottomTabNavigator(
 
 let TabNavMoudle = createAppContainer(TabNav);
 
+//抽屉导航
+const Drawer= createDrawerNavigator({
+    MainDrawer:{
+        screen:TabNavMoudle,
+        navigationOptions:{
+            drawerLabel:'MainDrawer',
+
+        }
+    },
+    School:{
+        screen:School,
+        navigationOptions:{
+            drawerLabel:'School',
+
+        }
+    }
+},{
+    swipeEnabled: true,
+    animationEnabled: true,
+    initialRouteName:'MainDrawer',//设置默认打开的页面
+    contentOptions:{
+        inactiveTintColor:'#4d3a34',//不被选中的颜色
+        activeTintColor:'#ff7226',//改变选中之后的颜色
+    },
+    contentComponent:PerCenter,
+    drawerType:"slide"
+});
+
+
 const AppNavigator = createStackNavigator({
         Login: {
             screen: Login,
@@ -132,7 +163,7 @@ const AppNavigator = createStackNavigator({
             })
         },
         Main: {//`${navigation.state.params.name}`
-            screen:TabNavMoudle,
+            screen:Drawer,
             navigationOptions: ({navigation}) => ({
                 header:null,//type 1按钮 type2 图片 btns={{type:2,desc:require("../assets/images/scale.png")}}btns={{type:1,desc:"按钮"}} clickFn={()=>{alert(0)}}
 
