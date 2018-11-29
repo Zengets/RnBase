@@ -17,6 +17,8 @@ import {
     TouchableNativeFeedback
 } from 'react-native';
 import PerCenter from './PerCenterModule/PerCenter'
+import { NewsItem } from '../../components'
+
 
 const { width,height } = Dimensions.get('window')
 const styles = {
@@ -51,7 +53,9 @@ const styles = {
         borderTopWidth:10,
         flexWrap:"wrap",
         borderBottomColor:"#eeeff0",
-        borderBottomWidth:10
+        borderBottomWidth:10,
+        paddingTop:10,
+        paddingBottom:10
     },
     item:{
         width:0.25*width,
@@ -71,7 +75,7 @@ const styles = {
         flexDirection:"row",
         alignItems:"center",
         borderBottomColor:"#eeeff0",
-        borderBottomWidth:10
+        borderBottomWidth:1
     },
     textcover:{
         flex:1,
@@ -82,6 +86,28 @@ const styles = {
         height:48,
         overflow:"hidden",
         paddingLeft:16
+    },
+    newscontain:{
+        width:width,
+        borderBottomColor:"#eeeff0",
+        borderBottomWidth:10
+    },
+    newsmain:{
+        width:width,
+    },
+    newshead:{
+        flexDirection:"row",
+        justifyContent:"space-between",
+        alignItems:"center",
+        padding:14,
+        paddingTop:2,
+        paddingBottom:2,
+        borderBottomColor:"#f0f0f0",
+        borderBottomWidth:1
+    },
+    maincontain:{
+        padding:14,
+        paddingTop:0,
     }
 
 }
@@ -128,6 +154,56 @@ export default class HomePage extends Component<Props> {
                 img:require("../../assets/images/indexicon_22.png"),
                 uri:"/home"
             },
+            ],
+            tabbar:[{
+                img:require("../../assets/images/noticepic.png"),
+                uri:"/home"
+            },{
+                img:require("../../assets/images/noticepic1.png"),
+                uri:"/home"
+            },{
+                img:require("../../assets/images/noticepic.png"),
+                uri:"/home"
+            }],
+            newsList:[
+                {
+                title:"习近平致丝路沿线民间组织论坛贺信",
+                from:"人民网",
+                time:"2018-10-26",
+                pic:[
+                    {
+                        img:require("../../assets/images/tts1.png")
+                    }
+                ]},{
+                title:"习近平：切实学懂弄通做实党的十九大精神",
+                from:"人民网",
+                time:"2018-10-26",
+                pic:[
+                    {
+                        img:require("../../assets/images/tts0.png")
+                    },{
+                        img:require("../../assets/images/tts1.png")
+                    },{
+                        img:require("../../assets/images/tts2.png")
+                    },
+
+                ]},{
+                title:"中国这5年：加强党对意识形态的领导",
+                from:"人民网",
+                time:"2018-10-26",
+                pic:[
+                    {
+                        img:require("../../assets/images/tts0.png")
+                    }
+                ]},{
+                title:"俞正声出席脱贫攻坚民主监督工作座谈会会议并讲话",
+                from:"人民网",
+                time:"2018-10-26",
+                pic:[
+                    {
+                        img:require("../../assets/images/tts1.png")
+                    }
+                ]},
 
 
             ]
@@ -144,7 +220,7 @@ export default class HomePage extends Component<Props> {
     }
 
     render() {
-        let {navbar,Anim,noticebar} = this.state;
+        let {navbar,Anim,noticebar,tabbar,newsList} = this.state;
 
 
         return (
@@ -183,21 +259,21 @@ export default class HomePage extends Component<Props> {
                             <View style={styles.slide} title={<Text numberOfLines={1}>新闻1标题</Text>}>
                                 <ImageBackground
                                     style={styles.image}
-                                    source={require('../../assets/images/tts0.jpg')}
+                                    source={require('../../assets/images/tts0.png')}
                                     resizeMode='cover'>
                                 </ImageBackground>
                             </View>
                             <View style={styles.slide} title={<Text numberOfLines={1}>新闻2标题</Text>}>
                                 <ImageBackground
                                     style={styles.image}
-                                    source={require('../../assets/images/tts1.jpg')}
+                                    source={require('../../assets/images/tts1.png')}
                                     resizeMode='cover'>
                                 </ImageBackground>
                             </View>
                             <View style={styles.slide} title={<Text numberOfLines={1}>新闻3标题</Text>}>
                                 <ImageBackground
                                     style={styles.image}
-                                    source={require('../../assets/images/tts2.jpg')}
+                                    source={require('../../assets/images/tts2.png')}
                                     resizeMode='cover'>
                                 </ImageBackground>
                             </View>
@@ -212,7 +288,7 @@ export default class HomePage extends Component<Props> {
                                         onPress={()=>this._onPressButton(item.uri)}
                                         background={TouchableNativeFeedback.SelectableBackground()}>
                                         <View style={styles.item}>
-                                            <Image style={{width:0.1*width,height:0.1*width,marginBottom:10}} source={item.img}></Image>
+                                            <Image style={{width:0.14*width,height:0.14*width,marginBottom:10}} source={item.img}></Image>
                                             <Text>
                                                 {item.name}
                                             </Text>
@@ -241,10 +317,57 @@ export default class HomePage extends Component<Props> {
                                     })
                                 }
                             </Swiper>
-
                         </View>
 
                     </View>
+                    <View style={styles.newscontain}>
+                        <ScrollView horizontal={true} style={{padding:10}}>
+                            {
+                                tabbar.map((item,i)=>{
+                                    return(
+                                        <TouchableNativeFeedback key={i} onPress={()=>{}}>
+                                            <View style={{paddingLeft:i==0?0:10}}>
+                                                <Image source={item.img} style={{width:200,height:70}}></Image>
+                                            </View>
+                                        </TouchableNativeFeedback>
+                                    )
+                                })
+                            }
+                        </ScrollView>
+                    </View>
+
+                    <View style={styles.newsmain}>
+                        <View style={styles.newshead}>
+                            <View style={{flex:1,height:28,borderLeftColor:"#fc3838",borderLeftWidth:4,paddingLeft:10}}>
+                                <Text style={{fontSize:18,color:"#333",lineHeight:28,fontWeight:"bold"}}>
+                                    党内要闻
+                                </Text>
+                            </View>
+                            <Button rounded transparent dark style={{marginRight:-14}}>
+                                <Icon name='more' style={{color:"#666"}}/>
+                            </Button>
+                        </View>
+                        <View style={styles.maincontain}>
+                            {
+                                newsList.map((item,i)=>{
+                                    return(
+                                        <NewsItem item={item} key={i}></NewsItem>
+                                    )
+                                })
+
+
+
+
+                            }
+                        </View>
+
+
+
+                    </View>
+
+
+
+
                 </ScrollView>
 
 

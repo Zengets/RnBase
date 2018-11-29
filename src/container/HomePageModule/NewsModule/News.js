@@ -2,7 +2,7 @@
  * Created by kurosaki on 2018/11/27.
  */
 import React, { Component } from 'react';
-import {  Container, Header, Content, H1, H2, H3,Fab, Button, Icon, Left, Right, Body,Title,Drawer} from 'native-base';
+import {  Container, Header, Content, Tab, Tabs, ScrollableTab , Button, Icon, Left, Right, Body,Title} from 'native-base';
 import {
     Text,
     View,
@@ -14,7 +14,11 @@ import {
     TouchableOpacity,
     TouchableNativeFeedback
 } from 'react-native';
-import PerCenter from '../PerCenterModule/PerCenter'
+import PerCenter from '../PerCenterModule/PerCenter';
+import NewsList from './NewsList/NewsList'
+
+
+
 const { width,height } = Dimensions.get('window')
 const styles = {
     container: {
@@ -62,21 +66,71 @@ const styles = {
         borderRadius:600,
         overflow:"hidden"
     }
-
 }
+
 export default class News extends Component<Props> {
-    closeDrawer = () => {
-        this.drawer._root.close()
-    };
-    openDrawer = () => {
-        this.drawer._root.open()
-    };
+    constructor(){
+        super()
+        this.state={
+            newsList:[
+                {
+                    id:"0",
+                    title:"习近平致丝路沿线民间组织论坛贺信",
+                    from:"人民网",
+                    time:"2018-10-26",
+                    pic:[
+                        {
+                            img:require("../../../assets/images/tts1.png")
+                        }
+                    ]},{
+                    id:"1",
+                    title:"习近平：切实学懂弄通做实党的十九大精神",
+                    from:"人民网",
+                    time:"2018-10-26",
+                    pic:[
+                        {
+                            img:require("../../../assets/images/tts0.png")
+                        },{
+                            img:require("../../../assets/images/tts1.png")
+                        },{
+                            img:require("../../../assets/images/tts2.png")
+                        },
+
+                    ]},{
+                    id:"2",
+                    title:"中国这5年：加强党对意识形态的领导",
+                    from:"人民网",
+                    time:"2018-10-26",
+                    pic:[
+                        {
+                            img:require("../../../assets/images/tts0.png")
+                        }
+                    ]},{
+                    id:"3",
+                    title:"俞正声出席脱贫攻坚民主监督工作座谈会会议并讲话",
+                    from:"人民网",
+                    time:"2018-10-26",
+                    pic:[
+                        {
+                            img:require("../../../assets/images/tts1.png")
+                        }
+                    ]},
+
+
+            ]
+        }
+    }
+
+
+
     render() {
+        let {newsList} = this.state;
+
         return (
         <Container>
             <Header style={{paddingTop:20,height:68,backgroundColor:"#DD5144"}}>
                 <Left style={{flex:1}}>
-                    <TouchableOpacity onPress={this.openDrawer} style={styles.imagehead}>
+                    <TouchableOpacity onPress={()=>this.props.navigation.openDrawer()} style={styles.imagehead}>
                         <ImageBackground
                             style={{width:36,height:36}}
                             source={require('../../../assets/images/headtemp.jpg')}
@@ -89,14 +143,60 @@ export default class News extends Component<Props> {
                 <Text style={{color:"#fff",fontSize:20}}>新闻</Text>
                 </Body>
                 <Right style={{flex:1}}>
-                    <Button transparent>
-                        <Icon name="ios-qr-scanner" />
-                    </Button>
+
                 </Right>
             </Header>
-            <Text>
-            News
-            </Text>
+            <Tabs
+                style={{borderWidth:0}}
+                tabBarUnderlineStyle={{backgroundColor:"#ff2d2d",height:1}}
+                renderTabBar={()=> <ScrollableTab tabBarUnderlineStyle={{backgroundColor:"#ff2d2d",height:1}} style={{borderWidth:0}}/>}
+
+            >
+                <Tab heading="党建新闻"
+                     tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
+                     activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
+                     activeTabStyle={{backgroundColor:"#ffffff"}}
+                     textStyle={{color:"#808080",fontWeight:"100"}}>
+                    <View style={{padding:14}}>
+                        <NewsList  data={newsList}></NewsList>
+                    </View>
+
+                </Tab>
+                <Tab heading="活动宣传" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
+                     activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
+                     activeTabStyle={{backgroundColor:"#ffffff"}}
+                     textStyle={{color:"#808080",fontWeight:"100"}}>
+                    <View style={{padding:14}}>
+                        <NewsList  data={newsList}></NewsList>
+                    </View>
+                </Tab>
+                <Tab heading="任免信息" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
+                     activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
+                     activeTabStyle={{backgroundColor:"#ffffff"}}
+                     textStyle={{color:"#808080",fontWeight:"100"}}>
+                    <View style={{padding:14}}>
+                        <NewsList  data={newsList}></NewsList>
+                    </View>
+                </Tab>
+                <Tab heading="通知公告" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
+                     activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
+                     activeTabStyle={{backgroundColor:"#ffffff"}}
+                     textStyle={{color:"#808080",fontWeight:"100"}}>
+                    <View style={{padding:14}}>
+                        <NewsList  data={newsList}></NewsList>
+                    </View>
+                </Tab>
+                <Tab heading="党内公告" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
+                     activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
+                     activeTabStyle={{backgroundColor:"#ffffff"}}
+                     textStyle={{color:"#808080",fontWeight:"100"}}>
+                    <View style={{padding:14}}>
+                        <NewsList  data={newsList}></NewsList>
+                    </View>
+                </Tab>
+            </Tabs>
+
+
         </Container>
         );
     }

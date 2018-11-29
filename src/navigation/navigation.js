@@ -9,17 +9,31 @@ import {
     Image,
     StyleSheet,
     Animated,
+    Dimensions,
     Easing
 } from 'react-native';
 import StackViewStyleInterpolator from "react-navigation-stack/dist/views/StackView/StackViewStyleInterpolator";
 
-
+let {height,width} =  Dimensions.get('window');
 
 const styles = StyleSheet.create({
     icon: {
         width: 20,
         height: 20,
     },
+    icons:{
+        width: 20,
+        height: 22,
+    },
+    iconc:{
+        width: 24,
+        height: 20,
+    },
+    iconcs:{
+        width: 27,
+        height: 20,
+    },
+
 });
 
 
@@ -29,7 +43,7 @@ const TabNav = createBottomTabNavigator(
         Home: {
             screen: HomePage,
             navigationOptions:({navigation})=>({
-                tabBarLabel:"大炮app",
+                tabBarLabel:"党建",
                 tabBarIcon:({tintColor,focused})=>{
                     return(
                         focused?
@@ -42,45 +56,63 @@ const TabNav = createBottomTabNavigator(
                 }
             })
         },
-        Friend: {
+        News: {
             screen: News,
             navigationOptions:({navigation})=>({
-                tabBarLabel:"尬聊",
+                tabBarLabel:"新闻",
                 tabBarIcon:({tintColor,focused})=>{
                     return(
                         focused?
-                            <Image style={styles.icon} source={require("../assets/images/chart1.png")}>
+                            <Image style={styles.icons} source={require("../assets/images/news1.png")}>
                             </Image>
                             :
-                            <Image style={styles.icon} source={require("../assets/images/chart0.png")}>
+                            <Image style={styles.icons} source={require("../assets/images/news0.png")}>
                             </Image>
                     )
                 }
             })
         },
-        Mine: {
-            screen: PerCenter,
+        Service: {
+            screen: Service,
             navigationOptions:({navigation})=>({
-                tabBarLabel:"个人中心",
+                tabBarLabel:"服务",
                 tabBarIcon:({tintColor,focused})=>{
                     return(
                         focused?
-                            <Image style={styles.icon} source={require("../assets/images/mine1.png")}>
+                            <Image style={styles.iconcs} source={require("../assets/images/service1.png")}>
                             </Image>
                             :
-                            <Image style={styles.icon} source={require("../assets/images/mine0.png")}>
+                            <Image style={styles.iconcs} source={require("../assets/images/service0.png")}>
+                            </Image>
+                    )
+                }
+            })
+        },
+        School: {
+            screen: School,
+            navigationOptions:({navigation})=>({
+                tabBarLabel:"党校",
+                tabBarIcon:({tintColor,focused})=>{
+                    return(
+                        focused?
+                            <Image style={styles.iconc} source={require("../assets/images/school1.png")}>
+                            </Image>
+                            :
+                            <Image style={styles.iconc} source={require("../assets/images/school0.png")}>
                             </Image>
                     )
                 }
             })
         }
+
+
     },
     {
         tabBarOptions: {
             //当前选中的tab bar的文本颜色和图标颜色
-            activeTintColor: 'rgba(93,101,149,1)',
+            activeTintColor: '#ff2d2d',
             //当前未选中的tab bar的文本颜色和图标颜色
-            inactiveTintColor: '#000',
+            inactiveTintColor: '#808080',
             //是否显示tab bar的图标，默认是false
             showIcon: true,
             //showLabel - 是否显示tab bar的文本，默认是true
@@ -137,6 +169,7 @@ const Drawer= createDrawerNavigator({
         }
     }
 },{
+    drawerWidth:width*0.80,
     swipeEnabled: true,
     animationEnabled: true,
     initialRouteName:'MainDrawer',//设置默认打开的页面

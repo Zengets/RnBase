@@ -6,4 +6,5 @@
     flex-wrap: wrap;
     align-items: baseline;
     position: absolute;
+    font-weight: bolder;
 }
