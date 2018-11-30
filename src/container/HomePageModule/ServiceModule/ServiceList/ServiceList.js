@@ -15,10 +15,10 @@ import {
     TouchableOpacity,
     TouchableNativeFeedback
 } from 'react-native';
-import { NewsItem } from '../../../../components'
+import { ServiceItem } from '../../../../components'
 
 
-export default class NewsList  extends React.PureComponent {
+export default class ServiceList extends React.PureComponent {
     constructor(props){
         super(props);
         this.state = {
@@ -70,45 +70,14 @@ export default class NewsList  extends React.PureComponent {
             pageIndex++;
             let data = this.props.data;
             for (let i = 0; i < 5; i++) {
-                if(i%3==0){
-                    data.push({
-                        id:Math.ceil(Math.random() * 100),
-                        title:"习近平致丝路沿线民间组织论坛贺信",
-                        from:"人民网",
-                        time:"2018-10-26",
-                        pic:[
-                            {
-                                img:require("../../../../assets/images/tts1.png")
-                            }
-                        ]});
-                }else if(i%3==1){
-                    data.push({
-                        id:Math.ceil(Math.random() * 100),
-                        title:"习近平：切实学懂弄通做实党的十九大精神",
-                        from:"人民网",
-                        time:"2018-10-26",
-                        pic:[
-                            {
-                                img:require("../../../../assets/images/tts0.png")
-                            },{
-                                img:require("../../../../assets/images/tts1.png")
-                            },{
-                                img:require("../../../../assets/images/tts2.png")
-                            },
-
-                        ]});
-                }else{
-                    data.push({
-                        id:Math.ceil(Math.random() * 100),
-                        title:"中国这5年：加强党对意识形态的领导",
-                        from:"人民网",
-                        time:"2018-10-26",
-                        pic:[
-                            {
-                                img:require("../../../../assets/images/tts0.png")
-                            }
-                        ]});
-                }
+                data.push({
+                    id:Math.ceil(Math.random() * 100),
+                    name:"541教育服务",
+                    curnum:3,
+                    totalnum:3,
+                    addr:"河桥街道",
+                    type:"教育服务"
+                });
             }
             this.setState({
                 refreshing: false,
@@ -133,7 +102,7 @@ export default class NewsList  extends React.PureComponent {
     }
 
     _renderItem = ({item}) => (
-        <NewsItem key={item.title} item={item}></NewsItem>
+        <ServiceItem key={item.title} item={item}></ServiceItem>
     );
 
     _keyExtractor = (item, index) => item.id;

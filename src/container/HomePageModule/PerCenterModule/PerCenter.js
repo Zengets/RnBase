@@ -96,7 +96,7 @@ export default class PerCenter extends Component<Props> {
 
         return (
             <Container>
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator = {false}>
                     <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
                         <TouchableNativeFeedback>
                             <View style={{width:0.8*width,height:160}}>

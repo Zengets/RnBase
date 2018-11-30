@@ -2,7 +2,7 @@
  * Created by kurosaki on 2018/11/27.
  */
 import React, { Component } from 'react';
-import {  Container, Header, Content, Tab, Tabs, ScrollableTab , Button, Icon, Left, Right, Body,Title} from 'native-base';
+import {  Container, Header, Content, Tab, Tabs, ScrollableTab , Button, Icon, Left, Right, Body,Title } from 'native-base';
 import {
     Text,
     View,

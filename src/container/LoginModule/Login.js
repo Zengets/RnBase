@@ -129,14 +129,17 @@ const styles = StyleSheet.create({
                     resizeMode='cover'>
                     <Container style={{flex:1,backgroundColor: "transparent"}}>
                     <Header transparent style={styles.heads}>
-                        <Left>
+                        <Left style={{flex:1}}>
                             <Button transparent>
                                 <Icon name="arrow-back" />
                             </Button>
                         </Left>
-                        <Body style={{justifyContent:"center",alignItems:"center"}}>
-                            <Text style={{color:"#fff",fontSize:20,marginLeft:-96}}>登录</Text>
+                        <Body style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+                            <Text style={{color:"#fff",fontSize:20}}>登录</Text>
                         </Body>
+                        <Right style={{flex:1}}>
+
+                        </Right>
                     </Header>
 
                 <View style={{backgroundColor:"transparent",width:width,height:height-28,justifyContent:"flex-end",alignItems:"center",paddingBottom:92}}>

@@ -246,7 +246,7 @@ export default class HomePage extends Component<Props> {
                         </Button>
                     </Right>
                 </Header>
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator = {false} >
                     <View style={styles.wrapper}>
                         <Swiper
                             height={200}
@@ -321,7 +321,7 @@ export default class HomePage extends Component<Props> {
 
                     </View>
                     <View style={styles.newscontain}>
-                        <ScrollView horizontal={true} style={{padding:10}}>
+                        <ScrollView showsVerticalScrollIndicator = {false} horizontal={true} style={{padding:10}}>
                             {
                                 tabbar.map((item,i)=>{
                                     return(

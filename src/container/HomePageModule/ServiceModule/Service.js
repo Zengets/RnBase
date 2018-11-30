@@ -15,6 +15,7 @@ import {
     TouchableNativeFeedback
 } from 'react-native';
 import PerCenter from '../PerCenterModule/PerCenter';
+import ServiceList from './ServiceList/ServiceList'
 
 const { width,height } = Dimensions.get('window')
 const styles = {
@@ -69,10 +70,42 @@ export default class Service extends Component<Props> {
     constructor(){
         super()
         this.state={
-            serviceList:[]
-
-
-
+            serviceList:[{
+                id:Math.ceil(Math.random() * 100),
+                name:"5411医疗服务",
+                curnum:1,
+                totalnum:3,
+                addr:"河桥街道",
+                type:"医疗服务"
+            },{
+                id:Math.ceil(Math.random() * 100),
+                name:"54法律服务",
+                curnum:1,
+                totalnum:3,
+                addr:"玉林街道",
+                type:"法律服务"
+            },{
+                id:Math.ceil(Math.random() * 100),
+                name:"541教育服务",
+                curnum:3,
+                totalnum:3,
+                addr:"河桥街道",
+                type:"教育服务"
+            },{
+                id:Math.ceil(Math.random() * 100),
+                name:"5411就业服务",
+                curnum:1,
+                totalnum:3,
+                addr:"河桥街道",
+                type:"就业服务"
+            },{
+                id:Math.ceil(Math.random() * 100),
+                name:"5411医疗服务",
+                curnum:1,
+                totalnum:3,
+                addr:"河桥街道",
+                type:"医疗服务"
+            }]
         }
     }
 
@@ -113,7 +146,7 @@ export default class Service extends Component<Props> {
                          activeTabStyle={{backgroundColor:"#ffffff"}}
                          textStyle={{color:"#808080",fontWeight:"100"}}>
                         <View style={{padding:14}}>
-                           <Text>服务</Text>
+                            <ServiceList data = {serviceList}></ServiceList>
                         </View>
 
                     </Tab>
@@ -122,7 +155,7 @@ export default class Service extends Component<Props> {
                          activeTabStyle={{backgroundColor:"#ffffff"}}
                          textStyle={{color:"#808080",fontWeight:"100"}}>
                         <View style={{padding:14}}>
-                           <Text>服务</Text>
+                            <ServiceList data = {serviceList}></ServiceList>
                         </View>
                     </Tab>
                     <Tab heading="法律服务" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
@@ -130,7 +163,7 @@ export default class Service extends Component<Props> {
                          activeTabStyle={{backgroundColor:"#ffffff"}}
                          textStyle={{color:"#808080",fontWeight:"100"}}>
                         <View style={{padding:14}}>
-                           <Text>服务</Text>
+                            <ServiceList data = {serviceList}></ServiceList>
                         </View>
                     </Tab>
                     <Tab heading="教育服务" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
@@ -138,7 +171,7 @@ export default class Service extends Component<Props> {
                          activeTabStyle={{backgroundColor:"#ffffff"}}
                          textStyle={{color:"#808080",fontWeight:"100"}}>
                         <View style={{padding:14}}>
-                           <Text>服务</Text>
+                            <ServiceList data = {serviceList}></ServiceList>
                         </View>
                     </Tab>
                     <Tab heading="医疗服务" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
@@ -146,7 +179,7 @@ export default class Service extends Component<Props> {
                          activeTabStyle={{backgroundColor:"#ffffff"}}
                          textStyle={{color:"#808080",fontWeight:"100"}}>
                         <View style={{padding:14}}>
-                           <Text>服务</Text>
+                            <ServiceList data = {serviceList}></ServiceList>
                         </View>
                     </Tab>
                     <Tab heading="助老助残" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
@@ -154,7 +187,7 @@ export default class Service extends Component<Props> {
                          activeTabStyle={{backgroundColor:"#ffffff"}}
                          textStyle={{color:"#808080",fontWeight:"100"}}>
                         <View style={{padding:14}}>
-                            <Text>服务</Text>
+                            <ServiceList data = {serviceList}></ServiceList>
                         </View>
                     </Tab>
                     <Tab heading="家政服务" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
@@ -162,7 +195,7 @@ export default class Service extends Component<Props> {
                          activeTabStyle={{backgroundColor:"#ffffff"}}
                          textStyle={{color:"#808080",fontWeight:"100"}}>
                         <View style={{padding:14}}>
-                            <Text>服务</Text>
+                            <ServiceList data = {serviceList}></ServiceList>
                         </View>
                     </Tab>
 

@@ -4,5 +4,5 @@
 import Header from "./ui/Header"
 import HttpUtils from './fetch/HttpUtils'
 import {BASE_URL,PORT_NAME} from './publicdata/Data'
-import { NewsItem } from './module'
-export {Header,HttpUtils,BASE_URL,PORT_NAME,NewsItem}
+import { NewsItem,ServiceItem } from './module'
+export {Header,HttpUtils,BASE_URL,PORT_NAME,NewsItem,ServiceItem}
