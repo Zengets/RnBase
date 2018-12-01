@@ -44,9 +44,13 @@ export default class ServiceList extends React.PureComponent {
                 isSpin:false
             })
         },400)
-
+        this.props.onRef(this)
     }
-
+    componentWillReceiveProps(nextprops){
+        if(this.props.page !== nextprops.page){
+            this.props.onRef(this)
+        }
+    }
     _onRefresh =()=> {
         Toast.show({
             text: "刷新成功!",
@@ -106,6 +110,10 @@ export default class ServiceList extends React.PureComponent {
     );
 
     _keyExtractor = (item, index) => item.id;
+
+    _scrollToIndex = () => {
+        this._flatList.scrollToIndex({ viewPosition: 0, index: 0 });
+    }
 
     render(){
         let {isSpin} = this.state;

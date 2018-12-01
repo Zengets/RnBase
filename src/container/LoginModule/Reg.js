@@ -3,14 +3,14 @@
  */
 import React, { Component } from 'react';
 import { Container, Header, View, Item, Input, Label,Button, Icon, Left, Body, Title,Right,Toast } from 'native-base';
-import SplashScreen from 'react-native-splash-screen';
 import {connect} from 'react-redux';
 import {
     Image,
     StyleSheet,
     ImageBackground,
     Dimensions,
-    Text
+    Text,
+    StatusBar
 } from 'react-native';
 import { HttpUtils,BASE_URL,PORT_NAME } from '../../components'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -55,7 +55,9 @@ class Reg extends Component<Props> {
     }
 
     componentDidMount() {
-        SplashScreen.hide();
+        setTimeout(()=>{
+            StatusBar.setBackgroundColor('rgba(0,0,0,0)')
+        },300)
     }
 
     _onPressSubmit = ()=>{
@@ -112,7 +114,6 @@ class Reg extends Component<Props> {
                     innerRef={ref => {this.scroll = ref}}
                     scrollEnabled = {false}
                     onKeyboardWillShow={(frames: Object)=>{
-
              }}>
                     <ImageBackground
                         style={styles.container}

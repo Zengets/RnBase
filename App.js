@@ -10,7 +10,7 @@ import {
 export default class App extends Component<Props> {
   componentDidMount(){
       setTimeout(()=>{
-          StatusBar.setBackgroundColor('rgba(0,0,0,0)')
+          StatusBar.setBackgroundColor('#DD5144')
       },100)
   }
 

@@ -72,6 +72,8 @@ export default class News extends Component<Props> {
     constructor(){
         super()
         this.state={
+            page:0,
+            tabs:["党建新闻","活动宣传","任免信息","通知公告","党内公告"],
             newsList:[
                 {
                     id:"0",
@@ -122,13 +124,17 @@ export default class News extends Component<Props> {
     }
 
 
+    onRef = (ref) => {
+        this.child = ref
+    }
+
 
     render() {
-        let {newsList} = this.state;
+        let {newsList,page,tabs} = this.state;
 
         return (
         <Container>
-            <Header style={{paddingTop:20,height:68,backgroundColor:"#DD5144"}}>
+            <Header style={{backgroundColor:"#DD5144"}}>
                 <Left style={{flex:1}}>
                     <TouchableOpacity onPress={()=>this.props.navigation.openDrawer()} style={styles.imagehead}>
                         <ImageBackground
@@ -143,57 +149,40 @@ export default class News extends Component<Props> {
                 <Text style={{color:"#fff",fontSize:20}}>新闻</Text>
                 </Body>
                 <Right style={{flex:1}}>
-
                 </Right>
             </Header>
             <Tabs
+                page = {page}
                 style={{borderWidth:0}}
+                onChangeTab={({i,ref,from})=>{
+                    if(i==page){
+                        this.child._scrollToIndex();
+                        return
+                    }else{
+                        this.setState({
+                            page:i
+                        })
+                    }
+
+                }}
                 tabBarUnderlineStyle={{backgroundColor:"#ff2d2d",height:1}}
                 renderTabBar={()=> <ScrollableTab tabBarUnderlineStyle={{backgroundColor:"#ff2d2d",height:1}} style={{borderWidth:0}}/>}
-
             >
-                <Tab heading="党建新闻"
-                     tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
-                     activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
-                     activeTabStyle={{backgroundColor:"#ffffff"}}
-                     textStyle={{color:"#808080",fontWeight:"100"}}>
-                    <View style={{padding:14}}>
-                        <NewsList  data={newsList}></NewsList>
-                    </View>
-
-                </Tab>
-                <Tab heading="活动宣传" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
-                     activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
-                     activeTabStyle={{backgroundColor:"#ffffff"}}
-                     textStyle={{color:"#808080",fontWeight:"100"}}>
-                    <View style={{padding:14}}>
-                        <NewsList  data={newsList}></NewsList>
-                    </View>
-                </Tab>
-                <Tab heading="任免信息" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
-                     activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
-                     activeTabStyle={{backgroundColor:"#ffffff"}}
-                     textStyle={{color:"#808080",fontWeight:"100"}}>
-                    <View style={{padding:14}}>
-                        <NewsList  data={newsList}></NewsList>
-                    </View>
-                </Tab>
-                <Tab heading="通知公告" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
-                     activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
-                     activeTabStyle={{backgroundColor:"#ffffff"}}
-                     textStyle={{color:"#808080",fontWeight:"100"}}>
-                    <View style={{padding:14}}>
-                        <NewsList  data={newsList}></NewsList>
-                    </View>
-                </Tab>
-                <Tab heading="党内公告" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
-                     activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
-                     activeTabStyle={{backgroundColor:"#ffffff"}}
-                     textStyle={{color:"#808080",fontWeight:"100"}}>
-                    <View style={{padding:14}}>
-                        <NewsList  data={newsList}></NewsList>
-                    </View>
-                </Tab>
+                {
+                    tabs.map((item,i)=>{
+                        return(
+                            <Tab heading={item} key={i}
+                                 tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
+                                 activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
+                                 activeTabStyle={{backgroundColor:"#ffffff"}}
+                                 textStyle={{color:"#808080",fontWeight:"100"}}>
+                                <View style={{padding:14}}>
+                                    <NewsList page={page} onRef={this.onRef} data={newsList}></NewsList>
+                                </View>
+                            </Tab>
+                        )
+                    })
+                }
             </Tabs>
 
 

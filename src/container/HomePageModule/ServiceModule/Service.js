@@ -70,6 +70,8 @@ export default class Service extends Component<Props> {
     constructor(){
         super()
         this.state={
+            page:0,
+            nav:["全部","就业服务","法律服务","教育服务","医疗服务","助老助残","家政服务"],
             serviceList:[{
                 id:Math.ceil(Math.random() * 100),
                 name:"5411医疗服务",
@@ -109,14 +111,16 @@ export default class Service extends Component<Props> {
         }
     }
 
-
+    onRef = (ref) => {
+        this.child = ref
+    }
 
     render() {
-        let {serviceList} = this.state;
+        let {serviceList,nav,page} = this.state;
 
         return (
             <Container>
-                <Header style={{paddingTop:20,height:68,backgroundColor:"#DD5144"}}>
+                <Header style={{backgroundColor:"#DD5144"}}>
                     <Left style={{flex:1}}>
                         <TouchableOpacity onPress={()=>this.props.navigation.openDrawer()} style={styles.imagehead}>
                             <ImageBackground
@@ -135,80 +139,38 @@ export default class Service extends Component<Props> {
                     </Right>
                 </Header>
                 <Tabs
+                    page = {page}
+                    onChangeTab={({i,ref,from})=>{
+                        if(i==page){
+                            this.child._scrollToIndex();
+                            return
+                        }else{
+                            this.setState({
+                                page:i
+                            })
+                        }
+                    }}
                     style={{borderWidth:0}}
                     tabBarUnderlineStyle={{backgroundColor:"#ff2d2d",height:1}}
                     renderTabBar={()=> <ScrollableTab tabBarUnderlineStyle={{backgroundColor:"#ff2d2d",height:1}} style={{borderWidth:0}}/>}
 
                 >
-                    <Tab heading="全部"
-                         tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
-                         activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
-                         activeTabStyle={{backgroundColor:"#ffffff"}}
-                         textStyle={{color:"#808080",fontWeight:"100"}}>
-                        <View style={{padding:14}}>
-                            <ServiceList data = {serviceList}></ServiceList>
-                        </View>
+                    {
+                        nav.map((item,i)=>{
+                            return(
+                                <Tab heading={item} key={i}
+                                     tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
+                                     activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
+                                     activeTabStyle={{backgroundColor:"#ffffff"}}
+                                     textStyle={{color:"#808080",fontWeight:"100"}}>
+                                    <View style={{padding:14}}>
+                                        <ServiceList page={page} onRef={this.onRef} data = {serviceList}></ServiceList>
+                                    </View>
 
-                    </Tab>
-                    <Tab heading="就业服务" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
-                         activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
-                         activeTabStyle={{backgroundColor:"#ffffff"}}
-                         textStyle={{color:"#808080",fontWeight:"100"}}>
-                        <View style={{padding:14}}>
-                            <ServiceList data = {serviceList}></ServiceList>
-                        </View>
-                    </Tab>
-                    <Tab heading="法律服务" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
-                         activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
-                         activeTabStyle={{backgroundColor:"#ffffff"}}
-                         textStyle={{color:"#808080",fontWeight:"100"}}>
-                        <View style={{padding:14}}>
-                            <ServiceList data = {serviceList}></ServiceList>
-                        </View>
-                    </Tab>
-                    <Tab heading="教育服务" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
-                         activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
-                         activeTabStyle={{backgroundColor:"#ffffff"}}
-                         textStyle={{color:"#808080",fontWeight:"100"}}>
-                        <View style={{padding:14}}>
-                            <ServiceList data = {serviceList}></ServiceList>
-                        </View>
-                    </Tab>
-                    <Tab heading="医疗服务" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
-                         activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
-                         activeTabStyle={{backgroundColor:"#ffffff"}}
-                         textStyle={{color:"#808080",fontWeight:"100"}}>
-                        <View style={{padding:14}}>
-                            <ServiceList data = {serviceList}></ServiceList>
-                        </View>
-                    </Tab>
-                    <Tab heading="助老助残" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
-                         activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
-                         activeTabStyle={{backgroundColor:"#ffffff"}}
-                         textStyle={{color:"#808080",fontWeight:"100"}}>
-                        <View style={{padding:14}}>
-                            <ServiceList data = {serviceList}></ServiceList>
-                        </View>
-                    </Tab>
-                    <Tab heading="家政服务" tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
-                         activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
-                         activeTabStyle={{backgroundColor:"#ffffff"}}
-                         textStyle={{color:"#808080",fontWeight:"100"}}>
-                        <View style={{padding:14}}>
-                            <ServiceList data = {serviceList}></ServiceList>
-                        </View>
-                    </Tab>
-
-
-
-
-
-
-
-
-
-
-
+                                </Tab>
+                            )
+                        })
+                    }
                 </Tabs>
 
 

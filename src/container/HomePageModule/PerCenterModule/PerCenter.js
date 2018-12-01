@@ -68,6 +68,7 @@ export default class PerCenter extends Component<Props> {
                     name:"消息通知"
                 },{
                     icon:require("../../../assets/images/pcicon07.png"),
+                    route:'Login',
                     name:"设置"
                 }]
             }
@@ -81,7 +82,7 @@ export default class PerCenter extends Component<Props> {
         let { userInfo,navbar } = this.state;
         let itemcons = (item,i)=>{
             return(
-                <ListItem key={i} icon>
+                <ListItem key={i} icon onPress={()=>{this.props.navigation.navigate(item.route);}}>
                     <Left>
                        <Image style={{width:18,height:18}} source={item.icon}></Image>
                     </Left>

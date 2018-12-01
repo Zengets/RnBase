@@ -204,7 +204,7 @@ const AppNavigator = createStackNavigator({
         }
     },
     {
-        initialRouteName: 'Login',
+        initialRouteName: 'Main',
         headerMode: 'screen',
         mode:"modal",
         transitionConfig: () => ({

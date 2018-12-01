@@ -17,6 +17,10 @@ import {
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Swiper from '@nart/react-native-swiper';
+import SchoolStudy from './SchoolStudy/SchoolStudy';
+import SchoolExam from './SchoolExam/SchoolExam';
+
+
 const { width,height } = Dimensions.get('window')
 const styles={
     imagehead:{
@@ -27,12 +31,10 @@ const styles={
     },
     maincover:{
         width:width,
-        height:height-116,
-        backgroundColor:"lightblue"
+        minHeight:height-140,
     },
     item:{
         width:width,
-        height:height-116
     }
 }
 export default class School extends Component<Props> {
@@ -52,14 +54,27 @@ export default class School extends Component<Props> {
         });
         let index = key==0?-1:key;
         this._swiperobj.scrollBy(index);
+        if(key==1){
+            this.child.scrollToTops()
+        }else{
+            this.childs.scrollToTops()
+        }
+
+
     }
 
+    onRef = (ref) => {
+        this.child = ref
+    }
+
+    onRefs = (ref) => {
+        this.childs = ref
+    }
     render() {
         let {current} = this.state;
         return (
             <Container>
-                <StatusBar backgroundColor = {'#DD5144'}></StatusBar>
-                <Header style={{paddingTop:20,height:68,backgroundColor:"#DD5144"}} hasSegment>
+                <Header style={{backgroundColor:"#DD5144"}} hasSegment>
                     <Left style={{flex:1}}>
                         <TouchableOpacity onPress={()=>this.props.navigation.openDrawer()} style={styles.imagehead}>
                             <ImageBackground
@@ -89,22 +104,20 @@ export default class School extends Component<Props> {
                            this.setState({
                                 current:index
                            })
+                           if(index==1){
+                                this.child.scrollToTops()
+                           }else{
+                               this.childs.scrollToTops()
+                           }
+
                     }}  showsPagination={false}
                         loop={false}
                         ref={(component) => {this._swiperobj = component}} >
                         <View style={styles.item}>
-                            <ScrollView showsVerticalScrollIndicator = {false}>
-                                <Text style={{lineHeight:48}}>
-                                    page1
-                                </Text>
-                            </ScrollView>
+                            <SchoolStudy onRef={this.onRef}></SchoolStudy>
                         </View>
                         <View style={styles.item}>
-                            <ScrollView showsVerticalScrollIndicator = {false}>
-                                <Text style={{lineHeight:48}}>
-                                    page2
-                                </Text>
-                            </ScrollView>
+                            <SchoolExam onRef={this.onRefs}></SchoolExam>
                         </View>
                     </Swiper>
 

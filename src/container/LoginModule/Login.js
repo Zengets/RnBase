@@ -10,7 +10,8 @@ import {
     StyleSheet,
     ImageBackground,
     Dimensions,
-    Text
+    Text,
+    StatusBar
 } from 'react-native';
 import { HttpUtils,BASE_URL,PORT_NAME } from '../../components'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -41,7 +42,6 @@ const styles = StyleSheet.create({
     },
     heads:{
         width:width,
-        height:68,
         flexDirection:"row",
         alignItems:"center",
         justifyContent:"space-between"
@@ -65,11 +65,18 @@ const styles = StyleSheet.create({
 
     componentDidMount() {
         SplashScreen.hide();
+        setTimeout(()=>{
+            StatusBar.setBackgroundColor('rgba(0,0,0,0)')
+        },300)
     }
 
     _onPressSubmit = ()=>{
         let {username,password,remember} = this.state;
-        this.props.navigation.navigate('Main');
+        setTimeout(()=>{
+            StatusBar.setBackgroundColor('#DD5144')
+            this.props.navigation.navigate('Main');
+        },300)
+
         if(username==""||password==""){
             Toast.show({
                 text: "用户名/密码/确认密码不可为空...!",
@@ -78,7 +85,6 @@ const styles = StyleSheet.create({
             })
             return
         }
-        this.props.navigation.navigate('Main');
 
         HttpUtils.post(BASE_URL+PORT_NAME.login,{
             userIdcard:username,
@@ -120,9 +126,7 @@ const styles = StyleSheet.create({
                     innerRef={ref => {this.scroll = ref}}
                     scrollEnabled = {false}
                     onKeyboardWillShow={(frames: Object)=>{
-
-             }}>
-
+                 }}>
                 <ImageBackground
                     style={styles.container}
                     source={require('../../assets/images/loginbac.png')}

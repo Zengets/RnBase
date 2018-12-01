@@ -3,4 +3,6 @@
  */
 import NewsItem from './homepage/newsItem/NewsItem'
 import ServiceItem from './homepage/serviceItem/ServiceItem'
-export { NewsItem,ServiceItem }
+import SchoolExamItem from './homepage/schoolItem/SchoolExamItem'
+
+export { NewsItem,ServiceItem,SchoolExamItem }

@@ -17,8 +17,8 @@ import {
     TouchableNativeFeedback
 } from 'react-native';
 import PerCenter from './PerCenterModule/PerCenter'
-import { NewsItem } from '../../components'
-
+import { NewsItem,Titles } from '../../components'
+import SplashScreen from 'react-native-splash-screen';
 
 const { width,height } = Dimensions.get('window')
 const styles = {
@@ -94,16 +94,6 @@ const styles = {
     },
     newsmain:{
         width:width,
-    },
-    newshead:{
-        flexDirection:"row",
-        justifyContent:"space-between",
-        alignItems:"center",
-        padding:14,
-        paddingTop:2,
-        paddingBottom:2,
-        borderBottomColor:"#f0f0f0",
-        borderBottomWidth:1
     },
     maincontain:{
         padding:14,
@@ -216,8 +206,10 @@ export default class HomePage extends Component<Props> {
         alert(uri)
     }
 
-    componentDidMount(){
+    componentDidMount() {
+        SplashScreen.hide();
     }
+
 
     render() {
         let {navbar,Anim,noticebar,tabbar,newsList} = this.state;
@@ -225,8 +217,7 @@ export default class HomePage extends Component<Props> {
 
         return (
             <Container>
-                <StatusBar backgroundColor = {'#DD5144'}></StatusBar>
-                <Header style={{paddingTop:20,height:68,backgroundColor:"#DD5144"}}>
+                <Header style={{backgroundColor:"#DD5144"}}>
                     <Left style={{flex:1}}>
                         <TouchableOpacity onPress={()=>this.props.navigation.openDrawer()} style={styles.imagehead}>
                             <ImageBackground
@@ -337,16 +328,7 @@ export default class HomePage extends Component<Props> {
                     </View>
 
                     <View style={styles.newsmain}>
-                        <View style={styles.newshead}>
-                            <View style={{flex:1,height:28,borderLeftColor:"#fc3838",borderLeftWidth:4,paddingLeft:10}}>
-                                <Text style={{fontSize:18,color:"#333",lineHeight:28,fontWeight:"bold"}}>
-                                    党内要闻
-                                </Text>
-                            </View>
-                            <Button rounded transparent dark style={{marginRight:-14}}>
-                                <Icon name='more' style={{color:"#666"}}/>
-                            </Button>
-                        </View>
+                        <Titles titles = {"党内要闻"} clickFn={()=>{alert(0)}}></Titles>
                         <View style={styles.maincontain}>
                             {
                                 newsList.map((item,i)=>{
