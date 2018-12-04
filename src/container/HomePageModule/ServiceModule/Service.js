@@ -73,40 +73,43 @@ export default class Service extends Component<Props> {
             page:0,
             nav:["全部","就业服务","法律服务","教育服务","医疗服务","助老助残","家政服务"],
             serviceList:[{
-                id:Math.ceil(Math.random() * 100),
-                name:"5411医疗服务",
-                curnum:1,
-                totalnum:3,
-                addr:"河桥街道",
-                type:"医疗服务"
-            },{
-                id:Math.ceil(Math.random() * 100),
-                name:"54法律服务",
-                curnum:1,
-                totalnum:3,
-                addr:"玉林街道",
-                type:"法律服务"
-            },{
-                id:Math.ceil(Math.random() * 100),
-                name:"541教育服务",
-                curnum:3,
-                totalnum:3,
-                addr:"河桥街道",
-                type:"教育服务"
-            },{
-                id:Math.ceil(Math.random() * 100),
-                name:"5411就业服务",
-                curnum:1,
-                totalnum:3,
-                addr:"河桥街道",
-                type:"就业服务"
-            },{
-                id:Math.ceil(Math.random() * 100),
-                name:"5411医疗服务",
-                curnum:1,
-                totalnum:3,
-                addr:"河桥街道",
-                type:"医疗服务"
+                items:[
+                    {
+                        id:Math.ceil(Math.random() * 100),
+                        name:"5411医疗服务",
+                        curnum:1,
+                        totalnum:3,
+                        addr:"河桥街道",
+                        type:"医疗服务"
+                    },{
+                        id:Math.ceil(Math.random() * 100),
+                        name:"54法律服务",
+                        curnum:1,
+                        totalnum:3,
+                        addr:"玉林街道",
+                        type:"法律服务"
+                    },{
+                        id:Math.ceil(Math.random() * 100),
+                        name:"541教育服务",
+                        curnum:3,
+                        totalnum:3,
+                        addr:"河桥街道",
+                        type:"教育服务"
+                    },{
+                        id:Math.ceil(Math.random() * 100),
+                        name:"5411就业服务",
+                        curnum:1,
+                        totalnum:3,
+                        addr:"河桥街道",
+                        type:"就业服务"
+                    },{
+                        id:Math.ceil(Math.random() * 100),
+                        name:"5411医疗服务",
+                        curnum:1,
+                        totalnum:3,
+                        addr:"河桥街道",
+                        type:"医疗服务"
+                    }]
             }]
         }
     }
@@ -163,7 +166,7 @@ export default class Service extends Component<Props> {
                                      activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
                                      activeTabStyle={{backgroundColor:"#ffffff"}}
                                      textStyle={{color:"#808080",fontWeight:"100"}}>
-                                    <View style={{padding:14}}>
+                                    <View style={{padding:14,flex:1}}>
                                         <ServiceList page={page} onRef={this.onRef} data = {serviceList}></ServiceList>
                                     </View>
 

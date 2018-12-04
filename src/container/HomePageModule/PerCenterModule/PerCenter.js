@@ -123,7 +123,7 @@ export default class PerCenter extends Component<Props> {
                                 </ImageBackground>
                             </View>
                         </TouchableNativeFeedback>
-                        <View style={{paddingTop:12}}>
+                        <View>
                             <List style={styles.items}>
                                 {
                                     navbar.firstNav.map((item,i)=>{

@@ -9,29 +9,33 @@ import {
     Image,
     ImageBackground,
     Dimensions,
-    FlatList,
-    ScrollView,
     StatusBar,
     TouchableOpacity,
     TouchableNativeFeedback
 } from 'react-native';
 import { ServiceItem } from '../../../../components'
+import { LargeList } from "react-native-largelist-v2";
+import { NormalHeader } from "react-native-spring-scrollview/NormalHeader";
+import { NormalFooter } from "react-native-spring-scrollview/NormalFooter";
 
+
+
+const { width,height } = Dimensions.get('window')
+let styles = {
+    container:{
+        flex:1,
+    }
+}
 
 export default class ServiceList extends React.PureComponent {
     constructor(props){
         super(props);
         this.state = {
-            refreshing: false,
-            pageIndex:1,
-            hasMore:true,
-            data:this.props.data,
+            pageIndex:1,//页码
+            allLoaded:false,//加载state
+            data:this.props.data,//this.props.data
             isSpin:true
         };
-        this.viewabilityConfig = {
-            waitForInteraction: true,
-            viewAreaCoveragePercentThreshold: 100
-        }
     }
     componentWillMount(){
         this.setState({
@@ -51,28 +55,25 @@ export default class ServiceList extends React.PureComponent {
             this.props.onRef(this)
         }
     }
-    _onRefresh =()=> {
-        Toast.show({
-            text: "刷新成功!",
-            buttonText: "确认",
-            type: "success",
-            duration: 3000
-        })
-        let data = [];
-        this.setState({
-            refreshing: false,
-            pageIndex:1,
-            hasMore:true,
-            data:data
-        })
+    _onRefresh = () => {
+        this._largeList.beginRefresh();
+        setTimeout(() => {
+            this._largeList.endRefresh();
+            this.state.pageIndex = 0;
+            this.setState({
+                data: this.props.data,
+                allLoaded: this.state.pageIndex  > 5
+            });
+        }, 600);
+    };
 
-    }
-    //load
-    _onEndReached = () =>{
+
+    _onLoading = () => {
+        this._largeList.beginLoading();
         let pageIndex = this.state.pageIndex;
-        if(pageIndex<5){
-            pageIndex++;
-            let data = this.props.data;
+        setTimeout(() => {
+            this._largeList.endLoading();
+            let data = [];
             for (let i = 0; i < 5; i++) {
                 data.push({
                     id:Math.ceil(Math.random() * 100),
@@ -84,57 +85,52 @@ export default class ServiceList extends React.PureComponent {
                 });
             }
             this.setState({
-                refreshing: false,
-                pageIndex:pageIndex,
-                hasMore:pageIndex<5,
-                data:this.state.data.concat(data)
+                allLoaded: pageIndex > 5,
+                data:this.state.data.concat([{items:data}])
             })
-        }else{
-            this.setState({
-                hasMore:false
-            })
-        }
+
+        }, 600);
+    };
+
+
+
+
+
+    _renderItem = ({ section: section, row: row }) => {
+        let item = this.state.data[section].items[row]
+        return(
+            <ServiceItem key={row} item={item} pressFn={()=>{alert("jumpurl")}}></ServiceItem>
+        )
     }
 
-    _footer = () => {
-        return <Text style={{ backgroundColor: 'transparent',padding:12,textAlign:"center" }}>{this.state.hasMore?"玩命加载中...":"我也是有底线的!"}</Text>;
-    }
-
-    //separator line
-    _separator = () => {
-        return <View style={{ height: 8, backgroundColor: 'transparent' }}/>;
-    }
-
-    _renderItem = ({item}) => (
-        <ServiceItem key={item.title} item={item}></ServiceItem>
-    );
-
-    _keyExtractor = (item, index) => item.id;
 
     _scrollToIndex = () => {
-        this._flatList.scrollToIndex({ viewPosition: 0, index: 0 });
+        this._largeList.scrollTo({ x: 0, y: 0 });
     }
 
     render(){
         let {isSpin} = this.state;
         return (
-            <View>
+            <View style={{flex:1}}>
                 {
                     isSpin?
                         <Spinner color='red'></Spinner>:
-                        <FlatList
+                        <LargeList
                             showsVerticalScrollIndicator = {false}
-                            keyExtractor={this._keyExtractor}
-                            viewabilityConfig = {this.viewabilityConfig}
-                            ref={(flatList) => this._flatList = flatList}
-                            ListFooterComponent={this._footer}
-                            ItemSeparatorComponent={this._separator}
-                            refreshing={this.state.refreshing}
+                            ref={ref => (this._largeList = ref)}
+                            style={styles.container}
+                            data={this.state.data}
+                            heightForIndexPath={({ section: section, row: row }) =>{
+                                return 94
+                            }}
+                            renderIndexPath={this._renderItem}
+                            refreshHeaderHeight={60}
+                            refreshHeader={NormalHeader}
                             onRefresh={this._onRefresh}
-                            onEndReachedThreshold={0.1}
-                            data={this.props.data}
-                            renderItem={this._renderItem}
-                            onEndReached={this._onEndReached}
+                            loadingFooterHeight={50}
+                            loadingFooter={NormalFooter}
+                            onLoading={this._onLoading}
+                            allLoaded={this.state.allLoaded}
                         />
                 }
             </View>

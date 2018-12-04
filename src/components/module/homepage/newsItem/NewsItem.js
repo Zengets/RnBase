@@ -15,11 +15,13 @@ import {
 const { width,height } = Dimensions.get('window')
 const styles = {
     container: {
-        flex: 1,
+        flex:1,
+    },
+    grid:{
         paddingTop:14,
         paddingBottom:14,
         borderBottomColor:"#f0f0f0",
-        borderBottomWidth:1
+        borderBottomWidth:1,
     },
     imgbac:{
         width:80,
@@ -29,10 +31,10 @@ const styles = {
 }
 export default class NewsItem extends React.PureComponent{
     render() {
-        let {item} = this.props;
+        let {item,pressFn} = this.props;
         let style1 = ()=>{
             return(
-                <Grid style={styles.container}>
+                <Grid style={styles.grid}>
                     <Col size={1} style={{height:80,justifyContent:"space-between"}}>
                         <Row size={4}>
                             <Text numberOfLines={2} style={{fontSize:16,color:"#000"}}>
@@ -64,19 +66,19 @@ export default class NewsItem extends React.PureComponent{
         }
         let style2 = ()=>{
             return(
-                <Grid style={styles.container}>
-                    <Row>
+                <Grid style={styles.grid}>
+                    <Row style={{height:20}}>
                         <Text numberOfLines={1} style={{fontSize:16,color:"#000"}}>
                             {item.title}
                         </Text>
                     </Row>
-                    <Row style={{height:80,marginTop:8,marginBottom:8,justifyContent:"space-between"}}>
+                        <Row style={{height:80,marginTop:8,marginBottom:8,justifyContent:"space-between"}}>
                         {
                           item.pic.map((key,i)=>{
                               return(
                                   <Col key={i} size={1} style={{width:80}}>
                                       <ImageBackground
-                                          style={{width:(width-48)/item.pic.length,height:80,}}
+                                          style={{width:width/item.pic.length,height:80,}}
                                           resizeMode='cover'
                                           source={key.img}>
                                       </ImageBackground>
@@ -103,8 +105,8 @@ export default class NewsItem extends React.PureComponent{
         }
 
         return (
-            <TouchableNativeFeedback>
-                <View>
+            <TouchableNativeFeedback onPress={()=>{pressFn()}}>
+                <View style={styles.container}>
                     {
                         item.pic.length>1?
                         style2():

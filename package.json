@@ -13,7 +13,10 @@
     "react-native": "0.57.6",
     "react-native-gesture-handler": "^1.0.10",
     "react-native-keyboard-aware-scroll-view": "^0.7.4",
+    "react-native-largelist-v2": "^2.1.1",
+    "react-native-modal": "^7.0.1",
     "react-native-splash-screen": "^3.1.1",
+    "react-native-spring-scrollview": "^0.0.24",
     "react-navigation": "^3.0.1",
     "react-redux": "^5.1.1",
     "redux": "^4.0.1"

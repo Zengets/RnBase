@@ -118,11 +118,11 @@ export default class HomePage extends Component<Props> {
             navbar:[{
                 name:"通讯录",
                 img:require("../../assets/images/indexicon_03.png"),
-                uri:"/home"
+                uri:"PhoneList"
             },{
                 name:"党费缴纳",
                 img:require("../../assets/images/indexicon_05.png"),
-                uri:"/home"
+                uri:"Cost"
             },{
                 name:"党建地图",
                 img:require("../../assets/images/indexicon_07.png"),
@@ -202,9 +202,7 @@ export default class HomePage extends Component<Props> {
     }
 
 
-    _onPressButton(uri){
-        alert(uri)
-    }
+
 
     componentDidMount() {
         SplashScreen.hide();
@@ -212,7 +210,8 @@ export default class HomePage extends Component<Props> {
 
 
     render() {
-        let {navbar,Anim,noticebar,tabbar,newsList} = this.state;
+        let {navbar,Anim,noticebar,tabbar,newsList} = this.state,
+            {  navigation } = this.props;
 
 
         return (
@@ -276,7 +275,7 @@ export default class HomePage extends Component<Props> {
                                 return(
                                     <TouchableNativeFeedback
                                         key={i}
-                                        onPress={()=>this._onPressButton(item.uri)}
+                                        onPress={()=>{ navigation.navigate(item.uri);}}
                                         background={TouchableNativeFeedback.SelectableBackground()}>
                                         <View style={styles.item}>
                                             <Image style={{width:0.14*width,height:0.14*width,marginBottom:10}} source={item.img}></Image>

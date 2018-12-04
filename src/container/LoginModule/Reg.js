@@ -122,7 +122,7 @@ class Reg extends Component<Props> {
                         <Container style={{flex:1,backgroundColor: "transparent"}}>
                         <Header transparent style={styles.heads}>
                             <Left style={{flex:1}}>
-                                <Button transparent>
+                                <Button transparent  onPress={()=>{this.props.navigation.goBack()}}>
                                     <Icon name="arrow-back" />
                                 </Button>
                             </Left>

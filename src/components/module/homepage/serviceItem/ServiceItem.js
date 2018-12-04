@@ -15,15 +15,13 @@ import {
 const { width,height } = Dimensions.get('window')
 const styles = {
     container: {
-        flex: 1,
+        flex:1,
+    },
+    grid:{
         paddingTop:14,
         paddingBottom:14,
         borderBottomColor:"#f0f0f0",
-        borderBottomWidth:1
-    },
-    imgbac:{
-        width:80,
-        height:80,
+        borderBottomWidth:1,
     }
 }
 
@@ -35,11 +33,12 @@ const styles = {
 
 export default class ServiceItem extends React.PureComponent{
     render() {
-        let {item} = this.props;
+        let {item,pressFn} = this.props;
+
         let style1 = ()=>{
             return(
-                <Grid style={styles.container}>
-                    <Row style={{marginBottom:12}}>
+                <Grid style={styles.grid}>
+                    <Row size={1} style={{marginBottom:12}}>
                         <Col size={1}>
                             <View style={{borderLeftColor:"#DD5144",borderLeftWidth:4,paddingLeft:12,height:24}}>
                                 <Text  numberOfLines={1} style={{textAlign:"left",lineHeight:24}}>
@@ -55,8 +54,8 @@ export default class ServiceItem extends React.PureComponent{
                             </View>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col size={1}>
+                    <Row size={1} style={{height:30}}>
+                        <Col size={1} style={{height:30}}>
                             <Row>
                                 <Icon type="Entypo" name="location-pin" style={{fontSize: 16, color: 'lightgrey',lineHeight:30}}></Icon>
                                 <Text style={{textAlign:"left",lineHeight:30}}>
@@ -78,8 +77,8 @@ export default class ServiceItem extends React.PureComponent{
 
 
         return (
-            <TouchableNativeFeedback>
-                <View>
+            <TouchableNativeFeedback onPress={()=>{pressFn()}}>
+                <View style={styles.container}>
                     {
                         style1()
                     }

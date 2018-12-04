@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { createBottomTabNavigator,createStackNavigator,createDrawerNavigator,createAppContainer } from 'react-navigation';
-import { Login,Reg,HomePage,News,PerCenter,School,Service } from '../container'
+import { Login,Reg,HomePage,News,PerCenter,School,Service,PhoneList,Cost } from '../container'
 import { Header } from 'native-base'
 import {
     Image,
@@ -13,6 +13,7 @@ import {
     Easing
 } from 'react-native';
 import StackViewStyleInterpolator from "react-navigation-stack/dist/views/StackView/StackViewStyleInterpolator";
+import { gestureHandlerRootHOC } from 'react-native-gesture-handler'
 
 let {height,width} =  Dimensions.get('window');
 
@@ -194,9 +195,21 @@ const AppNavigator = createStackNavigator({
             navigationOptions: ({navigation}) => ({
                 header: null
             })
-        },
+        },//注册页
+        PhoneList: {
+            screen: gestureHandlerRootHOC(PhoneList),
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//通讯录
+        Cost: {
+            screen: Cost,
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//党费
         Main: {//`${navigation.state.params.name}`
-            screen:Drawer,
+            screen:gestureHandlerRootHOC(Drawer),
             navigationOptions: ({navigation}) => ({
                 header:null,//type 1按钮 type2 图片 btns={{type:2,desc:require("../assets/images/scale.png")}}btns={{type:1,desc:"按钮"}} clickFn={()=>{alert(0)}}
 
