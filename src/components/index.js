@@ -8,4 +8,7 @@ import {BASE_URL,PORT_NAME} from './publicdata/Data';
 import { NewsItem,ServiceItem,SchoolExamItem } from './module';
 import Modals from './ui/Modal'
 import ModalBottom from './ui/ModalBottom'
-export {Header,HttpUtils,BASE_URL,PORT_NAME,NewsItem,ServiceItem,Titles,SchoolExamItem,Modals,ModalBottom}
+import ModalTextInput from './ui/ModalTextInput'
+
+
+export {Header,HttpUtils,BASE_URL,PORT_NAME,NewsItem,ServiceItem,Titles,SchoolExamItem,Modals,ModalBottom,ModalTextInput}

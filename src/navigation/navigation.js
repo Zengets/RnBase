@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { createBottomTabNavigator,createStackNavigator,createDrawerNavigator,createAppContainer } from 'react-navigation';
-import { Login,Reg,HomePage,News,PerCenter,School,Service,PhoneList,Cost } from '../container'
+import { Login,Reg,HomePage,News,PerCenter,School,Service,PhoneList,Cost,CostExplain,CostSure } from '../container'
 import { Header } from 'native-base'
 import {
     Image,
@@ -208,6 +208,19 @@ const AppNavigator = createStackNavigator({
                 header: null
             })
         },//党费
+        CostExplain: {
+            screen: CostExplain,
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//党费说明
+        CostSure: {
+            screen: CostSure,
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//党费确认
+
         Main: {//`${navigation.state.params.name}`
             screen:gestureHandlerRootHOC(Drawer),
             navigationOptions: ({navigation}) => ({

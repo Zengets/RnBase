@@ -10,6 +10,6 @@ import School from './HomePageModule/SchoolModule/School';
 import Service from './HomePageModule/ServiceModule/Service';
 import PhoneList from './HomePageModule/IndexModule/PhoneListModule/PhoneList';
 import Cost from './HomePageModule/IndexModule/CostModule/Cost';
-
-
-export {Login,Reg,HomePage,News,PerCenter,School,Service,PhoneList,Cost}
+import CostExplain from './HomePageModule/IndexModule/CostModule/CostExplain';
+import CostSure from './HomePageModule/IndexModule/CostModule/CostSure';
+export {Login,Reg,HomePage,News,PerCenter,School,Service,PhoneList,Cost,CostExplain,CostSure}
