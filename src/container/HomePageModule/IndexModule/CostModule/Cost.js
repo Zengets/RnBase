@@ -250,7 +250,7 @@ export default class Cost extends React.Component {
                                 })
                             }
                         </Row>
-                        <View style={{backgroundColor:"#f9f9f9",marginTop:12,padding:6}}>
+                        <View style={{backgroundColor:"#f9f9f9",marginTop:12,paddingTop:10}}>
                             <Text style={{fontSize:16,borderBottomColor:"#f0f0f0",borderBottomWidth:1,paddingBottom:14,marginBottom:6}}>
                                 备注:
                             </Text>
@@ -261,7 +261,7 @@ export default class Cost extends React.Component {
 
 
                 </Content>
-                <ModalTextInput show={ifshow} str={`请输入${curterm.month}月份的党费`} btnstr="确认" pressFn={(val)=>this.callMoney(val)}></ModalTextInput>
+                <ModalTextInput type="number" show={ifshow} str={`请输入${curterm.month}月份的党费`} btnstr="确认" pressFn={(val)=>this.callMoney(val)}></ModalTextInput>
                 <View style={styles.footer}>
                     <View style={styles.textcontain}>
                         <Text style={{fontSize:16,color:"#333",paddingLeft:24}}>合计：￥</Text><Text style={{fontSize:16,color:"#DD5144"}}>{parseFloat(total)}</Text>

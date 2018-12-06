@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { createBottomTabNavigator,createStackNavigator,createDrawerNavigator,createAppContainer } from 'react-navigation';
-import { Login,Reg,HomePage,News,PerCenter,School,Service,PhoneList,Cost,CostExplain,CostSure } from '../container'
+import { Login,Reg,HomePage,News,PerCenter,School,Service,PhoneList,Cost,CostExplain,CostSure,Map } from '../container'
 import { Header } from 'native-base'
 import {
     Image,
@@ -220,7 +220,12 @@ const AppNavigator = createStackNavigator({
                 header: null
             })
         },//党费确认
-
+        Map: {
+            screen: Map,
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//党建地图
         Main: {//`${navigation.state.params.name}`
             screen:gestureHandlerRootHOC(Drawer),
             navigationOptions: ({navigation}) => ({

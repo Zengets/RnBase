@@ -126,7 +126,7 @@ export default class HomePage extends Component<Props> {
             },{
                 name:"党建地图",
                 img:require("../../assets/images/indexicon_07.png"),
-                uri:"/home"
+                uri:"Map"
             },{
                 name:"党建看板",
                 img:require("../../assets/images/indexicon_13.png"),
@@ -205,6 +205,17 @@ export default class HomePage extends Component<Props> {
 
 
     componentDidMount() {
+        try {
+            PermissionsAndroid.request(
+                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                {
+                    'title': '是否同意打开定位权限',
+                    'message': '允许获取您当前的位置?'
+                }
+            )
+        } catch (err) {
+
+        }
         SplashScreen.hide();
     }
 

@@ -57,15 +57,14 @@ export default class ModalBottom extends Component {
             >
                 <View style={styles.scrollableModal}>
                     <ScrollView
+                        style={{height: 300,width:width}}
                         ref={ref => (this.scrollViewRef = ref)}
                         onScroll={this.handleOnScroll}
                         scrollEventThrottle={16}
                         >
-                        <View style={styles.scrollableModalContent1}>
                             {
                                 renderFn()
                             }
-                        </View>
                     </ScrollView>
                 </View>
             </Modal>

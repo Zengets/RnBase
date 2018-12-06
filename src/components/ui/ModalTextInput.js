@@ -40,10 +40,15 @@ export default class ModalTextInput extends Component {
                 <Item floatingLabel>
                     <Label>{str}</Label>
                     <Input
-                        keyboardType="number-pad"
+                        keyboardType={this.props.type=="number"?"number-pad":"default"}
                         onChangeText={(val) => {
-                            const newText = val.replace(/[^\d.]/g, '');
-                            this.setState({inputval:newText})
+                            if(this.props.type=="number"){
+                                const newText = val.replace(/[^\d.]/g, '');
+                                this.setState({inputval:newText})
+                            }else{
+                                this.setState({inputval:val})
+                            }
+
                         }}
                         value={this.state.inputval}
                         clearButtonMode="always"
@@ -51,7 +56,12 @@ export default class ModalTextInput extends Component {
                 </Item>
             </View>
             {this.renderButton(btnstr, () => {
-                let vals =this.state.inputval? parseFloat(this.state.inputval).toFixed(1):0
+                let vals
+                if(this.props.type=="number"){
+                    vals = this.state.inputval? parseFloat(this.state.inputval).toFixed(1):0
+                }else{
+                    vals = this.state.inputval? this.state.inputval:""
+                }
                 this.props.pressFn(vals);
             })}
         </View>
