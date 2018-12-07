@@ -33,7 +33,7 @@ export default class PhoneListBody extends React.Component {
     linking(url){
         Linking.canOpenURL(url).then(supported => {
             if (!supported) {
-                alert('Can\'t handle url: ' + url);
+
             } else {
                 return Linking.openURL(url);
             }
@@ -275,6 +275,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center"
+    },
+    search:{
+        paddingLeft:12
     },
     line: {
         position: "absolute",

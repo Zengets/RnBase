@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { createBottomTabNavigator,createStackNavigator,createDrawerNavigator,createAppContainer } from 'react-navigation';
-import { Login,Reg,HomePage,News,PerCenter,School,Service,PhoneList,Cost,CostExplain,CostSure,Map } from '../container'
+import { Login,Reg,HomePage,News,PerCenter,School,Service,PhoneList,Cost,CostExplain,CostSure,Map,Temporary,TemporaryDetail,Discipline,Anti } from '../container'
 import { Header } from 'native-base'
 import {
     Image,
@@ -226,6 +226,31 @@ const AppNavigator = createStackNavigator({
                 header: null
             })
         },//党建地图
+        Temporary: {
+            screen: gestureHandlerRootHOC(Temporary),
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//临时党组织
+        TemporaryDetail: {
+            screen: TemporaryDetail,
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//临时党组织
+        Discipline: {
+            screen: gestureHandlerRootHOC(Discipline),
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//党的纪律
+        Anti: {
+            screen: gestureHandlerRootHOC(Anti),
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//反腐倡廉
+
         Main: {//`${navigation.state.params.name}`
             screen:gestureHandlerRootHOC(Drawer),
             navigationOptions: ({navigation}) => ({

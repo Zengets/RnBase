@@ -124,7 +124,7 @@ export default class Map extends React.Component {
     linking(url){
         Linking.canOpenURL(url).then(supported => {
             if (!supported) {
-                alert('Can\'t handle url: ' + url);
+
             } else {
                 return Linking.openURL(url);
             }
@@ -310,13 +310,13 @@ export default class Map extends React.Component {
                         position="topRight"
                         onPress={() => this.setState({active: !active })}>
                         <Icon name="menu" />
-                        <Button full style={{borderRadius:600,backgroundColor: '#3B5998',overflow:"hidden"}} onPress={()=>{this.setState({ifshow:true})}}>
+                        <Button rounded full style={{backgroundColor: '#3B5998'}} onPress={()=>{this.setState({ifshow:true})}}>
                             <Icon name="search"/>
                         </Button>
-                        <Button full style={{borderRadius:600,backgroundColor: '#34A34F',overflow:"hidden"}} onPress={this._animatedToYZ}>
+                        <Button rounded full style={{backgroundColor: '#34A34F'}} onPress={this._animatedToYZ}>
                             <Icon name="cycle" type="Entypo"/>
                         </Button>
-                        <Button full style={{borderRadius:600,backgroundColor: '#DD5144',overflow:"hidden"}} onPress={this._animatedToCenter}>
+                        <Button rounded full style={{backgroundColor: '#DD5144'}} onPress={this._animatedToCenter}>
                             <Icon name="hair-cross" type="Entypo"></Icon>
                         </Button>
                     </Fab>

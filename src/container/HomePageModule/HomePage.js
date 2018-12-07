@@ -130,19 +130,19 @@ export default class HomePage extends Component<Props> {
             },{
                 name:"党建看板",
                 img:require("../../assets/images/indexicon_13.png"),
-                uri:"/home"
+                uri:""
             },{
                 name:"临时党组织",
                 img:require("../../assets/images/indexicon_24.png"),
-                uri:"/home"
+                uri:"Temporary"
             },{
                 name:"党的纪律",
                 img:require("../../assets/images/indexicon_21.png"),
-                uri:"/home"
+                uri:"Discipline"
             },{
                 name:"反腐倡廉",
                 img:require("../../assets/images/indexicon_22.png"),
-                uri:"/home"
+                uri:"Anti"
             },
             ],
             tabbar:[{

@@ -131,12 +131,13 @@ class PhoneList extends Component<Props> {
                         {picker()}
                     </Right>
                 </Header>
-                {   isSpin?
-                    <Spinner color='red'></Spinner>:
-                    <PhoneListBody style={{width:width,height:height}}>
-                    </PhoneListBody>
+                {
+                    isSpin?
+                        <Spinner color='red'></Spinner>:
+                    null
                 }
-
+                <PhoneListBody style={{width:width,height:height}}>
+                </PhoneListBody>
 
 
 

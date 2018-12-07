@@ -13,6 +13,9 @@ import Cost from './HomePageModule/IndexModule/CostModule/Cost';
 import CostExplain from './HomePageModule/IndexModule/CostModule/CostExplain';
 import CostSure from './HomePageModule/IndexModule/CostModule/CostSure';
 import Map from './HomePageModule/IndexModule/MapModule/Map';
+import Temporary from './HomePageModule/IndexModule/TemporaryModule/Temporary';
+import TemporaryDetail from './HomePageModule/IndexModule/TemporaryModule/TemporaryDetail';
+import Discipline from './HomePageModule/IndexModule/DisciplineModule/Discipline';
+import Anti from './HomePageModule/IndexModule/AntiModule/Anti';
 
-
-export {Login,Reg,HomePage,News,PerCenter,School,Service,PhoneList,Cost,CostExplain,CostSure,Map}
+export {Login,Reg,HomePage,News,PerCenter,School,Service,PhoneList,Cost,CostExplain,CostSure,Map,Temporary,TemporaryDetail,Discipline,Anti}
