@@ -26,8 +26,8 @@ export default class Map extends React.Component {
                 longitude: 119.369435,
             },
             mycenter:{
-                latitude: '',
-                longitude: '',
+                latitude:null,
+                longitude:null,
             },
             data:data,
             curitem:data[0]
@@ -89,25 +89,34 @@ export default class Map extends React.Component {
 
     //定位
     _animatedToCenter = () => {
-        this.getLocation()
-        this.mapView.animateTo({
-            tilt: 45,
-            rotation: 0,
-            zoomLevel: 18,
-            coordinate:this.state.mycenter
-        })
+        this.getLocation((val)=>{
+            this.mapView.animateTo({
+                tilt: 45,
+                rotation: 0,
+                zoomLevel: 18,
+                coordinate:val
+            })
+        });
+
+
     }
     //获取位置
-    getLocation (){
+    getLocation (fn){
         this.setState({ifshow:false})
         navigator.geolocation.getCurrentPosition(
             (position) => {
+                let latitude = position.coords.latitude-0.0028,
+                    longitude= position.coords.longitude+0.0048;
                 this.setState({
                     mycenter: {
-                        latitude: position.coords.latitude-0.0028,
-                        longitude: position.coords.longitude+0.0048,
+                        latitude:latitude,
+                        longitude: longitude,
                     }
                 });
+                fn({
+                    latitude:latitude,
+                    longitude: longitude,
+                })
             },
             (error) => {
                 ToastAndroid.show("请打开定位功能!",ToastAndroid.SHORT);
@@ -118,7 +127,7 @@ export default class Map extends React.Component {
     }
 
     componentWillMount(){
-       this.getLocation()
+       this.getLocation(()=>{})
     }
     //拨打电话
     linking(url){

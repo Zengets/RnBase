@@ -157,6 +157,7 @@ export default class HomePage extends Component<Props> {
             }],
             newsList:[
                 {
+                id:0,
                 title:"习近平致丝路沿线民间组织论坛贺信",
                 from:"人民网",
                 time:"2018-10-26",
@@ -165,6 +166,7 @@ export default class HomePage extends Component<Props> {
                         img:require("../../assets/images/tts1.png")
                     }
                 ]},{
+                id:1,
                 title:"习近平：切实学懂弄通做实党的十九大精神",
                 from:"人民网",
                 time:"2018-10-26",
@@ -178,6 +180,7 @@ export default class HomePage extends Component<Props> {
                     },
 
                 ]},{
+                id:2,
                 title:"中国这5年：加强党对意识形态的领导",
                 from:"人民网",
                 time:"2018-10-26",
@@ -326,7 +329,9 @@ export default class HomePage extends Component<Props> {
                             {
                                 tabbar.map((item,i)=>{
                                     return(
-                                        <TouchableNativeFeedback key={i} onPress={()=>{}}>
+                                        <TouchableNativeFeedback key={i} onPress={()=>{this.props.navigation.navigate("Activity",{
+                                            index: i,
+                                        })}}>
                                             <View style={{paddingLeft:i==0?0:10}}>
                                                 <Image source={item.img} style={{width:200,height:70}}></Image>
                                             </View>
@@ -338,18 +343,16 @@ export default class HomePage extends Component<Props> {
                     </View>
 
                     <View style={styles.newsmain}>
-                        <Titles titles = {"党内要闻"} clickFn={()=>{alert(0)}}></Titles>
+                        <Titles titles = {"党内要闻"} clickFn={()=>{this.props.navigation.navigate("AllNews")}}></Titles>
                         <View style={styles.maincontain}>
                             {
                                 newsList.map((item,i)=>{
                                     return(
-                                        <NewsItem item={item} key={i}></NewsItem>
+                                        <NewsItem pressFn={()=>{this.props.navigation.navigate("NewsDetail",{
+                                            id: item.id,
+                                        })}} item={item} key={i}></NewsItem>
                                     )
                                 })
-
-
-
-
                             }
                         </View>
 

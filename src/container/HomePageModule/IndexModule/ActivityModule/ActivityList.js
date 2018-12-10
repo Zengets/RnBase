@@ -1,5 +1,5 @@
 /**
- * Created by kurosaki on 2018/11/29.
+ * Created by kurosaki on 2018/12/10.
  */
 import React, { Component } from 'react';
 import {  Container, Header, Content, Tab, Tabs,Toast, ScrollableTab , Button, Icon, Left, Right, Body,Title,Spinner} from 'native-base';
@@ -7,6 +7,7 @@ import {
     Text,
     View,
     Image,
+    Animated,
     ImageBackground,
     Dimensions,
     FlatList,
@@ -14,11 +15,12 @@ import {
     TouchableOpacity,
     TouchableNativeFeedback
 } from 'react-native';
-import { NewsItem } from '../../../../components'
+import { ActivityItem } from '../../../../components'
 import { LargeList } from "react-native-largelist-v2";
 import { NormalHeader } from "react-native-spring-scrollview/NormalHeader";
 import { NormalFooter } from "react-native-spring-scrollview/NormalFooter";
 import { withNavigation } from 'react-navigation';
+
 let styles = {
     container:{
         flex:1,
@@ -27,15 +29,31 @@ let styles = {
 
 const { width,height } = Dimensions.get('window')
 
-class NewsList extends React.PureComponent {
+class ActivityList extends React.PureComponent {
     constructor(props){
         super(props);
         this.state = {
             pageIndex:1,//页码
+            scrollY:0,
             allLoaded:false,//加载state
             data:this.props.data,//this.props.data
-            isSpin:true
+            isSpin:true,
+            anr:new Animated.Value(-68),//reset
         };
+        this.insider =  Animated.timing(
+            this.state.anr,
+            {
+                toValue: 65,
+                duration: 800,
+            }
+        )
+        this.outsider =  Animated.timing(
+            this.state.anr,
+            {
+                toValue: -68,
+                duration: 800,
+            }
+        )
     }
     componentWillMount(){
         this.setState({
@@ -50,11 +68,7 @@ class NewsList extends React.PureComponent {
         },400)
         this.props.onRef(this)
     }
-    componentWillReceiveProps(nextprops){
-        if(this.props.page !== nextprops.page){
-            this.props.onRef(this)
-        }
-    }
+
 
     _onRefresh = () => {
         this._largeList.beginRefresh();
@@ -75,45 +89,16 @@ class NewsList extends React.PureComponent {
             this._largeList.endLoading();
             let data = [];
             for (let i = 0; i < 5; i++) {
-                if(i%3==0){
-                    data.push({
-                        id:Math.ceil(Math.random() * 100),
-                        title:"习近平致丝路沿线民间组织论坛贺信",
-                        from:"人民网",
-                        time:"2018-10-26",
-                        pic:[
-                            {
-                                img:require("../../../../assets/images/tts1.png")
-                            }
-                        ]});
-                }else if(i%3==1){
-                    data.push({
-                        id:Math.ceil(Math.random() * 100),
-                        title:"习近平：切实学懂弄通做实党的十九大精神",
-                        from:"人民网",
-                        time:"2018-10-26",
-                        pic:[
-                            {
-                                img:require("../../../../assets/images/tts0.png")
-                            },{
-                                img:require("../../../../assets/images/tts1.png")
-                            },{
-                                img:require("../../../../assets/images/tts2.png")
-                            },
-
-                        ]});
-                }else{
-                    data.push({
-                        id:Math.ceil(Math.random() * 100),
-                        title:"中国这5年：加强党对意识形态的领导",
-                        from:"人民网",
-                        time:"2018-10-26",
-                        pic:[
-                            {
-                                img:require("../../../../assets/images/tts0.png")
-                            }
-                        ]});
-                }
+                data.push({
+                    "end": true,
+                    "imgUrl": null,
+                    "countClick": pageIndex*10+i,
+                    "actId": 60,
+                    "location": "南京江宁",
+                    "title": "余林社区居民参加妇女维权讲座",
+                    "userName": "杭华",
+                    "bgtime": 1536886800000
+                });
             }
 
 
@@ -127,15 +112,17 @@ class NewsList extends React.PureComponent {
     };
 
 
-
+    _jumpUrl (item){
+        this.props.navigation.navigate("ActivityDetail",{
+            id: item.actId,
+        })
+    }
 
 
     _renderItem = ({ section: section, row: row }) => {
-        let item = this.state.data[section].items[row]
+        let item = this.state.data[section].items[row];
         return(
-            <NewsItem key={item.title} item={item} pressFn={()=>{this.props.navigation.navigate("NewsDetail",{
-                id: item.id,
-            })}}></NewsItem>
+            <ActivityItem key={item.title} item={item} onPressFn={()=>{this._jumpUrl(item)}}></ActivityItem>
         )}
 
 
@@ -146,27 +133,32 @@ class NewsList extends React.PureComponent {
 
 
     render(){
-        let {isSpin} = this.state;
+        let {isSpin,anr,scrollY} = this.state;
         return (
             <View style={{flex:1}}>
-            {
+                {
                     isSpin?
-                    <Spinner color='red'></Spinner>:
-
+                        <Spinner color='red'></Spinner>:
                         <LargeList
+                            onScroll={({x:x,y:y})=>{
+                            if(y>height && scrollY<height){
+                                this.insider.start();
+                                this.setState({
+                                    scrollY:y
+                                })
+                            }else if(y<height && scrollY>height){
+                               this.outsider.start();
+                               this.setState({
+                                    scrollY:y
+                                })
+                            }
+                        } }
                             showsVerticalScrollIndicator = {false}
                             ref={ref => (this._largeList = ref)}
                             style={styles.container}
                             data={this.state.data}
                             heightForIndexPath={({ section: section, row: row }) =>{
-                               let item = this.state.data[section].items[row]
-                               if(item.pic.length>1){
-                                    return 160
-                               }else{
-                                    return 108
-                               }
-
-
+                                return 215
                             }}
                             renderIndexPath={this._renderItem}
                             refreshHeaderHeight={60}
@@ -178,12 +170,16 @@ class NewsList extends React.PureComponent {
                             allLoaded={this.state.allLoaded}
                         />
 
-            }
+                }
+                <Animated.View  style={{height:50,width:50,position:"absolute",bottom:anr,right:30}}>
+                    <Button full rounded style={{height:50,width:50,justifyContent:"center",alignItems:"center",backgroundColor:"#34A34F"}} onPress={()=>{this._largeList.scrollTo({x:0,y:0});}}>
+                        <Icon  type="Entypo" name="align-top" style={{color:"#fff",marginLeft:12}}></Icon>
+                    </Button>
+                </Animated.View>
             </View>
-
-
 
         );
     }
 }
-export default  withNavigation(NewsList)
+
+export default withNavigation(ActivityList)
