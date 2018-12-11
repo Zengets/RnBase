@@ -17,7 +17,7 @@ import { ServiceItem } from '../../../../components'
 import { LargeList } from "react-native-largelist-v2";
 import { NormalHeader } from "react-native-spring-scrollview/NormalHeader";
 import { NormalFooter } from "react-native-spring-scrollview/NormalFooter";
-
+import { withNavigation } from 'react-navigation';
 
 
 const { width,height } = Dimensions.get('window')
@@ -27,7 +27,7 @@ let styles = {
     }
 }
 
-export default class ServiceList extends React.PureComponent {
+class ServiceList extends React.PureComponent {
     constructor(props){
         super(props);
         this.state = {
@@ -100,7 +100,9 @@ export default class ServiceList extends React.PureComponent {
     _renderItem = ({ section: section, row: row }) => {
         let item = this.state.data[section].items[row]
         return(
-            <ServiceItem key={row} item={item} pressFn={()=>{alert("jumpurl")}}></ServiceItem>
+            <ServiceItem key={row} item={item} pressFn={()=>{this.props.navigation.navigate("ServiceDetail",{
+                id: item.id,
+            })}}></ServiceItem>
         )
     }
 
@@ -139,3 +141,5 @@ export default class ServiceList extends React.PureComponent {
         );
     }
 }
+
+export default withNavigation(ServiceList)

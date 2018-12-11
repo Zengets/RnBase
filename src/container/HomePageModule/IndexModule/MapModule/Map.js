@@ -15,7 +15,7 @@ export default class Map extends React.Component {
         super(props);
         this.mapView = null;
         this.state={
-            active:false,
+            active:true,
             selected:"standard",
             ifshow:false,
             findarr:[],
@@ -97,8 +97,6 @@ export default class Map extends React.Component {
                 coordinate:val
             })
         });
-
-
     }
     //获取位置
     getLocation (fn){
@@ -156,7 +154,7 @@ export default class Map extends React.Component {
 
 
 
-    _onInfoWindowPress = () => alert('onInfoWindowPress')
+    _onInfoWindowPress = () => {}
 
     onValueChange(value: string) {
         this.setState({
@@ -304,7 +302,6 @@ export default class Map extends React.Component {
                                     }}
                                     image={"../../../../assets/images/location.png"}
                                     title="你的位置"
-                                    onPress={this._onMarkerPress}
                                     coordinate={mycenter}
                                 />:
                                 null

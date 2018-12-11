@@ -92,7 +92,7 @@ export default class SchoolStudy extends Component<Props> {
                             {
                                 vedios.map((item,i)=>{
                                     return(
-                                        <Card key={i} style={{width:width*0.44,marginLeft:0.04*width}}>
+                                        <Card key={i} style={{width:width*0.47,marginLeft:0.02*width}}>
                                             <CardItem cardBody>
                                                 <Image source={item.imgurl} style={{height: 120, width: null, flex: 1}}/>
                                             </CardItem>
