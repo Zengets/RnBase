@@ -7,5 +7,7 @@ import SchoolExamItem from './homepage/schoolItem/SchoolExamItem'
 import TemporaryItem from './homepage/IndexTemporary/TemporaryItem'
 import ActivityItem from './homepage/IndexActivity/ActivityItem'
 import ServiceHistoryItem from './service/ServiceHistoryItem'
+import SchoolListItem from './homepage/schoolItem/SchoolListItem'
 
-export { NewsItem,ServiceItem,SchoolExamItem,TemporaryItem,ActivityItem,ServiceHistoryItem }
+
+export { NewsItem,ServiceItem,SchoolExamItem,TemporaryItem,ActivityItem,ServiceHistoryItem,SchoolListItem }

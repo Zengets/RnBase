@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { createBottomTabNavigator,createStackNavigator,createDrawerNavigator,createAppContainer } from 'react-navigation';
-import { Login,Reg,HomePage,News,NewsDetail,AllNews,PerCenter,School,Service,ServiceDetail,ServiceOrder,ServiceHistory,PhoneList,Cost,CostExplain,CostSure,Map,Temporary,TemporaryDetail,Discipline,Anti,Activity,ActivityDetail } from '../container'
+import { Login,Reg,HomePage,News,NewsDetail,AllNews,PerCenter,School,SchoolNav,Exam,Service,ServiceDetail,ServiceOrder,ServiceHistory,PhoneList,Cost,CostExplain,CostSure,Map,Temporary,TemporaryDetail,Discipline,Anti,Activity,ActivityDetail } from '../container'
 import { Header } from 'native-base'
 import {
     Image,
@@ -292,7 +292,18 @@ const AppNavigator = createStackNavigator({
                 header: null
             })
         },//服务记录
-
+        SchoolNav:{
+            screen: gestureHandlerRootHOC(SchoolNav),
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//学习资料列表
+        Exam:{
+            screen:Exam,
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//考试详情
         Main: {//`${navigation.state.params.name}`
             screen:gestureHandlerRootHOC(Drawer),
             navigationOptions: ({navigation}) => ({

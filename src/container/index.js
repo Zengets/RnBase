@@ -9,6 +9,8 @@ import NewsDetail from './HomePageModule/NewsModule/NewsDetail/NewsDetail';
 import AllNews from './HomePageModule/NewsModule/AllNews/AllNews';
 import PerCenter from './HomePageModule/PerCenterModule/PerCenter';
 import School from './HomePageModule/SchoolModule/School';
+import SchoolNav from './HomePageModule/SchoolModule/SchoolNav/SchoolNav';
+import Exam from './HomePageModule/SchoolModule/Exam/Exam';
 import Service from './HomePageModule/ServiceModule/Service';
 import ServiceDetail from './HomePageModule/ServiceModule/ServiceDetail/ServiceDetail';
 import ServiceOrder from './HomePageModule/ServiceModule/ServiceOrder/ServiceOrder';
@@ -28,4 +30,4 @@ import ActivityDetail from './HomePageModule/IndexModule/ActivityModule/Activity
 
 
 
-export {Login,Reg,HomePage,News,AllNews,NewsDetail,PerCenter,School,Service,ServiceDetail,ServiceHistory,ServiceOrder,PhoneList,Cost,CostExplain,CostSure,Map,Temporary,TemporaryDetail,Discipline,Anti,Activity,ActivityDetail}
+export {Login,Reg,HomePage,News,AllNews,NewsDetail,PerCenter,School,Exam,SchoolNav,Service,ServiceDetail,ServiceHistory,ServiceOrder,PhoneList,Cost,CostExplain,CostSure,Map,Temporary,TemporaryDetail,Discipline,Anti,Activity,ActivityDetail}

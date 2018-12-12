@@ -1,6 +1,7 @@
 *{
     overflow: visible;
     position: absolute;
+    flex-direction: column;
     justify-content: space-around;
     justify-content: space-between;
     flex-wrap: wrap;

@@ -18,12 +18,13 @@ import {
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Swiper from '@nart/react-native-swiper';
 import { Titles } from '../../../../components'
+import { withNavigation } from 'react-navigation';
 
 const { width,height } = Dimensions.get('window')
 const styles={
 
 }
-export default class SchoolStudy extends Component<Props> {
+class SchoolStudy extends Component<Props> {
     constructor(props){
         super(props);
         this._scrollobj = null;
@@ -66,14 +67,18 @@ export default class SchoolStudy extends Component<Props> {
     render() {
         let { course,vedios } = this.state;
         return (
-            <ScrollView ref={(component) => {this._scrollobj = component}} showsVerticalScrollIndicator={false}>
+            <ScrollView style={{backgroundColor:"#f9f9f9"}} ref={(component) => {this._scrollobj = component}} showsVerticalScrollIndicator={false}>
                     <View>
-                        <Titles titles={"课程(20)"} clickFn={()=>{alert(0)}}></Titles>
+                        <Titles titles={"课程(20)"} clickFn={()=>{
+                            this.props.navigation.navigate("SchoolNav",{
+                                type:0,
+                            })
+                        }}></Titles>
                         <View style={{flexDirection:"row",flexWrap:"wrap",paddingTop:0.02*width,paddingBottom:0.02*width}}>
                             {
                                 course.map((item,i)=>{
                                     return(
-                                        <Card key={i} style={{width:width*0.47,marginLeft:0.02*width}}>
+                                        <Card transparent key={i} style={{width:width*0.47,marginLeft:0.02*width,backgroundColor:"#fff"}}>
                                             <CardItem cardBody>
                                                 <Image source={item.imgurl} style={{height: 120, width: null, flex: 1}}/>
                                             </CardItem>
@@ -87,12 +92,16 @@ export default class SchoolStudy extends Component<Props> {
                         </View>
                     </View>
                     <View>
-                        <Titles borderTop={true} titles={"视频(20)"} clickFn={()=>{alert(0)}}></Titles>
+                        <Titles borderTop={true} titles={"视频(20)"} clickFn={()=>{
+                            this.props.navigation.navigate("SchoolNav",{
+                                type:1,
+                            })
+                        }}></Titles>
                         <View style={{flexDirection:"row",flexWrap:"wrap",paddingTop:0.02*width,paddingBottom:0.02*width}}>
                             {
                                 vedios.map((item,i)=>{
                                     return(
-                                        <Card key={i} style={{width:width*0.47,marginLeft:0.02*width}}>
+                                        <Card transparent key={i} style={{width:width*0.47,marginLeft:0.02*width,backgroundColor:"#fff"}}>
                                             <CardItem cardBody>
                                                 <Image source={item.imgurl} style={{height: 120, width: null, flex: 1}}/>
                                             </CardItem>
@@ -114,4 +123,4 @@ export default class SchoolStudy extends Component<Props> {
         );
     }
 }
-
+export default withNavigation(SchoolStudy)

@@ -18,7 +18,6 @@ import {
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Swiper from '@nart/react-native-swiper';
-import { Titles,SchoolExamItem } from '../../../../components'
 import PhoneListBody from './PhoneListBody'
 
 const { width,height } = Dimensions.get('window')

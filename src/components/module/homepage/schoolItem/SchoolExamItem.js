@@ -20,7 +20,9 @@ const styles = {
         paddingTop:14,
         paddingBottom:14,
         borderBottomColor:"#f0f0f0",
-        borderBottomWidth:1
+        borderBottomWidth:1,
+        flexDirection:"row",
+        justifyContent:"space-between"
     },
     imgbac:{
         width:108,
@@ -38,15 +40,15 @@ const styles = {
 
 export default class SchoolExamItem extends React.PureComponent{
     render() {
-        let {item} = this.props;
+        let { item,pressFn,type } = this.props;
         let style1 = ()=>{
             return(
                 <Grid style={styles.container}>
-                    <Col size={1.5}>
+                    <Col style={{width:108}}>
                        <ImageBackground style={styles.imgbac} source={require("../../../../assets/images/testpaper.png")}>
                        </ImageBackground>
                     </Col>
-                    <Col style={{width:width*0.60,paddingLeft:0.04*width,height:80}}>
+                    <Col size={0.9} style={{paddingLeft:0.04*width,height:80,justifySelf:"flex-end"}}>
                         <Row size={6.5}>
                             <Col size={1}>
                                 <Text style={{fontSize:16,color:"#333"}} numberOfLines={2}>
@@ -60,11 +62,10 @@ export default class SchoolExamItem extends React.PureComponent{
                             </Col>
                         </Row>
                         <Row size={3.5}>
-                            <Col size={1}></Col>
                             <Col size={1}>
-                            <Button rounded full style={{borderRadius:600,width:width*0.30-7,height:28,backgroundColor:"#DD5144"}}>
-                                <Text numberOfLines={1} style={{color:"#ffffff"}}>
-                                    开始考试
+                            <Button rounded full style={{borderRadius:600,height:28,backgroundColor:item.status==0?"#ddd":"#DD5144"}}>
+                                <Text numberOfLines={1} style={{color:item.status==0?"#333":"#ffffff"}}>
+                                    {item.status==0?"未通过":item.status==1?"已通过":"开始考试"}
                                 </Text>
                             </Button>
                             </Col>
@@ -76,7 +77,7 @@ export default class SchoolExamItem extends React.PureComponent{
 
 
         return (
-            <TouchableNativeFeedback>
+            <TouchableNativeFeedback onPress={()=>{pressFn()}}>
                 <View>
                     {
                         style1()

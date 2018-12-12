@@ -18,7 +18,8 @@ const styles = {
         paddingTop:2,
         paddingBottom:2,
         borderBottomColor:"#f0f0f0",
-        borderBottomWidth:1
+        borderBottomWidth:1,
+        backgroundColor:"#ffffff"
     }
 }
 

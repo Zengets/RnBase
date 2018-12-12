@@ -18,31 +18,31 @@ import {
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Swiper from '@nart/react-native-swiper';
 import { Titles,SchoolExamItem } from '../../../../components'
-
+import { withNavigation } from 'react-navigation';
 const { width,height } = Dimensions.get('window')
 const styles={
 
 }
-export default class SchoolExam extends Component<Props> {
+class SchoolExam extends Component<Props> {
     constructor(props){
         super(props);
         this._scrollobj = null;
         this.state={
             selected: "待考",
             testArr:[{
-                exam:"试卷1",
+                id:Math.ceil(Math.random() * 100),exam:"试卷1",
                 time:"2017-08-01",
             },{
-                exam:"试卷2",
+                id:Math.ceil(Math.random() * 100),exam:"试卷2",
                 time:"2017-08-01",
             },{
-                exam:"试卷3",
+                id:Math.ceil(Math.random() * 100),exam:"试卷3",
                 time:"2017-08-01",
             },{
-                exam:"试卷4",
+                id:Math.ceil(Math.random() * 100),exam:"试卷4",
                 time:"2017-08-01",
             },{
-                exam:"试卷5",
+                id:Math.ceil(Math.random() * 100),exam:"试卷5",
                 time:"2017-08-01",
             },]
         }
@@ -55,36 +55,51 @@ export default class SchoolExam extends Component<Props> {
     }
     onValueChange(value: string) {
         let arr1=[{
+                id:Math.ceil(Math.random() * 100),
                 exam:"试卷1",
                 time:"2017-08-01",
             },{
+                id:Math.ceil(Math.random() * 100),
                 exam:"试卷2",
                 time:"2017-08-01",
             },{
+                id:Math.ceil(Math.random() * 100),
                 exam:"试卷3",
                 time:"2017-08-01",
             },{
+                id:Math.ceil(Math.random() * 100),
                 exam:"试卷4",
                 time:"2017-08-01",
             },{
+                id:Math.ceil(Math.random() * 100),
                 exam:"试卷5",
                 time:"2017-08-01",
             },],arr2=[{
+                id:Math.ceil(Math.random() * 100),
                 exam:"试卷1",
                 time:"2017-09-01",
+                status:0
             },{
+                id:Math.ceil(Math.random() * 100),
                 exam:"试卷2",
                 time:"2017-09-01",
+                status:1
             },{
+                id:Math.ceil(Math.random() * 100),
                 exam:"试卷3",
                 time:"2017-09-01",
+                status:1
             },{
+                id:Math.ceil(Math.random() * 100),
                 exam:"试卷4",
                 time:"2017-09-01",
+                status:0
             },{
+                id:Math.ceil(Math.random() * 100),
                 exam:"试卷5",
                 time:"2017-09-01",
-            },]
+                status:1
+            }]
 
         this.setState({
             selected: value,
@@ -140,7 +155,13 @@ export default class SchoolExam extends Component<Props> {
                     {
                         testArr.map((item,i)=>{
                             return(
-                                <SchoolExamItem key={i} item={item}></SchoolExamItem>
+                                <SchoolExamItem type={selected} key={i} item={item} pressFn={()=>{
+                                    let url = selected=="待考"?"Exam":"Examed"
+                                    this.props.navigation.navigate(url,{
+                                        id: item.id,
+                                        title:item.exam
+                                    })
+                                }}></SchoolExamItem>
                             )
                         })
                     }
@@ -152,4 +173,4 @@ export default class SchoolExam extends Component<Props> {
         );
     }
 }
-
+export default withNavigation(SchoolExam)
