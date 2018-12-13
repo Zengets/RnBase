@@ -7,7 +7,7 @@ const PORT_NAME = {
     register:"/platform/register",
     login:"/platform/login"
 }
-let timetrans = (date)=>{
+let timetrans = (date,type)=>{
     var date = new Date(date);//如果date为13位不需要乘1000
     var Y = date.getFullYear() + '-';
     var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
@@ -15,7 +15,11 @@ let timetrans = (date)=>{
     var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
     var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
     var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
-    return Y+M+D+h+m+s;
+    if(!type){
+        return Y+M+D+h+m+s;
+    }else if(type=="day"){
+        return Y+M+D;
+    }
 }
 
 

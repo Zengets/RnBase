@@ -1,10 +1,6 @@
 /**
  * Created by kurosaki on 2018/12/7.
  */
-/**
- * Created by kurosaki on 2018/12/3.
- */
-
 import React, { Component } from 'react';
 import { Container, Header, Left, Body, Right, Button, Icon,Picker,Spinner } from 'native-base';
 import {

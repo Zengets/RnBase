@@ -30,28 +30,33 @@ class SchoolStudy extends Component<Props> {
         this._scrollobj = null;
         this.state={
             course:[{
+                id:0,
                 name:"NativeBase",
                 imgurl:require("../../../../assets/images/tts1.png")
             },{
+                id:1,
                 name:"ReactNative",
                 imgurl:require("../../../../assets/images/tts0.png")
             },{
+                id:2,
                 name:"ReactWeb",
                 imgurl:require("../../../../assets/images/tts2.png")
             },{
+                id:3,
                 name:"ReactVr",
                 imgurl:require("../../../../assets/images/tts1.png")
             }],
             vedios:[{
+                id:3,
                 name:"NativeBase",
                 imgurl:require("../../../../assets/images/tts2.png")
-            },{
+            },{id:4,
                 name:"ReactNative",
                 imgurl:require("../../../../assets/images/tts1.png")
-            },{
+            },{id:5,
                 name:"ReactWeb",
                 imgurl:require("../../../../assets/images/tts0.png")
-            },{
+            },{id:6,
                 name:"ReactVr",
                 imgurl:require("../../../../assets/images/tts1.png")
             }],
@@ -78,14 +83,23 @@ class SchoolStudy extends Component<Props> {
                             {
                                 course.map((item,i)=>{
                                     return(
-                                        <Card transparent key={i} style={{width:width*0.47,marginLeft:0.02*width,backgroundColor:"#fff"}}>
-                                            <CardItem cardBody>
-                                                <Image source={item.imgurl} style={{height: 120, width: null, flex: 1}}/>
-                                            </CardItem>
-                                            <CardItem>
-                                                <Text numberOfLines={1} style={{textAlign:"left"}}>{item.name}</Text>
-                                            </CardItem>
-                                        </Card>
+                                    <TouchableNativeFeedback key={i}  onPress={()=>{
+                                            this.props.navigation.navigate("SchoolBook",{
+                                                id: item.id,
+                                                title:item.name
+                                            })
+                                    }}>
+                                        <View style={{width:width*0.47,marginLeft:0.02*width,backgroundColor:"#fff",marginBottom:0.02*width}}>
+                                            <Card transparent style={{padding:0,margin:0}}>
+                                                <CardItem cardBody>
+                                                    <Image source={item.imgurl} style={{height: 120, width: width*0.47, flex: 1}}/>
+                                                </CardItem>
+                                                <CardItem>
+                                                    <Text numberOfLines={1} style={{textAlign:"left"}}>{item.name}</Text>
+                                                </CardItem>
+                                            </Card>
+                                        </View>
+                                    </TouchableNativeFeedback>
                                     )
                                 })
                             }
@@ -101,14 +115,23 @@ class SchoolStudy extends Component<Props> {
                             {
                                 vedios.map((item,i)=>{
                                     return(
-                                        <Card transparent key={i} style={{width:width*0.47,marginLeft:0.02*width,backgroundColor:"#fff"}}>
-                                            <CardItem cardBody>
-                                                <Image source={item.imgurl} style={{height: 120, width: null, flex: 1}}/>
-                                            </CardItem>
-                                            <CardItem>
-                                                <Text numberOfLines={1} style={{textAlign:"left"}}>{item.name}</Text>
-                                            </CardItem>
-                                        </Card>
+                                        <TouchableNativeFeedback key={i}  onPress={()=>{
+                                            this.props.navigation.navigate("SchoolBook",{
+                                                id: item.id,
+                                                title:item.name
+                                            })
+                                    }}>
+                                        <View style={{width:width*0.47,marginLeft:0.02*width,backgroundColor:"#fff",marginBottom:0.02*width}}>
+                                            <Card transparent style={{padding:0,margin:0}}>
+                                                <CardItem cardBody>
+                                                    <Image source={item.imgurl} style={{height: 120, width: width*0.47, flex: 1}}/>
+                                                </CardItem>
+                                                <CardItem>
+                                                    <Text numberOfLines={1} style={{textAlign:"left"}}>{item.name}</Text>
+                                                </CardItem>
+                                            </Card>
+                                        </View>
+                                    </TouchableNativeFeedback>
                                     )
                                 })
                             }

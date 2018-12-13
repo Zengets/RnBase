@@ -156,10 +156,11 @@ class SchoolExam extends Component<Props> {
                         testArr.map((item,i)=>{
                             return(
                                 <SchoolExamItem type={selected} key={i} item={item} pressFn={()=>{
-                                    let url = selected=="待考"?"Exam":"Examed"
+                                    let url = selected=="待考"?"Exam":"ExamList"
                                     this.props.navigation.navigate(url,{
                                         id: item.id,
-                                        title:item.exam
+                                        title:item.exam,
+                                        types:"0"
                                     })
                                 }}></SchoolExamItem>
                             )

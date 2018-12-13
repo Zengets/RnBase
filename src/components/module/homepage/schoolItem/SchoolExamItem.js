@@ -63,7 +63,7 @@ export default class SchoolExamItem extends React.PureComponent{
                         </Row>
                         <Row size={3.5}>
                             <Col size={1}>
-                            <Button rounded full style={{borderRadius:600,height:28,backgroundColor:item.status==0?"#ddd":"#DD5144"}}>
+                            <Button transparent rounded full style={{borderRadius:600,height:28,backgroundColor:item.status==0?"#ddd":"#DD5144"}} onPress={()=>{pressFn()}}>
                                 <Text numberOfLines={1} style={{color:item.status==0?"#333":"#ffffff"}}>
                                     {item.status==0?"未通过":item.status==1?"已通过":"开始考试"}
                                 </Text>
