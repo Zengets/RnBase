@@ -116,7 +116,7 @@ class SchoolStudy extends Component<Props> {
                                 vedios.map((item,i)=>{
                                     return(
                                         <TouchableNativeFeedback key={i}  onPress={()=>{
-                                            this.props.navigation.navigate("SchoolBook",{
+                                            this.props.navigation.navigate("SchoolVideo",{
                                                 id: item.id,
                                                 title:item.name
                                             })

@@ -3,6 +3,9 @@ package com.rnbase;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.brentvatne.react.ReactVideoPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import org.wonday.pdf.RCTPdfView;
 import cn.qiuxiang.react.amap3d.AMap3DPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
@@ -26,6 +29,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactVideoPackage(),
+            new RNFetchBlobPackage(),
+            new RCTPdfView(),
             new AMap3DPackage(),
             new RNGestureHandlerPackage(),
             new SplashScreenReactPackage()

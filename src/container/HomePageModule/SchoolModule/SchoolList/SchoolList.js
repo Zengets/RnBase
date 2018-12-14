@@ -115,9 +115,15 @@ class SchoolList extends React.PureComponent {
         }, 600);
     };
 
-    _jumpUrl(type){
-        this.props.navigation.navigate("ServiceDetail",{
-            id: item.id,
+    _jumpUrl(type,id,title){
+        type==0?
+        this.props.navigation.navigate("SchoolBook",{
+            id: id,
+            title:title
+        }):
+        this.props.navigation.navigate("SchoolVideo",{
+            id: id,
+            title:title
         })
     }
 
@@ -127,14 +133,13 @@ class SchoolList extends React.PureComponent {
         let item = this.state.data[section].items[row],type = this.props.type,layout = this.props.layout;
         return(
             layout=="list"?
-            <SchoolListItem layout={layout} key={row} item={item} pressFn={()=>this._jumpUrl(type)}>
+            <SchoolListItem layout={layout} key={row} item={item} pressFn={(id,title)=>this._jumpUrl(type,id,title)}>
             </SchoolListItem>:
             <View key={row} style={{flex:1,flexDirection:"row",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
-                <SchoolListItem layout={layout} item={item.rendera} pressFn={()=>this._jumpUrl(type)}>
+                <SchoolListItem layout={layout} item={item.rendera} pressFn={(id,title)=>this._jumpUrl(type,id,title)}>
                 </SchoolListItem>
-                <SchoolListItem layout={layout} item={item.renderb} pressFn={()=>this._jumpUrl(type)}>
+                <SchoolListItem layout={layout} item={item.renderb} pressFn={(id,title)=>this._jumpUrl(type,id,title)}>
                 </SchoolListItem>
-
             </View>
 
         )

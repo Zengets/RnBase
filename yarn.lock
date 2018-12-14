@@ -1019,6 +1019,10 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/balanced-match/download/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
+base-64@0.1.0:
+  version "0.1.0"
+  resolved "http://registry.npm.taobao.org/base-64/download/base-64-0.1.0.tgz#780a99c84e7d600260361511c4877613bf24f6bb"
+
 base64-js@1.1.2:
   version "1.1.2"
   resolved "http://registry.npm.taobao.org/base64-js/download/base64-js-1.1.2.tgz#d6400cac1c4c660976d90d07a04351d89395f5e8"
@@ -1436,6 +1440,10 @@ cross-spawn@^6.0.0:
     semver "^5.5.0"
     shebang-command "^1.2.0"
     which "^1.2.9"
+
+crypto-js@^3.1.9-1:
+  version "3.1.9-1"
+  resolved "http://registry.npm.taobao.org/crypto-js/download/crypto-js-3.1.9-1.tgz#fda19e761fc077e01ffbfdc6e9fdfc59e8806cd8"
 
 cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
   version "0.3.4"
@@ -2076,6 +2084,17 @@ glob-parent@^2.0.0:
   resolved "http://registry.npm.taobao.org/glob-parent/download/glob-parent-2.0.0.tgz#81383d72db054fcccf5336daa902f182f6edbb28"
   dependencies:
     is-glob "^2.0.0"
+
+glob@7.0.6:
+  version "7.0.6"
+  resolved "http://registry.npm.taobao.org/glob/download/glob-7.0.6.tgz#211bafaf49e525b8cd93260d14ab136152b3f57a"
+  dependencies:
+    fs.realpath "^1.0.0"
+    inflight "^1.0.4"
+    inherits "2"
+    minimatch "^3.0.2"
+    once "^1.3.0"
+    path-is-absolute "^1.0.0"
 
 glob@^7.0.3, glob@^7.0.5, glob@^7.1.1, glob@^7.1.2:
   version "7.1.3"
@@ -3051,6 +3070,10 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
+keymirror@0.1.1:
+  version "0.1.1"
+  resolved "http://registry.npm.taobao.org/keymirror/download/keymirror-0.1.1.tgz#918889ea13f8d0a42e7c557250eee713adc95c35"
+
 kind-of@^1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/kind-of/download/kind-of-1.1.0.tgz#140a3d2d41a36d2efcfa9377b62c24f8495a5c44"
@@ -3502,7 +3525,7 @@ min-document@^2.19.0:
   dependencies:
     dom-walk "^0.1.0"
 
-minimatch@^3.0.3, minimatch@^3.0.4:
+minimatch@^3.0.2, minimatch@^3.0.3, minimatch@^3.0.4:
   version "3.0.4"
   resolved "http://registry.npm.taobao.org/minimatch/download/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
   dependencies:
@@ -4091,7 +4114,7 @@ prop-types@15.5.10:
     fbjs "^0.8.9"
     loose-envify "^1.3.1"
 
-prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.5.10, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.6.2"
   resolved "http://registry.npm.taobao.org/prop-types/download/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -4249,12 +4272,25 @@ react-native-largelist-v2@^2.1.1:
   version "2.1.1"
   resolved "http://registry.npm.taobao.org/react-native-largelist-v2/download/react-native-largelist-v2-2.1.1.tgz#8e3a02bc6883d53b693ebcf157c2b3fb06c769cb"
 
+react-native-media-controls@^1.1.1:
+  version "1.1.1"
+  resolved "http://registry.npm.taobao.org/react-native-media-controls/download/react-native-media-controls-1.1.1.tgz#a3bcd9b5575f26726219027641967dcef4abb9d5"
+  dependencies:
+    react-native-slider "^0.11.0"
+
 react-native-modal@^7.0.1:
   version "7.0.1"
   resolved "http://registry.npm.taobao.org/react-native-modal/download/react-native-modal-7.0.1.tgz#120df1966f5da96e9d89bf384f22b79ab6ca97b1"
   dependencies:
     prop-types "^15.6.1"
     react-native-animatable "^1.2.4"
+
+react-native-pdf@^5.0.9:
+  version "5.0.9"
+  resolved "http://registry.npm.taobao.org/react-native-pdf/download/react-native-pdf-5.0.9.tgz#86113f316f37a661c43404430cf75d35edb5248b"
+  dependencies:
+    crypto-js "^3.1.9-1"
+    prop-types "^15.5.10"
 
 react-native-safe-area-view@^0.11.0:
   version "0.11.0"
@@ -4265,6 +4301,12 @@ react-native-safe-area-view@^0.11.0:
 "react-native-screens@^1.0.0 || ^1.0.0-alpha":
   version "1.0.0-alpha.16"
   resolved "http://registry.npm.taobao.org/react-native-screens/download/react-native-screens-1.0.0-alpha.16.tgz#e3651b7077ea8fa04e8dd3265ad9b87f1f77a758"
+
+react-native-slider@^0.11.0:
+  version "0.11.0"
+  resolved "http://registry.npm.taobao.org/react-native-slider/download/react-native-slider-0.11.0.tgz#b68a0bc43c8422b24cd57947cc5ac2bcdb58fadc"
+  dependencies:
+    prop-types "^15.5.6"
 
 react-native-splash-screen@^3.1.1:
   version "3.1.1"
@@ -4291,6 +4333,14 @@ react-native-vector-icons@4.6.0:
 react-native-vertical-view-pager@^0.1.1:
   version "0.1.1"
   resolved "http://registry.npm.taobao.org/react-native-vertical-view-pager/download/react-native-vertical-view-pager-0.1.1.tgz#c9ad2f3eb936219ff21cabd6d5842468a5ddbee3"
+
+react-native-video@^4.2.0:
+  version "4.2.0"
+  resolved "http://registry.npm.taobao.org/react-native-video/download/react-native-video-4.2.0.tgz#75d30a593498e2618ba05ef13ee8eb8de69561d4"
+  dependencies:
+    keymirror "0.1.1"
+    prop-types "^15.5.10"
+    shaka-player "2.4.4"
 
 react-native@0.57.6:
   version "0.57.6"
@@ -4656,6 +4706,13 @@ rimraf@~2.2.6:
   version "2.2.8"
   resolved "http://registry.npm.taobao.org/rimraf/download/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
 
+rn-fetch-blob@^0.10.14:
+  version "0.10.14"
+  resolved "http://registry.npm.taobao.org/rn-fetch-blob/download/rn-fetch-blob-0.10.14.tgz#341bb8f6417f944dd9a592f81fbdbc0cbde32b9d"
+  dependencies:
+    base-64 "0.1.0"
+    glob "7.0.6"
+
 rsvp@^3.3.3:
   version "3.6.2"
   resolved "http://registry.npm.taobao.org/rsvp/download/rsvp-3.6.2.tgz#2e96491599a96cde1b515d5674a8f7a91452926a"
@@ -4800,6 +4857,10 @@ setimmediate@^1.0.5:
 setprototypeof@1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/setprototypeof/download/setprototypeof-1.1.0.tgz#d0bd85536887b6fe7c0d818cb962d9d91c54e656"
+
+shaka-player@2.4.4:
+  version "2.4.4"
+  resolved "http://registry.npm.taobao.org/shaka-player/download/shaka-player-2.4.4.tgz#bade8ff6b9a4bb649899d10cd4ffd05781dd79ab"
 
 shebang-command@^1.2.0:
   version "1.2.0"

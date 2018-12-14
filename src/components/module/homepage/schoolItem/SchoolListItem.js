@@ -90,7 +90,7 @@ export default class SchoolListItem extends React.PureComponent{
 
 
         return (
-            <TouchableNativeFeedback onPress={()=>{pressFn()}}>
+            <TouchableNativeFeedback onPress={(id=item.id,name=item.name)=>{pressFn(id,name)}}>
                 <View style={layout=="list"?styles.container:styles.containers}>
                     {
                         layout=="list"?

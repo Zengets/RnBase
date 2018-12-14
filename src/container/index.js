@@ -17,7 +17,7 @@ import ServiceDetail from './HomePageModule/ServiceModule/ServiceDetail/ServiceD
 import ServiceOrder from './HomePageModule/ServiceModule/ServiceOrder/ServiceOrder';
 import ServiceHistory from './HomePageModule/ServiceModule/ServiceHistory/ServiceHistory';
 import SchoolBook from './HomePageModule/SchoolModule/SchoolBook/SchoolBook';
-
+import SchoolVideo from './HomePageModule/SchoolModule/SchoolVideo/SchoolVideo';
 import PhoneList from './HomePageModule/IndexModule/PhoneListModule/PhoneList';
 import Cost from './HomePageModule/IndexModule/CostModule/Cost';
 import CostExplain from './HomePageModule/IndexModule/CostModule/CostExplain';
@@ -32,4 +32,4 @@ import ActivityDetail from './HomePageModule/IndexModule/ActivityModule/Activity
 
 
 
-export {Login,Reg,HomePage,News,AllNews,NewsDetail,PerCenter,School,SchoolBook,Exam,SchoolNav,ExamList,Service,ServiceDetail,ServiceHistory,ServiceOrder,PhoneList,Cost,CostExplain,CostSure,Map,Temporary,TemporaryDetail,Discipline,Anti,Activity,ActivityDetail}
+export {Login,Reg,HomePage,News,AllNews,NewsDetail,PerCenter,School,SchoolBook,SchoolVideo,Exam,SchoolNav,ExamList,Service,ServiceDetail,ServiceHistory,ServiceOrder,PhoneList,Cost,CostExplain,CostSure,Map,Temporary,TemporaryDetail,Discipline,Anti,Activity,ActivityDetail}
