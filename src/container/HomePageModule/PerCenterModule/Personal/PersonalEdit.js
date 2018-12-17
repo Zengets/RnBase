@@ -1,6 +1,7 @@
 /**
- * Created by kurosaki on 2018/12/11.
+ * Created by kurosaki on 2018/12/17.
  */
+
 import React, { Component } from 'react';
 import {  Container, Header, Content, Item,Label , Button, Icon, Left, Right, Body,Input } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
@@ -17,10 +18,6 @@ import {
     TouchableNativeFeedback
 } from 'react-native';
 import {timetrans,MyUtil} from '../../../../components'
-
-
-
-
 
 const { width,height } = Dimensions.get('window')
 const styles = {
@@ -66,7 +63,7 @@ const styles = {
 }
 
 
-export default class ServiceOrder extends React.PureComponent{
+export default class PersonalEdit extends React.PureComponent{
     constructor(props){
         super(props);
         this.state = {
@@ -107,73 +104,73 @@ export default class ServiceOrder extends React.PureComponent{
                 </Header>
                 <Content style={{padding:14}}>
                     <ScrollView style={{flex:1}}>
-                    <Row style={{width:width-28,paddingTop:12,marginBottom:12}}>
-                        <Item floatingLabel style={{flex:1}}>
-                            <Label>姓名</Label>
-                            <Input
-                                onChangeText={(name) => this.setState({
+                        <Row style={{width:width-28,paddingTop:12,marginBottom:12}}>
+                            <Item floatingLabel style={{flex:1}}>
+                                <Label>姓名</Label>
+                                <Input
+                                    onChangeText={(name) => this.setState({
                                     formvalue:{ ...formvalue, name: name }
                                 })}
-                                value={formvalue.name}
-                                clearButtonMode="always"
-                            />
-                        </Item>
-                    </Row>
-                    <Row style={{width:width-28,paddingTop:12,marginBottom:12}}>
-                        <Item floatingLabel style={{flex:1}}>
-                            <Label>电话</Label>
-                            <Input
-                                onChangeText={(phone) => this.setState({
+                                    value={formvalue.name}
+                                    clearButtonMode="always"
+                                />
+                            </Item>
+                        </Row>
+                        <Row style={{width:width-28,paddingTop:12,marginBottom:12}}>
+                            <Item floatingLabel style={{flex:1}}>
+                                <Label>电话</Label>
+                                <Input
+                                    onChangeText={(phone) => this.setState({
                                     formvalue:{ ...formvalue, phone: phone }
                                 })}
-                                value={formvalue.phone}
-                                clearButtonMode="always"
-                            />
-                        </Item>
-                    </Row>
-                    <Row style={{width:width-28,paddingTop:12,marginBottom:12}}>
-                        <Item floatingLabel style={{flex:1}}>
-                            <Label>联系地址</Label>
-                            <Input
-                                onChangeText={(address) => this.setState({
+                                    value={formvalue.phone}
+                                    clearButtonMode="always"
+                                />
+                            </Item>
+                        </Row>
+                        <Row style={{width:width-28,paddingTop:12,marginBottom:12}}>
+                            <Item floatingLabel style={{flex:1}}>
+                                <Label>联系地址</Label>
+                                <Input
+                                    onChangeText={(address) => this.setState({
                                     formvalue:{ ...formvalue, address: address }
                                 })}
-                                value={formvalue.address}
-                                clearButtonMode="always"
-                            />
-                        </Item>
-                    </Row>
-                    <Row style={{width:width-28,paddingTop:12,marginBottom:12}}>
-                        <Item floatingLabel style={{flex:1}}>
-                            <Label>所属社区</Label>
-                            <Input
-                                onChangeText={(community) => this.setState({
+                                    value={formvalue.address}
+                                    clearButtonMode="always"
+                                />
+                            </Item>
+                        </Row>
+                        <Row style={{width:width-28,paddingTop:12,marginBottom:12}}>
+                            <Item floatingLabel style={{flex:1}}>
+                                <Label>所属社区</Label>
+                                <Input
+                                    onChangeText={(community) => this.setState({
                                     formvalue:{ ...formvalue, community: community }
                                 })}
-                                value={formvalue.community}
-                                clearButtonMode="always"
-                            />
-                        </Item>
-                    </Row>
-                    <Row style={{width:width-28,paddingTop:12,marginBottom:32}}>
-                        <Item floatingLabel style={{flex:1}}>
-                            <Label>申请事项</Label>
-                            <Input
-                                multiline = {true}
-                                onChangeText={(things) => this.setState({
+                                    value={formvalue.community}
+                                    clearButtonMode="always"
+                                />
+                            </Item>
+                        </Row>
+                        <Row style={{width:width-28,paddingTop:12,marginBottom:32}}>
+                            <Item floatingLabel style={{flex:1}}>
+                                <Label>申请事项</Label>
+                                <Input
+                                    multiline = {true}
+                                    onChangeText={(things) => this.setState({
                                     formvalue:{ ...formvalue, things: things }
                                 })}
-                                value={formvalue.things}
-                                clearButtonMode="always"
-                            />
+                                    value={formvalue.things}
+                                    clearButtonMode="always"
+                                />
 
-                        </Item>
-                    </Row>
-                    <Button full danger style={{width:width-28,justifyContent:"center",alignItems:"center",marginBottom:68}} onPress={()=>{
+                            </Item>
+                        </Row>
+                        <Button full danger style={{width:width-28,justifyContent:"center",alignItems:"center",marginBottom:68}} onPress={()=>{
                         alert(JSON.stringify(formvalue))
                     }}>
-                        <Text style={{color:"#fff",fontSize:16}}>预约</Text>
-                    </Button>
+                            <Text style={{color:"#fff",fontSize:16}}>预约</Text>
+                        </Button>
                     </ScrollView>
                 </Content>
 

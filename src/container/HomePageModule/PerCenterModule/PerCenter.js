@@ -80,9 +80,9 @@ export default class PerCenter extends Component<Props> {
 
     render() {
         let { userInfo,navbar } = this.state;
-        let itemcons = (item,i)=>{
+        let itemcons = (item,i,length)=>{
             return(
-                <ListItem key={i} icon onPress={()=>{this.props.navigation.navigate(item.route);}}>
+                <ListItem key={i} last={i==length-1?true:false} icon onPress={()=>{this.props.navigation.navigate(item.route);}}>
                     <Left>
                        <Image style={{width:18,height:18}} source={item.icon}></Image>
                     </Left>
@@ -99,19 +99,21 @@ export default class PerCenter extends Component<Props> {
             <Container>
                 <ScrollView showsVerticalScrollIndicator = {false}>
                     <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
-                        <TouchableNativeFeedback>
+                        <TouchableNativeFeedback onPress={()=>{
+                            this.props.navigation.navigate("Personal");
+                        }}>
                             <View style={{width:0.8*width,height:160}}>
                                 <ImageBackground
                                     style={{width:0.8*width,height:160,flexDirection:"row",justifyContent:"center",alignItems:"center"}}
                                     source={require('../../../assets/images/percenterbac.png')}
                                     resizeMode='cover'>
-                                    <TouchableOpacity onPress={()=>this.props.navigation.openDrawer()} style={styles.imagehead}>
+                                    <View style={styles.imagehead}>
                                         <ImageBackground
                                             style={{width:76,height:76}}
                                             source={require('../../../assets/images/headtemp.jpg')}
                                             resizeMode='cover'>
                                         </ImageBackground>
-                                    </TouchableOpacity>
+                                    </View>
                                     <View style={{flex:1}}>
                                         <Text style={{color:"#fff",fontSize:18,fontWeight:"bold",marginBottom:10}} numberOfLines={1}>
                                             {userInfo.name}
@@ -127,21 +129,21 @@ export default class PerCenter extends Component<Props> {
                             <List style={styles.items}>
                                 {
                                     navbar.firstNav.map((item,i)=>{
-                                        return itemcons(item,i)
+                                        return itemcons(item,i,navbar.firstNav.length)
                                     })
                                 }
                             </List>
                             <List style={styles.items}>
                                 {
                                     navbar.secondNav.map((item,i)=>{
-                                        return itemcons(item,i)
+                                        return itemcons(item,i,navbar.secondNav.length)
                                     })
                                 }
                             </List>
                             <List style={[styles.items,{borderBottomWidth:0}]}>
                                 {
                                     navbar.thirdNav.map((item,i)=>{
-                                        return itemcons(item,i)
+                                        return itemcons(item,i,navbar.thirdNav.length)
                                     })
                                 }
                             </List>

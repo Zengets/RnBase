@@ -64,7 +64,7 @@ class SchoolVideo extends Component<Props> {
             id:props.navigation.getParam('id', 'NO-ID'),//genid
             title:props.navigation.getParam('title', 'NO-ID'),//gentitle
             testArr:{
-                source :'http://61.154.126.99/65733B646814971D76D563411/03000A010059C9E5905B4300000001AA73FD88-4095-1D3C-A538-75089807515C.mp4?ccode=050F&duration=220&expire=18000&psid=26a653e592bb48b4e83aa449ea1d0030&ups_client_netip=314de829&ups_ts=1544772325&ups_userid=&utid=l0iaFNaHfUACATFN6CkybGh6&vid=XMjc1MTM5NTQwNA%3D%3D&vkey=A65380638f87df3fb64e7ae40b2933519&sp=&ali_redirect_domain=ykugc.cp31.ott.cibntv.net&ali_redirect_ex_ftag=21d1d27b365279aab596eeec998b4b9e56dcdb68196e8c7e&ali_redirect_ex_tmining_ts=1544772341&ali_redirect_ex_tmining_expire=3600&ali_redirect_ex_hot=0',
+                source :'http://218.2.128.222:18085/ftp/dangjian/StudyMaterial/file/58e68a146563445e97755dae034d141a.mp4',
                 desc: "这里是视频描述"
             },
             currentTime: 0,
@@ -183,7 +183,7 @@ class SchoolVideo extends Component<Props> {
                                resizeMode="contain"
                                style={styles.mediaPlayer}
                                controls={false}
-                               poster="https://baconmockup.com/300/200/"
+                               poster="http://www.w3school.com.cn/i/eg_tulip.jpg"
                                bufferConfig={{
                                   minBufferMs: 15000,
                                   maxBufferMs: 50000,

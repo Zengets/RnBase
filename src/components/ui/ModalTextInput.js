@@ -21,7 +21,7 @@ export default class ModalTextInput extends Component {
         super(props);
         this.state = {
             visibleModal: props.show,
-            inputval:null
+            inputval:props.value?props.value:null
         };
     }
 
@@ -33,6 +33,7 @@ export default class ModalTextInput extends Component {
             </View>
         </TouchableNativeFeedback>
     );
+
 
     renderModalContent = (str,btnstr) => (
         <View style={styles.modalContent}>
@@ -69,14 +70,14 @@ export default class ModalTextInput extends Component {
     componentWillReceiveProps(nextprops){
         this.setState({
             visibleModal:nextprops.show,
-            inputval:null
+            inputval:nextprops.value?nextprops.value:null
         })
     }
 
 
 
     render() {
-        let {str,btnstr,pressFn} = this.props;
+        let {str,btnstr,pressFn,type} = this.props;
 
         return (
             <Modal
