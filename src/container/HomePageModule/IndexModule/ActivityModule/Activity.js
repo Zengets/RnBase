@@ -31,7 +31,7 @@ export default class Activity extends Component<Props> {
         super(props);
         this.state={
             index:props.navigation.getParam('index', 'NO-ID'),
-            tabs:["两学一做","三会一课","主题活动"],
+            tabs:["两学一做","三会一课","主题活动","我的活动"],
             activityList:[
                 {
                     items:[

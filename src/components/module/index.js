@@ -8,6 +8,6 @@ import TemporaryItem from './homepage/IndexTemporary/TemporaryItem'
 import ActivityItem from './homepage/IndexActivity/ActivityItem'
 import ServiceHistoryItem from './service/ServiceHistoryItem'
 import SchoolListItem from './homepage/schoolItem/SchoolListItem'
+import CostHistoryItem from './personal/CostHistoryItem'
 
-
-export { NewsItem,ServiceItem,SchoolExamItem,TemporaryItem,ActivityItem,ServiceHistoryItem,SchoolListItem }
+export { NewsItem,ServiceItem,SchoolExamItem,TemporaryItem,ActivityItem,ServiceHistoryItem,SchoolListItem,CostHistoryItem }

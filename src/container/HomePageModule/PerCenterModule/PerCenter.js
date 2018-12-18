@@ -42,22 +42,27 @@ export default class PerCenter extends Component<Props> {
         super(props);
         this.state={
             userInfo:{
-                name:"月牙天",
+                name:"王菁菁",
                 job:"蓝湾国际党支部书记"
             },
             navbar:{
                 firstNav:[{
                     icon:require("../../../assets/images/pcicon01.png"),
+                    route:"CostHistory",
                     name:"我的缴费"
                 },{
                     icon:require("../../../assets/images/pcicon02.png"),
+                    route:"Activity",
+                    params:{index:3},
                     name:"我的活动"
                 }],
                 secondNav:[{
                     icon:require("../../../assets/images/pcicon03.png"),
+                    route:"MyExam",
                     name:"我的考试"
                 },{
                     icon:require("../../../assets/images/pcicon04.png"),
+                    route:"MyService",
                     name:"我的服务"
                 },{
                     icon:require("../../../assets/images/pcicon05.png"),
@@ -82,12 +87,16 @@ export default class PerCenter extends Component<Props> {
         let { userInfo,navbar } = this.state;
         let itemcons = (item,i,length)=>{
             return(
-                <ListItem key={i} last={i==length-1?true:false} icon onPress={()=>{this.props.navigation.navigate(item.route);}}>
+                <ListItem key={i} last={i==length-1?true:false} icon onPress={()=>{
+                    item.params?
+                    this.props.navigation.navigate(item.route,item.params):
+                    this.props.navigation.navigate(item.route)
+                }}>
                     <Left>
                        <Image style={{width:18,height:18}} source={item.icon}></Image>
                     </Left>
                     <Body>
-                    <Text>{item.name}</Text>
+                        <Text>{item.name}</Text>
                     </Body>
                     <Right>
                         <Icon active name="arrow-forward" />

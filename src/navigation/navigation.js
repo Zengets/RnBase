@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { createBottomTabNavigator,createStackNavigator,createDrawerNavigator,createAppContainer } from 'react-navigation';
-import { Login,Reg,HomePage,News,NewsDetail,AllNews,PerCenter,Personal,School,SchoolNav,SchoolBook,SchoolVideo,Exam,ExamList,Service,ServiceDetail,ServiceOrder,ServiceHistory,PhoneList,Cost,CostExplain,CostSure,Map,Temporary,TemporaryDetail,Discipline,Anti,Activity,ActivityDetail } from '../container'
+import { Login,Reg,HomePage,News,NewsDetail,AllNews,PerCenter,Personal,PersonalEdit,CostHistory,CostDetail,MyExam,MyService,School,SchoolNav,SchoolBook,SchoolVideo,Exam,ExamList,Service,ServiceDetail,ServiceOrder,ServiceHistory,PhoneList,Cost,CostExplain,CostSure,Map,Temporary,TemporaryDetail,Discipline,Anti,Activity,ActivityDetail } from '../container'
 import { Header } from 'native-base'
 import {
     Image,
@@ -328,6 +328,37 @@ const AppNavigator = createStackNavigator({
                 header: null
             })
         },//个人信息
+        PersonalEdit:{
+            screen:PersonalEdit,
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//编辑信息
+        CostHistory:{
+            screen:gestureHandlerRootHOC(CostHistory),
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//我的缴费列表
+        CostDetail:{
+            screen:CostDetail,
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//我的缴费详情
+        MyExam:{
+            screen:gestureHandlerRootHOC(MyExam),
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//我的考试
+        MyService:{
+            screen:gestureHandlerRootHOC(MyService),
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//我的服务
+
         Main: {//`${navigation.state.params.name}`
             screen:gestureHandlerRootHOC(Drawer),
             navigationOptions: ({navigation}) => ({

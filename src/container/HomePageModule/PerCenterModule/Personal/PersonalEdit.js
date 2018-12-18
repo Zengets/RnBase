@@ -67,14 +67,26 @@ export default class PersonalEdit extends React.PureComponent{
     constructor(props){
         super(props);
         this.state = {
-            id:props.navigation.getParam('id', 'NO-ID'),//genid
             formvalue:{
-                name:"",
-                phone:"",
-                address:"",
-                community:"",
-                things:""
-            }
+                "qq":"15195593577",
+                "partyname":"蓝湾国际党支部",
+                "communist_id":1008,
+                "mobile":"15195593577",
+                "wechat":"12345",
+                "is_communist":"0",
+                "usr_org":"12345",
+                "score":0,
+                "duty_name":"普通党员",
+                "img_url":require("../../../../assets/images/headtemp.jpg"),
+                "usr_id":1008,
+                "org_id":1115,
+                "usr_idcard":"321027199007102429",
+                "partyorg_name":"蓝湾国际党支部",
+                "communist_dtm":"2012-06-10",
+                "usr_name":"王菁菁",
+                "usr_pwd":"123456",
+                "email":"12345@163.com"
+            },
         }
 
 
@@ -97,7 +109,7 @@ export default class PersonalEdit extends React.PureComponent{
                         </Button>
                     </Left>
                     <Body style={{flex:4,justifyContent:"center",alignItems:"center"}}>
-                    <Text style={{color:"#fff",fontSize:20}}>填写预约信息</Text>
+                    <Text style={{color:"#fff",fontSize:20}}>修改个人信息</Text>
                     </Body>
                     <Right style={{flex:1}}>
                     </Right>
@@ -109,67 +121,119 @@ export default class PersonalEdit extends React.PureComponent{
                                 <Label>姓名</Label>
                                 <Input
                                     onChangeText={(name) => this.setState({
-                                    formvalue:{ ...formvalue, name: name }
+                                    formvalue:{ ...formvalue, usr_name: name }
                                 })}
-                                    value={formvalue.name}
+                                    value={formvalue.usr_name}
                                     clearButtonMode="always"
                                 />
                             </Item>
                         </Row>
                         <Row style={{width:width-28,paddingTop:12,marginBottom:12}}>
                             <Item floatingLabel style={{flex:1}}>
-                                <Label>电话</Label>
+                                <Label>身份证号</Label>
                                 <Input
-                                    onChangeText={(phone) => this.setState({
-                                    formvalue:{ ...formvalue, phone: phone }
+                                    onChangeText={(idcard) => this.setState({
+                                    formvalue:{ ...formvalue, usr_idcard: idcard }
                                 })}
-                                    value={formvalue.phone}
+                                    value={formvalue.usr_idcard}
                                     clearButtonMode="always"
                                 />
                             </Item>
                         </Row>
                         <Row style={{width:width-28,paddingTop:12,marginBottom:12}}>
                             <Item floatingLabel style={{flex:1}}>
-                                <Label>联系地址</Label>
+                                <Label>所属党支部</Label>
                                 <Input
-                                    onChangeText={(address) => this.setState({
-                                    formvalue:{ ...formvalue, address: address }
+                                    onChangeText={(partyname) => this.setState({
+                                    formvalue:{ ...formvalue, partyname: partyname }
                                 })}
-                                    value={formvalue.address}
+                                    value={formvalue.partyname}
                                     clearButtonMode="always"
                                 />
                             </Item>
                         </Row>
                         <Row style={{width:width-28,paddingTop:12,marginBottom:12}}>
                             <Item floatingLabel style={{flex:1}}>
-                                <Label>所属社区</Label>
+                                <Label>党内职务</Label>
                                 <Input
-                                    onChangeText={(community) => this.setState({
-                                    formvalue:{ ...formvalue, community: community }
+                                    onChangeText={(duty_name) => this.setState({
+                                    formvalue:{ ...formvalue, duty_name: duty_name }
                                 })}
-                                    value={formvalue.community}
+                                    value={formvalue.duty_name}
                                     clearButtonMode="always"
                                 />
                             </Item>
                         </Row>
                         <Row style={{width:width-28,paddingTop:12,marginBottom:32}}>
                             <Item floatingLabel style={{flex:1}}>
-                                <Label>申请事项</Label>
+                                <Label>单位</Label>
                                 <Input
                                     multiline = {true}
-                                    onChangeText={(things) => this.setState({
-                                    formvalue:{ ...formvalue, things: things }
+                                    onChangeText={(partyorg) => this.setState({
+                                    formvalue:{ ...formvalue, partyorg_name: partyorg }
                                 })}
-                                    value={formvalue.things}
+                                    value={formvalue.partyorg_name}
                                     clearButtonMode="always"
                                 />
-
                             </Item>
                         </Row>
+                        <Row style={{width:width-28,paddingTop:12,marginBottom:32}}>
+                            <Item floatingLabel style={{flex:1}}>
+                                <Label>邮箱</Label>
+                                <Input
+                                    multiline = {true}
+                                    onChangeText={(email) => this.setState({
+                                    formvalue:{ ...formvalue, email: email }
+                                })}
+                                    value={formvalue.email}
+                                    clearButtonMode="always"
+                                />
+                            </Item>
+                        </Row>
+                        <Row style={{width:width-28,paddingTop:12,marginBottom:32}}>
+                            <Item floatingLabel style={{flex:1}}>
+                                <Label>手机号</Label>
+                                <Input
+                                    multiline = {true}
+                                    onChangeText={(mobile) => this.setState({
+                                    formvalue:{ ...formvalue, mobile: mobile }
+                                })}
+                                    value={formvalue.mobile}
+                                    clearButtonMode="always"
+                                />
+                            </Item>
+                        </Row>
+                        <Row style={{width:width-28,paddingTop:12,marginBottom:32}}>
+                            <Item floatingLabel style={{flex:1}}>
+                                <Label>微信号</Label>
+                                <Input
+                                    multiline = {true}
+                                    onChangeText={(wechat) => this.setState({
+                                    formvalue:{ ...formvalue, wechat: wechat }
+                                })}
+                                    value={formvalue.wechat}
+                                    clearButtonMode="always"
+                                />
+                            </Item>
+                        </Row>
+                        <Row style={{width:width-28,paddingTop:12,marginBottom:32}}>
+                            <Item floatingLabel style={{flex:1}}>
+                                <Label>QQ号</Label>
+                                <Input
+                                    multiline = {true}
+                                    onChangeText={(qq) => this.setState({
+                                    formvalue:{ ...formvalue, qq: qq }
+                                })}
+                                    value={formvalue.qq}
+                                    clearButtonMode="always"
+                                />
+                            </Item>
+                        </Row>
+
                         <Button full danger style={{width:width-28,justifyContent:"center",alignItems:"center",marginBottom:68}} onPress={()=>{
-                        alert(JSON.stringify(formvalue))
-                    }}>
-                            <Text style={{color:"#fff",fontSize:16}}>预约</Text>
+                            alert(JSON.stringify(formvalue))
+                        }}>
+                            <Text style={{color:"#fff",fontSize:16}}>确定</Text>
                         </Button>
                     </ScrollView>
                 </Content>

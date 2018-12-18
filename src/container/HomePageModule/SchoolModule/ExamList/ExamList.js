@@ -158,9 +158,9 @@ class ExamList extends Component<Props> {
 
                 <ScrollView style={{marginTop:98,height:height-180,paddingLeft:14,paddingRight:14}}>
                     {
-                        testArr.map((item)=>{
+                        testArr.map((item,i)=>{
                             return(
-                                <TouchableNativeFeedback  onPress={()=>{
+                                <TouchableNativeFeedback key={i} onPress={()=>{
                                     this.props.navigation.navigate("Exam",{
                                         id: item.id,
                                         title:item.exam,

@@ -16,6 +16,11 @@ import {
 const { width,height } = Dimensions.get('window')
 const styles = {
     container: {
+        flex:1,
+        justifyContent:"center",
+        alignItems:"center",
+    },
+    grid:{
         flex: 1,
         paddingTop:14,
         paddingBottom:14,
@@ -43,7 +48,7 @@ export default class SchoolExamItem extends React.PureComponent{
         let { item,pressFn,type } = this.props;
         let style1 = ()=>{
             return(
-                <Grid style={styles.container}>
+                <Grid style={styles.grid}>
                     <Col style={{width:108}}>
                        <ImageBackground style={styles.imgbac} source={require("../../../../assets/images/testpaper.png")}>
                        </ImageBackground>
@@ -78,7 +83,7 @@ export default class SchoolExamItem extends React.PureComponent{
 
         return (
             <TouchableNativeFeedback onPress={()=>{pressFn()}}>
-                <View>
+                <View style={styles.container}>
                     {
                         style1()
                     }

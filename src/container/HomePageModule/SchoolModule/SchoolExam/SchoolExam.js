@@ -151,7 +151,7 @@ class SchoolExam extends Component<Props> {
                         </Right>
                     </ListItem>
                 </View>
-                <View style={{padding:14}}>
+                <View>
                     {
                         testArr.map((item,i)=>{
                             return(

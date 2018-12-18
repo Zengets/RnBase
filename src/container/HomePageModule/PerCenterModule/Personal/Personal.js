@@ -252,7 +252,7 @@ class Personal extends Component<Props> {
                     <Text style={{color:"#fff",fontSize:20}}>个人信息</Text>
                     </Body>
                     <Right style={{flex:1}}>
-                       <Text style={{fontSize:14,color:"#fff"}} onPress={()=>{alert(0)}}>
+                       <Text style={{fontSize:14,color:"#fff"}} onPress={()=>{this.props.navigation.navigate("PersonalEdit")}}>
                            编辑
                        </Text>
                     </Right>
