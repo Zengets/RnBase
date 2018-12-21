@@ -3,7 +3,8 @@
  */
 import React from 'react';
 import { createBottomTabNavigator,createStackNavigator,createDrawerNavigator,createAppContainer } from 'react-navigation';
-import { Login,Reg,HomePage,News,NewsDetail,AllNews,PerCenter,Personal,PersonalEdit,CostHistory,CostDetail,MyExam,MyService,School,SchoolNav,SchoolBook,SchoolVideo,Exam,ExamList,Service,ServiceDetail,ServiceOrder,ServiceHistory,PhoneList,Cost,CostExplain,CostSure,Map,Temporary,TemporaryDetail,Discipline,Anti,Activity,ActivityDetail } from '../container'
+import { Login,Reg,HomePage,News,NewsDetail,AllNews,PerCenter,Personal,PersonalEdit,CostHistory,CostDetail,MyExam,MyService,Application,NewsList,NewsDetails,Setting,School,SchoolNav,SchoolBook,SchoolVideo,Exam,ExamList,Service,ServiceDetail,ServiceOrder,ServiceHistory,PhoneList,Cost,CostExplain,CostSure,Map,Temporary,TemporaryDetail,Discipline,Anti,Activity,ActivityDetail,Chart } from '../container';
+import { ScanScreen } from '../components';
 import { Header } from 'native-base'
 import {
     Image,
@@ -358,6 +359,42 @@ const AppNavigator = createStackNavigator({
                 header: null
             })
         },//我的服务
+        Application:{
+            screen:gestureHandlerRootHOC(Application),
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//我的申请
+        NewsList:{
+            screen:gestureHandlerRootHOC(NewsList),
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//我的消息
+        NewsDetails:{
+            screen:NewsDetails,
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//消息详情
+        Setting:{
+            screen:Setting,
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//设置
+        ScanScreen:{
+            screen:ScanScreen,
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//扫码
+        Chart:{
+            screen:Chart,
+            navigationOptions: ({navigation}) => ({
+                header: null
+            })
+        },//党建看板
 
         Main: {//`${navigation.state.params.name}`
             screen:gestureHandlerRootHOC(Drawer),

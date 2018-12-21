@@ -112,7 +112,7 @@ class ExamList extends Component<Props> {
                 <Header style={styles.heads}>
                     <Left style={{flex:1}}>
                         <Button transparent onPress={()=>{this.props.navigation.goBack()}}>
-                            <Icon name="arrow-back"/>
+                            <Icon name="chevron-small-left" type="Entypo"/>
                         </Button>
                     </Left>
                     <Body style={{flex:4,justifyContent:"center",alignItems:"center"}}>
@@ -178,7 +178,7 @@ class ExamList extends Component<Props> {
                                         <Text>{item.score}</Text>
                                         </Body>
                                         <Right style={{flex:1}}>
-                                            <Icon style={{color:"#DDD",marginRight:14,fontSize:16}} name="arrow-forward" />
+                                            <Icon style={{color:"#DDD",marginRight:14,fontSize:16}} name="chevron-small-right" type="Entypo" />
                                         </Right>
                                     </View>
                                 </TouchableNativeFeedback>

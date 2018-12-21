@@ -168,7 +168,7 @@ class Exam extends Component<Props> {
                         <Header style={{ backgroundColor: "#DD5144" }}>
                           <Left>
                             <Button transparent onPress={backAction}>
-                              <Icon name="arrow-back" style={{ color: "#fff" }} />
+                              <Icon name="chevron-small-left" type="Entypo" style={{ color: "#fff" }} />
                             </Button>
                           </Left>
                           <Body style={{ flex: 3 }}>
@@ -196,7 +196,7 @@ class Exam extends Component<Props> {
                 <Header style={styles.heads}>
                     <Left style={{flex:1.5}}>
                         <Button transparent onPress={()=>{this.props.navigation.goBack()}}>
-                            <Icon name="arrow-back"/>
+                            <Icon name="chevron-small-left" type="Entypo"/>
                         </Button>
                     </Left>
                     <Body style={{flex:3,justifyContent:"center",alignItems:"center"}}>

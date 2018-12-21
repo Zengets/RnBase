@@ -5,7 +5,7 @@ let data = [
     {
     items:[
         {
-        "temppartyId": 2,
+        "temppartyId": 0,
         "temppartyName": "余林社区拆迁临时党组织",
         "temppartyTheme": "拆迁工作",
         "telephone": "051487948322",
@@ -37,7 +37,7 @@ let data = [
     "extb": null,
     "currentApplyCount": 2
     }, {
-    "temppartyId": 1,
+    "temppartyId": 2,
     "temppartyName": "余林社区临时党组织1",
     "temppartyTheme": "两学一做学习1",
     "telephone": "13082577979",
@@ -53,7 +53,7 @@ let data = [
     "extb": null,
     "currentApplyCount": 3
 }, {
-    "temppartyId": 1,
+    "temppartyId": 3,
     "temppartyName": "余林社区临时党组织2",
     "temppartyTheme": "两学一做学习2",
     "telephone": "13082577979",
@@ -69,7 +69,7 @@ let data = [
     "extb": null,
     "currentApplyCount": 1
 }, {
-    "temppartyId": 1,
+    "temppartyId": 4,
     "temppartyName": "余林社区临时党组织3",
     "temppartyTheme": "两学一做学习3",
     "telephone": "13082577979",
@@ -85,7 +85,7 @@ let data = [
     "extb": null,
     "currentApplyCount": 0
 },{
-        "temppartyId": 2,
+        "temppartyId": 5,
         "temppartyName": "余林社区拆迁临时党组织",
         "temppartyTheme": "拆迁工作",
         "telephone": "051487948322",

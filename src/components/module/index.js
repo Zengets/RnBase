@@ -9,5 +9,9 @@ import ActivityItem from './homepage/IndexActivity/ActivityItem'
 import ServiceHistoryItem from './service/ServiceHistoryItem'
 import SchoolListItem from './homepage/schoolItem/SchoolListItem'
 import CostHistoryItem from './personal/CostHistoryItem'
+import ApplicationItem from './application/ApplicationItem'
+import NewsListItem from './newslistitem/NewsListItem'
 
-export { NewsItem,ServiceItem,SchoolExamItem,TemporaryItem,ActivityItem,ServiceHistoryItem,SchoolListItem,CostHistoryItem }
+
+
+export { NewsItem,ServiceItem,SchoolExamItem,TemporaryItem,ActivityItem,ServiceHistoryItem,SchoolListItem,CostHistoryItem,ApplicationItem,NewsListItem }

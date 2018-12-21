@@ -66,16 +66,24 @@ export default class PerCenter extends Component<Props> {
                     name:"我的服务"
                 },{
                     icon:require("../../../assets/images/pcicon05.png"),
+                    route:"Application",
                     name:"我的申请"
                 }],
                 thirdNav:[{
                     icon:require("../../../assets/images/pcicon06.png"),
+                    route:"NewsList",
                     name:"消息通知"
                 },{
                     icon:require("../../../assets/images/pcicon07.png"),
-                    route:'Login',
+                    route:'Setting',
                     name:"设置"
-                }]
+                },{
+                    icon:require("../../../assets/images/pcicon08.png"),
+                    route:'Login',
+                    name:"退出"
+                },
+
+                ]
             }
 
         }
@@ -99,7 +107,9 @@ export default class PerCenter extends Component<Props> {
                         <Text>{item.name}</Text>
                     </Body>
                     <Right>
-                        <Icon active name="arrow-forward" />
+                        {
+                            item.route=="Login"?null:<Icon active name="chevron-small-right" type="Entypo" />
+                        }
                     </Right>
                 </ListItem>)
         }

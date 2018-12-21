@@ -42,13 +42,12 @@ export default class ModalBottom extends Component {
     };
 
     render() {
-        let {pressFn,renderFn} = this.props;
+        let {pressFn,renderFn,swipe} = this.props;
 
         return (
             <Modal
                 isVisible={this.state.visibleModal}
                 onBackdropPress={() => this.setState({ visibleModal: false })}
-                onSwipe={() => this.setState({ visibleModal: false })}
                 swipeDirection="down"
                 scrollTo={this.handleScrollTo}
                 scrollOffset={this.state.scrollOffset}

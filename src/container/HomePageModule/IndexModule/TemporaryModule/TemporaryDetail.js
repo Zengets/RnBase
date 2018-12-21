@@ -2,7 +2,7 @@
  * Created by kurosaki on 2018/12/7.
  */
 import React, { Component } from 'react';
-import { Container,Content,Thumbnail, Header, Left, Body, Right, Button, Icon } from 'native-base';
+import { Container,Content,Thumbnail, Header, Left, Body, Right, Button, Icon,Item,Label,Input } from 'native-base';
 import {
     Text,
     View,
@@ -15,10 +15,10 @@ import {
     Animated,
     TouchableNativeFeedback,
     WebView,
-    Linking
+    Linking,
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import { Titles,SchoolExamItem } from '../../../../components'
+import { Titles,SchoolExamItem,ModalBottom } from '../../../../components'
 import { data } from './DataSource'
 
 const { width,height } = Dimensions.get('window')
@@ -35,6 +35,13 @@ const styles={
         fontSize:16,
         color:"#666"
     },
+    fillcon:{
+        height:300,
+        backgroundColor:"#f0f0f0",
+        width:width,
+        flexDirection:"column",
+        justifyContent:"space-between"
+    }
 }
 
 
@@ -43,12 +50,30 @@ class TemporaryDetail extends Component<Props> {
     constructor(props){
         super(props);
         this.state={
+            ifshow:false,
+            height: 30,
             id:props.navigation.getParam('id','NO-ID'),
-            curitem:{},
+            type:props.navigation.getParam('type','NO-ID'),
+            curitem:{ "temppartyId": 3,
+                "temppartyName": "余林社区临时党组织2",
+                "temppartyTheme": "两学一做学习2",
+                "telephone": "13082577979",
+                "workContent": "两学一做学习2",
+                "fstusrId": 1006,
+                "fstusrDtm": 1540697098961,
+                "lstusrId": 1006,
+                "lstusrDtm": 1542786718504,
+                "validSta": "0",
+                "isDelete": "0",
+                "orgSeq": null,
+                "exta": null,
+                "extb": null,
+                "currentApplyCount": 1},
             an:new Animated.Value(height),//reset
             ans:new Animated.Value(height),//reset
             anc:new Animated.Value(-68),//reset
             anr:new Animated.Value(-68),//reset
+            fillvalue:null
         }
         this.inside =  Animated.timing(
             this.state.an,
@@ -89,35 +114,65 @@ class TemporaryDetail extends Component<Props> {
             }
         }).catch(err => console.error('An error occurred', err));
     }
+
+    cauculateHeight(e) {
+        const height = e.nativeEvent.contentSize.height > 30 ? e.nativeEvent.contentSize.height : this.state.height;
+        this.setState({height});
+    }
+
+
     componentDidMount(){
-        let curitem = data[0].items.filter((item)=>{
-           return item.fstusrId == this.state.id
-        })
         Animated.sequence([this.inside,this.insides,this.insidec,this.insider]).start();
-        this.setState({
-            curitem:curitem[0]
-        })
+
 
     }
 
 
     render() {
-        let { curitem,an,ans,anc,anr } = this.state;
+        let { curitem,an,ans,anc,anr,type,ifshow,fillvalue } = this.state;
 
+        let fillFn = () => {
+            return(
+                <View style={styles.fillcon}>
+                    <View style={{padding:14,height:this.state.height+60,maxHeight:248}}>
+                        <Label>填写工作进展</Label>
+                        <Input
+                            ref = {textInput => this.TextInput = textInput}
+                            onContentSizeChange = {e => this.cauculateHeight(e)}
+                            scrollEnabled = {true}
+                            style={{paddingVertical: 0,color:"#333",width:width-28,height: this.state.height,marginTop:12}}
+                            multiline = {true}
+                            onChangeText={(val) => this.setState({
+                               fillvalue:val
+                            })}
+                            placeholder="请输入..."
+                            value={fillvalue}
+                            clearButtonMode="always"
+                        />
+                    </View>
+                    <Button full danger>
+                        <Text style={{fontSize:16,color:"#fff"}}>提交</Text>
+                    </Button>
+
+                </View>
+            )
+        }
 
         return (
             <Container  style={{position:"relative"}}>
                 <Header style={styles.heads}>
                     <Left style={{flex:1}}>
                         <Button transparent onPress={()=>{this.props.navigation.goBack()}}>
-                            <Icon name="arrow-back"/>
+                            <Icon name="chevron-small-left" type="Entypo"/>
                         </Button>
                     </Left>
                     <Body style={{flex:4,justifyContent:"center",alignItems:"center"}}>
-                    <Text style={{color:"#fff",fontSize:20}}>申请加入</Text>
+                    <Text style={{color:"#fff",fontSize:20}}> {type==1?"服务详情":"申请加入"}</Text>
                     </Body>
                     <Right style={{flex:1}}>
-
+                        <Text style={{color:"#fff"}}>
+                            {type==1?"服务记录":""}
+                        </Text>
                     </Right>
                 </Header>
                 <Content style={{padding:14}}>
@@ -161,8 +216,18 @@ class TemporaryDetail extends Component<Props> {
                     </Animated.View>
                 </Content>
                 <Animated.View  style={{position:"absolute",bottom:anc,width:width,height:46}}>
-                    <Button full danger style={{height:46,justifyContent:"center",alignItems:"center"}}>
-                        <Text style={{color:"#fff",fontSize:16}}>立即申请</Text>
+                    <Button full danger style={{height:46,justifyContent:"center",alignItems:"center"}} onPress={()=>{
+                        if(type==1){
+                            this.setState({
+                                ifshow:true
+                            })
+                        }else{
+
+                        }
+                    }}>
+                        <Text style={{color:"#fff",fontSize:16}}>
+                            {type==1?"填写服务记录":"立即申请"}
+                        </Text>
                     </Button>
                 </Animated.View>
 
@@ -173,6 +238,10 @@ class TemporaryDetail extends Component<Props> {
                         <Icon  type="Entypo" name="phone" style={{color:"#fff",marginLeft:12}}></Icon>
                     </Button>
                 </Animated.View>
+
+
+                <ModalBottom swipe={false} show={ifshow} renderFn={()=>{return fillFn()}}></ModalBottom>
+
 
             </Container>
         );

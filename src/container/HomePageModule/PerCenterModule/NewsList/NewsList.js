@@ -1,5 +1,5 @@
 /**
- * Created by kurosaki on 2018/12/18.
+ * Created by kurosaki on 2018/12/19.
  */
 import React, { Component } from 'react';
 import { Container, Header, Left, Body, Right, Button, Icon,Picker,Spinner } from 'native-base';
@@ -17,14 +17,14 @@ import {
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { data } from './DataSource'
-import { SchoolExamItem } from '../../../../components'
+import { NewsListItem } from '../../../../components'
 import { LargeList } from "react-native-largelist-v2";
 import { NormalHeader } from "react-native-spring-scrollview/NormalHeader";
 import { NormalFooter } from "react-native-spring-scrollview/NormalFooter";
 
 
 const { width,height } = Dimensions.get('window')
-const styles={
+const styles = {
     container:{
         flex:1,
     },
@@ -32,7 +32,8 @@ const styles={
         backgroundColor:"#DD5144"
     }
 }
-class MyExam extends Component<Props> {
+
+class NewsList extends Component<Props> {
     constructor(props){
         super(props);
         this.state={
@@ -57,9 +58,8 @@ class MyExam extends Component<Props> {
                 duration: 800,
             }
         )
-
-
     }
+
     componentDidMount(){
         setTimeout(()=>{
             this.setState({
@@ -73,6 +73,7 @@ class MyExam extends Component<Props> {
             this.props.onRef(this)
         }
     }
+
     _onRefresh = () => {
         this._largeList.beginRefresh();
         setTimeout(() => {
@@ -84,6 +85,7 @@ class MyExam extends Component<Props> {
             });
         }, 600);
     };
+
     _onLoading = () => {
         this._largeList.beginLoading();
         let pageIndex = this.state.pageIndex;
@@ -93,9 +95,9 @@ class MyExam extends Component<Props> {
             for (let i = 0; i < 5; i++) {
                 data.push({
                     id:Math.ceil(Math.random() * 100),
-                    exam:"试卷1"+i,
-                    status:1,
-                    time:"2017-08-01",
+                    name:"消息1"+i,
+                    timeStamp:1543995443552,
+                    status:0
                 })
             }
 
@@ -111,13 +113,11 @@ class MyExam extends Component<Props> {
     _renderItem = ({ section: section, row: row }) => {
         let item = this.state.data[section].items[row]
         return(
-            <SchoolExamItem key={item.id} item={item} pressFn={()=>{
-                this.props.navigation.navigate("ExamList",{
-                    id: item.id,
-                    title:item.exam,
-                    types:"0"
+            <NewsListItem key={item.name} item={item} onPressFn={()=>{
+                this.props.navigation.navigate('NewsDetails',{
+                    id:item.id
                 })
-            }}></SchoolExamItem>
+            }}></NewsListItem>
         )
     }
 
@@ -137,7 +137,7 @@ class MyExam extends Component<Props> {
                         </Button>
                     </Left>
                     <Body style={{flex:4,justifyContent:"center",alignItems:"center"}}>
-                        <Text style={{color:"#fff",fontSize:20}}>我的考试</Text>
+                    <Text style={{color:"#fff",fontSize:20}}>我的消息</Text>
                     </Body>
                     <Right style={{flex:1}}>
                     </Right>
@@ -147,7 +147,7 @@ class MyExam extends Component<Props> {
                         <Spinner color='red'></Spinner>:
                         null
                 }
-                <View style={{flex:1}}>
+                <View style={{padding:14,flex:1}}>
                     <LargeList
                         onScroll={({x:x,y:y})=>{
                             if(y>height && scrollY<height){
@@ -167,7 +167,7 @@ class MyExam extends Component<Props> {
                         style={styles.container}
                         data={this.state.data}
                         heightForIndexPath={({ section: section, row: row }) =>{
-                                 return 109
+                                 return 82
                             }}
                         renderIndexPath={this._renderItem}
                         refreshHeaderHeight={60}
@@ -187,13 +187,10 @@ class MyExam extends Component<Props> {
                 </Animated.View>
 
 
-
-
-
             </Container>
         );
     }
 }
 
 
-export default MyExam
+export default NewsList

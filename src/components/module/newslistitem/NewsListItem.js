@@ -1,5 +1,5 @@
 /**
- * Created by kurosaki on 2018/12/18.
+ * Created by kurosaki on 2018/12/20.
  */
 import React, { Component } from 'react';
 import {  Container,Icon,Button} from 'native-base';
@@ -33,41 +33,29 @@ const styles = {
     },
 }
 
-
-export default class CostHistoryItem extends React.PureComponent{
+export default class NewsListItem extends React.PureComponent{
     render() {
         let {item,onPressFn} = this.props;
         let style1 = ()=>{
             return(
                 <Grid style={styles.grid}>
-                    <Col size={1}>
-                        <Row style={{alignItems:"center",justifyContent:"space-between"}}>
-                            <Text numberOfLines={1} style={{flex:1,fontSize:16,color:"#333"}}>
-                                党费缴纳
-                            </Text>
-                            <Text style={{width:100,fontSize:14,color:"#DD5144",textAlign:"right"}}>
-                                ¥ { item.cost }
+                    <Col size={1} style={{justifyContent:"space-between"}}>
+                        <Row style={{height:19,borderLeftColor:"#DD5144",borderLeftWidth:4,paddingLeft:16,alignItems:"center"}}>
+                            <Text numberOfLines={1} style={{fontSize:16,color:"#333"}}>
+                                {item.name}
                             </Text>
                         </Row>
-                        <Row style={{alignItems:"center",justifyContent:"space-between"}}>
-                            <Row style={{width:220}}>
-                                <Icon name="clock" type="Feather" style={{fontSize:16,color:"#999"}}></Icon>
-                                <Text style={{fontSize:14,color:"#999",marginLeft:6}}>
-                                    {timetrans(item.timeStamp)}
-                                </Text>
-                            </Row>
-                            <Text numberOfLines={1} style={{flex:1,fontSize:14,color:"#999",textAlign:"right"}}>
-                                { item.desc }
+                        <Row style={{flex:1,alignItems:"center",marginTop:16}}>
+                            <Icon name="clock" type="Feather" style={{fontSize:16,color:"#999"}}></Icon>
+                            <Text style={{fontSize:14,color:"#666",marginLeft:6}}>
+                                {timetrans(item.timeStamp)}
                             </Text>
                         </Row>
                     </Col>
-                    <Col  style={{width:22,flexDirection:"row",justifyContent:"flex-end",alignItems:"center"}}>
+                    <Col size={1} style={{flexDirection:"row",justifyContent:"flex-end",alignItems:"center"}}>
                         <Icon active name="chevron-small-right" type="Entypo" style={{color:"#DD5144"}}></Icon>
+
                     </Col>
-
-
-
-
                 </Grid>
             )
         }

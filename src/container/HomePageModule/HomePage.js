@@ -130,7 +130,7 @@ export default class HomePage extends Component<Props> {
             },{
                 name:"党建看板",
                 img:require("../../assets/images/indexicon_13.png"),
-                uri:""
+                uri:"Chart"
             },{
                 name:"临时党组织",
                 img:require("../../assets/images/indexicon_24.png"),
@@ -245,8 +245,8 @@ export default class HomePage extends Component<Props> {
                             <Text style={{color:"#fff",fontSize:20}}>党建</Text>
                     </Body>
                     <Right style={{flex:1}}>
-                        <Button transparent>
-                            <Icon name="ios-qr-scanner" />
+                        <Button transparent onPress={()=>this.props.navigation.navigate("ScanScreen")}>
+                            <Icon type="MaterialCommunityIcons" name="qrcode-scan"></Icon>
                         </Button>
                     </Right>
                 </Header>

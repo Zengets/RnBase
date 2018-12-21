@@ -14,6 +14,11 @@ import CostHistory from './HomePageModule/PerCenterModule/CostHistory/CostHistor
 import CostDetail from './HomePageModule/PerCenterModule/CostHistory/CostDetail';
 import MyExam from './HomePageModule/PerCenterModule/MyExam/MyExam';
 import MyService from './HomePageModule/PerCenterModule/MyService/MyService';
+import Application from './HomePageModule/PerCenterModule/Application/Application';
+import NewsList from './HomePageModule/PerCenterModule/NewsList/NewsList';
+import NewsDetails from './HomePageModule/PerCenterModule/NewsList/NewsDetails';
+import Setting from './HomePageModule/PerCenterModule/Setting/Setting';
+import Chart from './HomePageModule/IndexModule/ChartModule/Chart';
 
 import School from './HomePageModule/SchoolModule/School';
 import SchoolNav from './HomePageModule/SchoolModule/SchoolNav/SchoolNav';
@@ -38,5 +43,4 @@ import Activity from './HomePageModule/IndexModule/ActivityModule/Activity';
 import ActivityDetail from './HomePageModule/IndexModule/ActivityModule/ActivityDetail';
 
 
-
-export {Login,Reg,HomePage,News,AllNews,NewsDetail,PerCenter,Personal,PersonalEdit,CostHistory,CostDetail,MyExam,MyService,School,SchoolBook,SchoolVideo,Exam,SchoolNav,ExamList,Service,ServiceDetail,ServiceHistory,ServiceOrder,PhoneList,Cost,CostExplain,CostSure,Map,Temporary,TemporaryDetail,Discipline,Anti,Activity,ActivityDetail}
+export {Login,Reg,HomePage,News,AllNews,NewsDetail,PerCenter,Personal,PersonalEdit,CostHistory,CostDetail,MyExam,MyService,Application,NewsList,NewsDetails,Setting,School,SchoolBook,SchoolVideo,Exam,SchoolNav,ExamList,Service,ServiceDetail,ServiceHistory,ServiceOrder,PhoneList,Cost,CostExplain,CostSure,Map,Temporary,TemporaryDetail,Discipline,Anti,Activity,ActivityDetail,Chart}

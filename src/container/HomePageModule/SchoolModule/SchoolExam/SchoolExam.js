@@ -116,7 +116,7 @@ class SchoolExam extends Component<Props> {
                         <Header style={{ backgroundColor: "#DD5144" }}>
                           <Left>
                             <Button transparent onPress={backAction}>
-                              <Icon name="arrow-back" style={{ color: "#fff" }} />
+                              <Icon name="chevron-small-left" type="Entypo" style={{ color: "#fff" }} />
                             </Button>
                           </Left>
                           <Body style={{ flex: 3 }}>

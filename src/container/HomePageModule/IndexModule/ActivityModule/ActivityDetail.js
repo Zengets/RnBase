@@ -55,7 +55,7 @@ export default class ActivityDetail extends Component<Props> {
                 <Header style={{backgroundColor:"#DD5144"}}>
                     <Left style={{flex:1}}>
                         <Button transparent onPress={()=>{this.props.navigation.goBack()}}>
-                            <Icon name="arrow-back"/>
+                            <Icon name="chevron-small-left" type="Entypo"/>
                         </Button>
                     </Left>
                     <Body style={{flex:4,justifyContent:"center",alignItems:"center"}}>
@@ -118,7 +118,7 @@ export default class ActivityDetail extends Component<Props> {
                         </Col>
                     </Row>
                     <Row style={{height:85,justifyContent:"center",alignItems:"center"}}>
-                        <Button danger rounded style={{width:80,height:80,justifyContent:"center",alignItems:"center"}}>
+                        <Button danger rounded style={{width:80,height:80,justifyContent:"center",alignItems:"center"}} onPress={()=>this.props.navigation.navigate("ScanScreen")}>
                             <Icon type="MaterialCommunityIcons" name="qrcode-scan"></Icon>
                         </Button>
                     </Row>

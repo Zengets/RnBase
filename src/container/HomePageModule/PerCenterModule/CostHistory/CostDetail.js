@@ -64,7 +64,7 @@ export default class CostDetail extends React.PureComponent{
                 <Header style={{backgroundColor:"#DD5144"}}>
                     <Left style={{flex:1}}>
                         <Button transparent onPress={()=>{this.props.navigation.goBack()}}>
-                            <Icon name="arrow-back"/>
+                            <Icon name="chevron-small-left" type="Entypo"/>
                         </Button>
                     </Left>
                     <Body style={{flex:4,justifyContent:"center",alignItems:"center"}}>

@@ -105,7 +105,7 @@ export default class PersonalEdit extends React.PureComponent{
                 <Header style={{backgroundColor:"#DD5144"}}>
                     <Left style={{flex:1}}>
                         <Button transparent onPress={()=>{this.props.navigation.goBack()}}>
-                            <Icon name="arrow-back"/>
+                            <Icon name="chevron-small-left" type="Entypo"/>
                         </Button>
                     </Left>
                     <Body style={{flex:4,justifyContent:"center",alignItems:"center"}}>
@@ -168,7 +168,6 @@ export default class PersonalEdit extends React.PureComponent{
                             <Item floatingLabel style={{flex:1}}>
                                 <Label>单位</Label>
                                 <Input
-                                    multiline = {true}
                                     onChangeText={(partyorg) => this.setState({
                                     formvalue:{ ...formvalue, partyorg_name: partyorg }
                                 })}
@@ -181,7 +180,6 @@ export default class PersonalEdit extends React.PureComponent{
                             <Item floatingLabel style={{flex:1}}>
                                 <Label>邮箱</Label>
                                 <Input
-                                    multiline = {true}
                                     onChangeText={(email) => this.setState({
                                     formvalue:{ ...formvalue, email: email }
                                 })}
@@ -194,7 +192,6 @@ export default class PersonalEdit extends React.PureComponent{
                             <Item floatingLabel style={{flex:1}}>
                                 <Label>手机号</Label>
                                 <Input
-                                    multiline = {true}
                                     onChangeText={(mobile) => this.setState({
                                     formvalue:{ ...formvalue, mobile: mobile }
                                 })}
@@ -207,7 +204,6 @@ export default class PersonalEdit extends React.PureComponent{
                             <Item floatingLabel style={{flex:1}}>
                                 <Label>微信号</Label>
                                 <Input
-                                    multiline = {true}
                                     onChangeText={(wechat) => this.setState({
                                     formvalue:{ ...formvalue, wechat: wechat }
                                 })}
@@ -220,7 +216,6 @@ export default class PersonalEdit extends React.PureComponent{
                             <Item floatingLabel style={{flex:1}}>
                                 <Label>QQ号</Label>
                                 <Input
-                                    multiline = {true}
                                     onChangeText={(qq) => this.setState({
                                     formvalue:{ ...formvalue, qq: qq }
                                 })}

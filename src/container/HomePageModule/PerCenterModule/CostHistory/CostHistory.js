@@ -111,7 +111,7 @@ class CostHistory extends Component<Props> {
     _renderItem = ({ section: section, row: row }) => {
         let item = this.state.data[section].items[row]
         return(
-            <CostHistoryItem key={item.title} item={item} onPressFn={()=>{
+            <CostHistoryItem key={item.id} item={item} onPressFn={()=>{
                 this.props.navigation.navigate('CostDetail',{
                     id:item.id
                 })
@@ -131,7 +131,7 @@ class CostHistory extends Component<Props> {
                 <Header style={styles.heads}>
                     <Left style={{flex:1}}>
                         <Button transparent onPress={()=>{this.props.navigation.goBack()}}>
-                            <Icon name="arrow-back"/>
+                            <Icon name="chevron-small-left" type="Entypo"/>
                         </Button>
                     </Left>
                     <Body style={{flex:4,justifyContent:"center",alignItems:"center"}}>
@@ -165,7 +165,7 @@ class CostHistory extends Component<Props> {
                         style={styles.container}
                         data={this.state.data}
                         heightForIndexPath={({ section: section, row: row }) =>{
-                                 return 96
+                                 return 86
                             }}
                         renderIndexPath={this._renderItem}
                         refreshHeaderHeight={60}

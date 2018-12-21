@@ -40,7 +40,7 @@ export default class Titles extends Component<Props> {
                         </Text>
                     </View>
                     <Button full rounded transparent dark style={{marginRight:-14}} onPress={()=>{clickFn()}}>
-                        <Icon name="arrow-forward" style={{color:"#666"}}/>
+                        <Icon name="chevron-small-right" type="Entypo" style={{color:"#666"}}/>
                     </Button>
                 </View>
             </TouchableNativeFeedback>
