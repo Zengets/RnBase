@@ -21,7 +21,7 @@ import { NewsItem } from '../../../../components'
 import { LargeList } from "react-native-largelist-v2";
 import { NormalHeader } from "react-native-spring-scrollview/NormalHeader";
 import { NormalFooter } from "react-native-spring-scrollview/NormalFooter";
-
+import { withNavigation } from 'react-navigation';
 
 const { width,height } = Dimensions.get('window')
 const styles={
@@ -145,7 +145,9 @@ class Anti extends Component<Props> {
     _renderItem = ({ section: section, row: row }) => {
         let item = this.state.data[section].items[row]
         return(
-            <NewsItem key={item.title} item={item} pressFn={()=>{alert("jumpurl")}}></NewsItem>
+            <NewsItem key={item.title} item={item} pressFn={()=>{this.props.navigation.navigate("NewsDetail",{
+                id: item.id,
+            })}}></NewsItem>
         )
     }
 
@@ -231,4 +233,4 @@ class Anti extends Component<Props> {
 }
 
 
-export default Anti
+export default withNavigation(Anti)

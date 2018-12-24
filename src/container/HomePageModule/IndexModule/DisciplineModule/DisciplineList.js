@@ -18,6 +18,7 @@ import { NewsItem } from '../../../../components'
 import { LargeList } from "react-native-largelist-v2";
 import { NormalHeader } from "react-native-spring-scrollview/NormalHeader";
 import { NormalFooter } from "react-native-spring-scrollview/NormalFooter";
+import { withNavigation } from 'react-navigation';
 
 let styles = {
     container:{
@@ -27,7 +28,7 @@ let styles = {
 
 const { width,height } = Dimensions.get('window')
 
-export default class DisciplineList extends React.PureComponent {
+class DisciplineList extends React.PureComponent {
     constructor(props){
         super(props);
         this.state = {
@@ -133,7 +134,9 @@ export default class DisciplineList extends React.PureComponent {
     _renderItem = ({ section: section, row: row }) => {
         let item = this.state.data[section].items[row]
         return(
-            <NewsItem key={item.title} item={item} pressFn={()=>{alert("jumpurl")}}></NewsItem>
+            <NewsItem key={item.title} item={item} pressFn={()=>{this.props.navigation.navigate("NewsDetail",{
+                id: item.id,
+            })}}></NewsItem>
         )}
 
 
@@ -184,3 +187,4 @@ export default class DisciplineList extends React.PureComponent {
         );
     }
 }
+export default withNavigation(DisciplineList)
