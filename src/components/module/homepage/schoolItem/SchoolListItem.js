@@ -11,7 +11,6 @@ import {
     ImageBackground,
     Dimensions,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 const { width,height } = Dimensions.get('window')
 const styles = {
@@ -90,15 +89,13 @@ export default class SchoolListItem extends React.PureComponent{
 
 
         return (
-            <TouchableNativeFeedback onPress={(id=item.id,name=item.name)=>{pressFn(id,name)}}>
-                <View style={layout=="list"?styles.container:styles.containers}>
+            <TouchableOpacity style={layout=="list"?styles.container:styles.containers} onPress={(id=item.id,name=item.name)=>{pressFn(id,name)}}>
                     {
                         layout=="list"?
                         style1():
                         style2()
                     }
-                </View>
-            </TouchableNativeFeedback>
+            </TouchableOpacity>
 
 
         );

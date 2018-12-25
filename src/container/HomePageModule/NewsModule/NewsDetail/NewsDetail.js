@@ -14,7 +14,6 @@ import {
     ScrollView,
     WebView,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 import {timetrans} from '../../../../components'
 

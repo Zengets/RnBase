@@ -11,9 +11,7 @@ import {
     Dimensions,
     ScrollView,
     StatusBar,
-    TouchableOpacity,
-    Animated,
-    TouchableNativeFeedback,
+   TouchableOpacity,     Animated,
     NativeModules
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
@@ -262,7 +260,7 @@ class Personal extends Component<Props> {
                         <View style={[{height:68,width:width},styles.heads]}>
                         </View>
                         <View style={[styles.imagehead,{bottom:0,position:"absolute"}]}>
-                            <TouchableNativeFeedback  onPress={() =>
+                            <TouchableOpacity  onPress={() =>
                                 ActionSheet.show(
                                   {
                                     options: BUTTONS,
@@ -290,7 +288,7 @@ class Personal extends Component<Props> {
                                         resizeMode='cover'>
                                     </ImageBackground>
                                 </View>
-                            </TouchableNativeFeedback>
+                            </TouchableOpacity>
                         </View>
                     </View>
                     <View>

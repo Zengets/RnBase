@@ -6,7 +6,7 @@ import { Button, Icon } from 'native-base';
 import {
     Text,
     View,
-    TouchableNativeFeedback
+    TouchableOpacity
 } from 'react-native';
 
 const styles = {
@@ -32,7 +32,7 @@ export default class Titles extends Component<Props> {
     render() {
         let {titles,clickFn,borderTop} = this.props;
         return (
-            <TouchableNativeFeedback  onPress={()=>{clickFn()}}>
+            <TouchableOpacity  onPress={()=>{clickFn()}}>
                 <View style={[styles.newshead,{borderTopColor:"#f0f0f0",borderTopWidth:borderTop?1:0}]}>
                     <View style={{flex:1,height:28,borderLeftColor:"#fc3838",borderLeftWidth:4,paddingLeft:10}}>
                         <Text style={{fontSize:18,color:"#333",lineHeight:28,fontWeight:"bold"}}>
@@ -43,7 +43,7 @@ export default class Titles extends Component<Props> {
                         <Icon name="chevron-small-right" type="Entypo" style={{color:"#666"}}/>
                     </Button>
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableOpacity>
         );
     }
 }

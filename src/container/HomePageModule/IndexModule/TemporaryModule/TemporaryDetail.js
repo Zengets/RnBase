@@ -11,9 +11,7 @@ import {
     Dimensions,
     ScrollView,
     StatusBar,
-    TouchableOpacity,
-    Animated,
-    TouchableNativeFeedback,
+   TouchableOpacity,     Animated,
     WebView,
     Linking,
 } from 'react-native';

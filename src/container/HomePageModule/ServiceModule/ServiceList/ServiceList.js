@@ -11,7 +11,6 @@ import {
     Dimensions,
     StatusBar,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 import { ServiceItem } from '../../../../components'
 import { LargeList } from "react-native-largelist-v2";

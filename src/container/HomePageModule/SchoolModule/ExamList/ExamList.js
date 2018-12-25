@@ -11,9 +11,7 @@ import {
     Dimensions,
     ScrollView,
     StatusBar,
-    TouchableOpacity,
-    Animated,
-    TouchableNativeFeedback
+   TouchableOpacity,     Animated,
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import {timetrans} from '../../../../components'
@@ -160,7 +158,7 @@ class ExamList extends Component<Props> {
                     {
                         testArr.map((item,i)=>{
                             return(
-                                <TouchableNativeFeedback key={i} onPress={()=>{
+                                <TouchableOpacity key={i} onPress={()=>{
                                     this.props.navigation.navigate("Exam",{
                                         id: item.id,
                                         title:item.exam,
@@ -181,7 +179,7 @@ class ExamList extends Component<Props> {
                                             <Icon style={{color:"#DDD",marginRight:14,fontSize:16}} name="chevron-small-right" type="Entypo" />
                                         </Right>
                                     </View>
-                                </TouchableNativeFeedback>
+                                </TouchableOpacity>
                             )
                         })
                     }

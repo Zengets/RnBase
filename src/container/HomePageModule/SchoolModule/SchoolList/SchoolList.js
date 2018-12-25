@@ -11,7 +11,6 @@ import {
     Dimensions,
     StatusBar,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 import { SchoolListItem } from '../../../../components'
 import { LargeList } from "react-native-largelist-v2";

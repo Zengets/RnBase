@@ -7,7 +7,7 @@ import {
     ScrollView,
     StyleSheet,
     Text,
-    TouchableNativeFeedback,
+    TouchableOpacity,
     View,
     Dimensions
 } from "react-native";
@@ -23,11 +23,11 @@ export default class Modals extends Component {
 
 
     renderButton = (text, onPress) => (
-        <TouchableNativeFeedback onPress={onPress}>
+        <TouchableOpacity onPress={onPress}>
             <View style={styles.button}>
                 <Text style={{color:"#ff0000"}}>{text}</Text>
             </View>
-        </TouchableNativeFeedback>
+        </TouchableOpacity>
     );
 
     renderModalContent = (str,btnstr) => (

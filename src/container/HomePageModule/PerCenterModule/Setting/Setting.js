@@ -16,7 +16,6 @@ import {
     StatusBar,
     WebView,
     TouchableOpacity,
-    TouchableNativeFeedback,
     ToastAndroid
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';

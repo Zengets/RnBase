@@ -15,9 +15,7 @@ import {
     Dimensions,
     ScrollView,
     StatusBar,
-    TouchableOpacity,
-    Animated,
-    TouchableNativeFeedback
+   TouchableOpacity,     Animated,
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { data } from './DataSource'

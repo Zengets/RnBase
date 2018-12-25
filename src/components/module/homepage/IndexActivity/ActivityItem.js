@@ -11,7 +11,6 @@ import {
     ImageBackground,
     Dimensions,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 import {timetrans} from '../../../publicdata/Data'
 
@@ -85,13 +84,13 @@ export default class ActivityItem extends React.PureComponent{
 
 
         return (
-            <TouchableNativeFeedback  onPress={() =>{onPressFn()}}>
+            <TouchableOpacity  style={styles.container} onPress={() =>{onPressFn()}}>
                 <View style={styles.container}>
                     {
                         style1()
                     }
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableOpacity>
 
 
         );

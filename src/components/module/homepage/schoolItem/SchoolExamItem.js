@@ -10,7 +10,6 @@ import {
     ImageBackground,
     Dimensions,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 
 const { width,height } = Dimensions.get('window')
@@ -82,13 +81,13 @@ export default class SchoolExamItem extends React.PureComponent{
 
 
         return (
-            <TouchableNativeFeedback onPress={()=>{pressFn()}}>
+            <TouchableOpacity style={styles.container} onPress={()=>{pressFn()}}>
                 <View style={styles.container}>
                     {
                         style1()
                     }
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableOpacity>
 
 
         );

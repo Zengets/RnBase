@@ -14,7 +14,6 @@ import {
     TouchableOpacity,
     Animated,
     WebView,
-    TouchableNativeFeedback
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import {timetrans} from '../../../../components'

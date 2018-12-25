@@ -12,7 +12,6 @@ import {
     FlatList,
     StatusBar,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 import { NewsItem } from '../../../../components'
 import { LargeList } from "react-native-largelist-v2";

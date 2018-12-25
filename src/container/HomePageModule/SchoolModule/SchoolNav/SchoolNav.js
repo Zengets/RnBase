@@ -12,7 +12,6 @@ import {
     ScrollView,
     StatusBar,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 import SchoolList from '../SchoolList/SchoolList'
 

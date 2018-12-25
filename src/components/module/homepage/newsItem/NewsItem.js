@@ -10,7 +10,6 @@ import {
     ImageBackground,
     Dimensions,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 const { width,height } = Dimensions.get('window')
 const styles = {
@@ -105,7 +104,7 @@ export default class NewsItem extends React.PureComponent{
         }
 
         return (
-            <TouchableNativeFeedback onPress={()=>{pressFn()}}>
+            <TouchableOpacity style={styles.container} onPress={()=>{pressFn()}}>
                 <View style={styles.container}>
                     {
                         item.pic.length>1?
@@ -114,7 +113,7 @@ export default class NewsItem extends React.PureComponent{
                     }
                 </View>
 
-            </TouchableNativeFeedback>
+            </TouchableOpacity>
 
 
         );

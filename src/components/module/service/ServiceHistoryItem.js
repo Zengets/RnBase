@@ -10,7 +10,6 @@ import {
     ImageBackground,
     Dimensions,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 import {timetrans} from '../../publicdata/Data';
 
@@ -57,13 +56,11 @@ export default class ServiceHistoryItem extends React.PureComponent{
 
 
         return (
-            <TouchableNativeFeedback  onPress={() =>{onPressFn()}}>
-                <View style={styles.container}>
+            <TouchableOpacity style={styles.container} onPress={() =>{onPressFn()}}>
                     {
                         style1()
                     }
-                </View>
-            </TouchableNativeFeedback>
+            </TouchableOpacity>
 
 
         );
