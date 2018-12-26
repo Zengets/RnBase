@@ -18,7 +18,6 @@ const { width,height } = Dimensions.get('window')
 const styles = {
     container: {
         flex:1,
-
     },
     grid:{
         flex:1,

@@ -41,21 +41,25 @@ const styles={
 }
 const configs = {
     line:{
-        backgroundColor: '#DD5144',
-        backgroundGradientFrom: '#e27c72',
-        backgroundGradientTo: '#DD5144',
-        decimalPlaces: 2, // optional, defaults to 2dp
-        color: (opacity = 1) => `rgba(255, 255, 255, 1)`,
+        lineconf:{
+            backgroundColor: '#DD5144',
+            backgroundGradientFrom: '#e27c72',
+            backgroundGradientTo: '#DD5144',
+            decimalPlaces: 2, // optional, defaults to 2dp
+            color: (opacity = 1) => `rgba(255, 255, 255, 1)`,
+        },
         style: {
             marginVertical: 8,
             borderRadius: 8,
         }
     },
     pie: {
-        backgroundColor: '#022173',
-        backgroundGradientFrom: '#022173',
-        backgroundGradientTo: '#1b3fa0',
-        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+        pieconf:{
+            backgroundColor: '#022173',
+            backgroundGradientFrom: '#022173',
+            backgroundGradientTo: '#1b3fa0',
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`, 
+        },
         style: {
             marginVertical: 8,
             borderRadius: 8,
@@ -69,9 +73,7 @@ export default class Chart extends  Component<Props>{
         this.state = {
              data:{
                 labels: ['18-30', '30-40', '40-50', '50-60', '60-70', '>70'],
-                datasets: [
-                {data: [50,20,2,86,71,100]}
-                ]
+                datasets: [{data: [50,20,2,86,71,100]}]
             },
             datapie:[
                 { name: '博士', population:20, color: 'rgba(131, 167, 234, 1)',legendFontColor: '#333', legendFontSize: 14 },
@@ -144,9 +146,9 @@ export default class Chart extends  Component<Props>{
                     </Text>
                     <LineChart
                         data={data}
-                        width={width-28} // from react-native
+                        width={width-28}
                         height={200}
-                        chartConfig={configs.line}
+                        chartConfig={configs.line.lineconf}
                         bezier
                         style={configs.line.style}
                     />
@@ -158,7 +160,7 @@ export default class Chart extends  Component<Props>{
                         data={datapie}
                         width={width}
                         height={200}
-                        chartConfig={configs.pie}
+                        chartConfig={configs.pie.pieconf}
                         style={configs.pie.style}
                         accessor="population"
                         backgroundColor="transparent"

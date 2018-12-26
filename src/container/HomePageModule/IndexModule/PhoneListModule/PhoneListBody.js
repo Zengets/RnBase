@@ -136,7 +136,7 @@ export default class PhoneListBody extends React.Component {
                         <CardItem style={{backgroundColor:"#f9f9f9"}}>
                           <Body>
                             <View style={{marginBottom:8,flexDirection:"row",justifyContent:"space-between"}}>
-                                <Text style={{width:58,textAlign:"right"}}>
+                                <Text style={{width:68,textAlign:"right"}}>
                                   电话号码:
                                 </Text>
                                  <Text style={{flex:1,textAlign:"right"}}>
@@ -144,7 +144,7 @@ export default class PhoneListBody extends React.Component {
                                 </Text>
                             </View>
                             <View style={{marginBottom:8,flexDirection:"row",justifyContent:"space-between"}}>
-                                <Text style={{width:58,textAlign:"right"}}>
+                                <Text style={{width:68,textAlign:"right"}}>
                                   微信号码:
                                 </Text>
                                  <Text style={{flex:1,textAlign:"right"}}>
@@ -152,7 +152,7 @@ export default class PhoneListBody extends React.Component {
                                 </Text>
                             </View>
                              <View style={{marginBottom:8,flexDirection:"row",justifyContent:"space-between"}}>
-                                <Text style={{width:58,textAlign:"right"}}>
+                                <Text style={{width:68,textAlign:"right"}}>
                                   QQ号码:
                                 </Text>
                                  <Text style={{flex:1,textAlign:"right"}}>
@@ -160,7 +160,7 @@ export default class PhoneListBody extends React.Component {
                                 </Text>
                             </View>
                              <View style={{marginBottom:8,flexDirection:"row",justifyContent:"space-between"}}>
-                                <Text style={{width:58,textAlign:"right"}}>
+                                <Text style={{width:68,textAlign:"right"}}>
                                   党支部:
                                 </Text>
                                  <Text style={{flex:1,textAlign:"right"}}>
@@ -277,7 +277,9 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     search:{
-        paddingLeft:12
+        paddingLeft:12,
+        height:40,
+        fontSize:18
     },
     line: {
         position: "absolute",

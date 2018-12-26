@@ -34,7 +34,9 @@ const styles = {
     search:{
         paddingLeft:12,
         borderBottomColor:"#f0f0f0",
-        borderBottomWidth:1
+        borderBottomWidth:1,
+        height:40,
+        fontSize:18
     },
 }
 
@@ -171,13 +173,13 @@ class Temporary extends Component<Props> {
                     <Text style={{color:"#fff",fontSize:20}}>临时党组织</Text>
                     </Body>
                     <Right style={{flex:1}}>
-                        <Button rounded full transparent style={{backgroundColor: '#DD5144',width:50,height:50}} onPress={()=>{
+                        <Button rounded full transparent style={{width:45,height:45}} onPress={()=>{
                         _it._largeList.scrollTo({ x: 0, y: 0 });
                         setTimeout(()=>{
                             _it.comment.focus();
                         },600)
                         }}>
-                            <Icon name="search"/>
+                            <Icon name="search" style={{width:45,textAlign:"center",color:"#fff"}}/>
                         </Button>
                     </Right>
                 </Header>

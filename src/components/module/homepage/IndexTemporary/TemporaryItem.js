@@ -61,11 +61,9 @@ export default class TemporaryItem extends React.PureComponent{
 
         return (
             <TouchableOpacity style={styles.container} onPress={() =>{onPressFn()}}>
-                <View style={styles.container}>
                     {
                         style1()
                     }
-                </View>
             </TouchableOpacity>
 
 

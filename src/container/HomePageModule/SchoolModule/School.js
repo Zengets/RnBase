@@ -86,10 +86,10 @@ export default class School extends Component<Props> {
                     <Body style={{flex:3,justifyContent:"center",alignItems:"center"}}>
                             <View style={{flexDirection:"row",justifyContent:"center",alignItems:"center",borderRadius:600,backgroundColor:"#ffffff"}}>
                                     <Button onPress={()=>this._changeCurrent(0)} style={{width:80,height:28,borderRadius:600,justifyContent:"center",alignItems:"center",backgroundColor:current==0?"#DD5144":"#fff"}} full rounded transparent={current==0?false:true }>
-                                        <Text style={{color:current==0?"#fff":"#DD5144",lineHeight:28}}>学习资源</Text>
+                                        <Text style={{color:current==0?"#fff":"#DD5144"}}>学习资源</Text>
                                     </Button>
                                     <Button onPress={()=>this._changeCurrent(1)} style={{width:80,height:28,borderRadius:600,justifyContent:"center",alignItems:"center",backgroundColor:current==0?"#fff":"#DD5144",borderWidth:0}} full rounded transparent={current==0?true:false}>
-                                        <Text style={{color:"#fff",lineHeight:28,color:current==0?"#DD5144":"#fff"}}>在线考试</Text>
+                                        <Text style={{color:"#fff",color:current==0?"#DD5144":"#fff"}}>在线考试</Text>
                                     </Button>
                             </View>
                     </Body>

@@ -4957,9 +4957,10 @@ react-native-svg@6.2.2:
     lodash "^4.16.6"
     pegjs "^0.10.0"
 
-react-native-svg@^8.0.10:
-  version "8.0.10"
-  resolved "http://registry.npm.taobao.org/react-native-svg/download/react-native-svg-8.0.10.tgz#b07e2342d1486220f5fda1a584e316e7d2d1f392"
+react-native-svg@6.4.1:
+  version "6.4.1"
+  resolved "http://registry.npm.taobao.org/react-native-svg/download/react-native-svg-6.4.1.tgz#ba696d4da03000883d65a27d2bf8b1a30b252ffe"
+  integrity sha1-umltTaAwAIg9ZaJ9K/ixowslL/4=
   dependencies:
     color "^2.0.1"
     lodash "^4.16.6"

@@ -94,7 +94,7 @@ class PhoneList extends Component<Props> {
                             </Button>
                           </Left>
                           <Body style={{ flex: 3 }}>
-                            <Title style={{ color: "#fff" }}>选择组织</Title>
+                            <Text style={{ color: "#fff" }}>选择组织</Text>
                           </Body>
                           <Right />
                         </Header>}

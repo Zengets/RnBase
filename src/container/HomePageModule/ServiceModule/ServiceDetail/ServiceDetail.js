@@ -164,7 +164,7 @@ export default class ServiceDetail extends React.PureComponent{
                         coordinate={center}
                     >
                         <MapView.Marker
-                                color="rose"
+                                color="green"
                                 coordinate={center}
                                 //title={curitem.service_address}
                         >

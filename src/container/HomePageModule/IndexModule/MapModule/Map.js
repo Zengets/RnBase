@@ -127,6 +127,9 @@ export default class Map extends React.Component {
     componentWillMount(){
        this.getLocation(()=>{})
     }
+ 
+
+
     //拨打电话
     linking(url){
         Linking.canOpenURL(url).then(supported => {
@@ -225,7 +228,7 @@ export default class Map extends React.Component {
                             </Button>
                           </Left>
                           <Body style={{ flex: 3 }}>
-                            <Title style={{ color: "#fff" }}>地图模式</Title>
+                            <Text style={{ color: "#fff" }}>地图模式</Text>
                           </Body>
                           <Right />
                         </Header>}
@@ -246,7 +249,7 @@ export default class Map extends React.Component {
                 <Header style={{backgroundColor:"#DD5144"}}>
                     <Left style={{flex:1}}>
                         <Button transparent onPress={()=>{this.props.navigation.goBack()}}>
-                            <Icon name="chevron-small-left" type="Entypo" />
+                            <Icon name="chevron-small-left" type="Entypo" style={{color:"#fff"}}/>
                         </Button>
                     </Left>
                     <Body style={{flex:3,justifyContent:"center",alignItems:"center"}}>
@@ -258,7 +261,16 @@ export default class Map extends React.Component {
                 </Header>
                 <Content>
                     <MapView
-                        onPress={()=>{this.hides.start();this.hidees.start();}}
+                        onPress={()=>{
+                            let fadeAnimr= JSON.stringify(fadeAnim),fadeAnimsr = JSON.stringify(fadeAnims)
+                             if(fadeAnimr==0){
+                                this.hides.start();
+                             }   
+                             if(fadeAnimsr==0){
+                                this.hidees.start();
+                             }   
+
+                        }}
                         ref={ref => this.mapView = ref}
                         mapType={selected}
                         locationEnabled={false}//地图定位
@@ -272,11 +284,13 @@ export default class Map extends React.Component {
                         {
                             data.map((item,i)=>{
                                 return(
-                                    <MapView.Marker key={i} color={curitem.name==item.name?"red":"rose"} coordinate={{
+                                    <MapView.Marker key={i} color={curitem.name==item.name?"red":"green"} coordinate={{
                                       latitude: parseFloat(item.latitude),
                                       longitude: parseFloat(item.longitude),
                                     }} onPress={()=>{
-                                        this.shows.start();
+                                        setTimeout(()=>{
+                                            this.shows.start();  
+                                        },400)
                                         this.setState({
                                             curitem:item,
                                             ifshow:false
@@ -335,7 +349,6 @@ export default class Map extends React.Component {
                         {items()}
                     </ScrollView>
                 </Animated.View>
-
                 <ModalTextInput type="text" show={ifshow} str="请输入关键词查找" btnstr="查找" pressFn={(key)=>{this.getCur(key)}}></ModalTextInput>
 
 

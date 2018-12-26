@@ -267,7 +267,7 @@ class Personal extends Component<Props> {
                                   {
                                     options: BUTTONS,
                                     cancelButtonIndex: CANCEL_INDEX,
-                                    title: ''
+                                    title: '请选择操作'
                                   },
                                   buttonIndex => {
                                     switch (buttonIndex){

@@ -188,7 +188,7 @@ export default class Cost extends React.Component {
                             </Button>
                           </Left>
                           <Body style={{ flex: 3 }}>
-                            <Title style={{ color: "#fff" }}>选择年份</Title>
+                            <Text style={{ color: "#fff" }}>选择年份</Text>
                           </Body>
                           <Right />
                         </Header>}
@@ -206,7 +206,7 @@ export default class Cost extends React.Component {
                 <Header style={{backgroundColor:"#DD5144"}}>
                     <Left style={{flex:1}}>
                         <Button transparent onPress={()=>{this.props.navigation.goBack()}}>
-                            <Icon name="chevron-small-left" type="Entypo" />
+                            <Icon name="chevron-small-left" type="Entypo" style={{color:"#fff"}}/>
                         </Button>
                     </Left>
                     <Body style={{flex:1,justifyContent:"center",alignItems:"center"}}>
