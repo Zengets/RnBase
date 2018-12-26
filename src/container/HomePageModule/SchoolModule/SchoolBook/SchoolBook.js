@@ -9,6 +9,7 @@ import {
     Image,
     ImageBackground,
     Dimensions,
+    Platform,
     ScrollView,
     StatusBar,
     TouchableOpacity,
@@ -154,7 +155,7 @@ class SchoolBook extends Component<Props> {
                 <Header style={styles.heads}>
                     <Left style={{flex:1}}>
                         <Button transparent onPress={()=>{this.props.navigation.goBack()}}>
-                            <Icon name="chevron-small-left" type="Entypo"/>
+                            <Icon name="chevron-small-left" type="Entypo" style={{color:"#fff"}}/>
                         </Button>
                     </Left>
                     <Body style={{flex:4,justifyContent:"center",alignItems:"center"}}>
@@ -191,7 +192,7 @@ class SchoolBook extends Component<Props> {
                         <Text style={styles.bodys}>
                             简介
                         </Text>
-                        <WebView originWhitelist={"*"}  originWhitelist={"*"} style={{width:width-14,height:height-269,alignSelf:"center",marginTop:14}} source={{ html: testArr.content, baseUrl: '' }}>
+                        <WebView originWhitelist={Platform.OS=="ios"?"*":null} style={{width:width-14,height:height-269,alignSelf:"center",marginTop:14}} source={{ html: testArr.content, baseUrl: '' }}>
                         </WebView>
                     </Animated.View>
 
@@ -219,7 +220,7 @@ class SchoolBook extends Component<Props> {
                         <Button bordered rounded danger style={{width:45,height:45,justifyContent:"center",alignItems:"center"}} onPress={()=>{
                          Animated.sequence([this.rtOut,this.absoluteOut,this.marginIn]).start();
                         }}>
-                            <Icon name="cross" type="Entypo" style={{textAlign:"center",marginLeft:10}}></Icon>
+                            <Icon name="cross" type="Entypo" style={{textAlign:"center",width:45}}></Icon>
                         </Button>
                         <Button transparent full danger style={{width:50,height:100,justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
                             <Text style={{paddingBottom:10,marginBottom:10,borderBottomColor:"#333",borderBottomWidth:1}}>

@@ -14,6 +14,7 @@ import {
     ScrollView,
     StatusBar,
     TouchableOpacity,
+    TouchableWithoutFeedback
 } from 'react-native';
 
 let {height,width} =  Dimensions.get('window');
@@ -117,7 +118,7 @@ export default class PerCenter extends Component<Props> {
             <Container>
                 <ScrollView showsVerticalScrollIndicator = {false}>
                     <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
-                        <TouchableOpacity onPress={()=>{
+                        <TouchableWithoutFeedback onPress={()=>{
                             this.props.navigation.navigate("Personal");
                         }}>
                             <View style={{width:0.8*width,height:160}}>
@@ -142,7 +143,7 @@ export default class PerCenter extends Component<Props> {
                                     </View>
                                 </ImageBackground>
                             </View>
-                        </TouchableOpacity>
+                        </TouchableWithoutFeedback>
                         <View>
                             <List style={styles.items}>
                                 {

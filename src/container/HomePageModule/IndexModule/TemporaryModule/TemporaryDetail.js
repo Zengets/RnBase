@@ -11,9 +11,11 @@ import {
     Dimensions,
     ScrollView,
     StatusBar,
-   TouchableOpacity,     Animated,
+    TouchableOpacity,
+    Animated,
     WebView,
     Linking,
+    Platform
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Titles,SchoolExamItem,ModalBottom } from '../../../../components'
@@ -161,7 +163,7 @@ class TemporaryDetail extends Component<Props> {
                 <Header style={styles.heads}>
                     <Left style={{flex:1}}>
                         <Button transparent onPress={()=>{this.props.navigation.goBack()}}>
-                            <Icon name="chevron-small-left" type="Entypo"/>
+                            <Icon name="chevron-small-left" type="Entypo" style={{color:"#fff"}}/>
                         </Button>
                     </Left>
                     <Body style={{flex:4,justifyContent:"center",alignItems:"center"}}>
@@ -207,7 +209,7 @@ class TemporaryDetail extends Component<Props> {
                                 <Text style={[styles.text1,{paddingTop:8}]}>
                                     工作内容
                                 </Text>
-                                <WebView originWhitelist={"*"}  style={{flex:1,height:88,marginLeft:-8}} source={{ html: curitem.workContent, baseUrl: '' }}>
+                                <WebView originWhitelist={Platform.OS=="ios"?"*":null}  style={{flex:1,height:88,marginLeft:-8}} source={{ html: curitem.workContent, baseUrl: '' }}>
                                 </WebView>
                             </Row>
                         </Grid>

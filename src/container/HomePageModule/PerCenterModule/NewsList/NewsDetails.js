@@ -12,6 +12,7 @@ import {
     ImageBackground,
     Dimensions,
     FlatList,
+    Platform,
     StatusBar,
     WebView,
     TouchableOpacity,
@@ -51,7 +52,7 @@ export default class NewsDetails extends Component<Props> {
                 <Header style={{backgroundColor:"#DD5144"}}>
                     <Left style={{flex:1}}>
                         <Button transparent onPress={()=>{this.props.navigation.goBack()}}>
-                            <Icon name="chevron-small-left" type="Entypo"/>
+                            <Icon name="chevron-small-left" type="Entypo" style={{color:"#fff"}}/>
                         </Button>
                     </Left>
                     <Body style={{flex:4,justifyContent:"center",alignItems:"center"}}>
@@ -75,7 +76,7 @@ export default class NewsDetails extends Component<Props> {
                         </Row>
                     </Col>
                     <Row>
-                        <WebView originWhitelist={"*"}  style={{width:width-28,height:168,alignSelf:"center",backgroundColor:"#f9f9f9"}} source={{ html: curitem.content, baseUrl: '' }}></WebView>
+                        <WebView originWhitelist={Platform.OS=="ios"?"*":null}  style={{width:width-28,height:168,alignSelf:"center",backgroundColor:"#f9f9f9"}} source={{ html: curitem.content, baseUrl: '' }}></WebView>
                     </Row>
 
 

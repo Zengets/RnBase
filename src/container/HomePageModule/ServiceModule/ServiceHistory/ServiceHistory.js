@@ -15,6 +15,7 @@ import {
     TouchableOpacity,
     Animated,
     WebView,
+    Platform
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { ServiceHistoryItem,ModalBottom,timetrans } from '../../../../components';
@@ -200,7 +201,7 @@ class ServiceHistory extends Component<Props> {
                     <Text style={{fontSize:14,color:"#666"}}>{timetrans(item.service_date)}</Text>
                 </Row>
                 <Row style={styles.row}><Text style={{fontSize:14,color:"#999"}}>参与党员:{item.actor}</Text></Row>
-                <WebView originWhitelist={"*"}  style={{width:width-28,height:168,alignSelf:"center",backgroundColor:"#f9f9f9"}} source={{ html: curitem.content, baseUrl: '' }}></WebView>
+                <WebView originWhitelist={Platform.OS=="ios"?"*":null}  style={{width:width-28,height:168,alignSelf:"center",backgroundColor:"#f9f9f9"}} source={{ html: curitem.content, baseUrl: '' }}></WebView>
             </Grid>
         )
 
@@ -210,7 +211,7 @@ class ServiceHistory extends Component<Props> {
                 <Header style={styles.heads}>
                     <Left style={{flex:1}}>
                         <Button transparent onPress={()=>{this.props.navigation.goBack()}}>
-                            <Icon name="chevron-small-left" type="Entypo"/>
+                            <Icon name="chevron-small-left" type="Entypo" style={{color:"#fff"}}/>
                         </Button>
                     </Left>
                     <Body style={{flex:4,justifyContent:"center",alignItems:"center"}}>

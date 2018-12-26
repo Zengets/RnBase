@@ -9,6 +9,7 @@ import {
     Text,
     View,
     Image,
+    Platform,
     ImageBackground,
     Dimensions,
     ScrollView,
@@ -59,7 +60,7 @@ export default class NewsDetail extends React.PureComponent{
                 <Header style={{backgroundColor:"#DD5144"}}>
                     <Left style={{flex:1}}>
                         <Button transparent onPress={()=>{this.props.navigation.goBack()}}>
-                            <Icon name="chevron-small-left" type="Entypo"/>
+                            <Icon name="chevron-small-left" type="Entypo" style={{color:"#fff"}}/>
                         </Button>
                     </Left>
                     <Body style={{flex:4,justifyContent:"center",alignItems:"center"}}>
@@ -78,7 +79,7 @@ export default class NewsDetail extends React.PureComponent{
                     </View>
                     <ImageBackground resizeMode='cover' style={{width:width-28,height:130,borderRadius:8,marginBottom:14}} source={curitem.imgUrl?{uri:curitem.imgUrl}:require("../../../../assets/images/default.png")}>
                     </ImageBackground>
-                    <WebView originWhitelist={"*"}  style={{width:width-28,height:230,flex:1}} source={{ html: curitem.content, baseUrl: '' }}>
+                    <WebView originWhitelist={Platform.OS=="ios"?"*":null}  style={{width:width-28,height:230,flex:1}} source={{ html: curitem.content, baseUrl: '' }}>
                     </WebView>
                     <Button bordered danger transparent iconLeft rounded full style={{width:140,alignSelf:"center",height:40,borderRadius:600,marginTop:16}}>
                         <Icon name="heart" style={{marginLeft:-12,color:"#ff0000"}} type="Entypo"></Icon>

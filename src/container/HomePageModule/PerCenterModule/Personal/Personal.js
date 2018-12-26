@@ -11,7 +11,9 @@ import {
     Dimensions,
     ScrollView,
     StatusBar,
-   TouchableOpacity,     Animated,
+    TouchableOpacity,
+    TouchableHighlight,
+    Animated,
     NativeModules
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
@@ -243,7 +245,7 @@ class Personal extends Component<Props> {
                 <Header style={styles.heads}>
                     <Left style={{flex:1}}>
                         <Button transparent onPress={()=>{this.props.navigation.goBack()}}>
-                            <Icon name="chevron-small-left" type="Entypo"/>
+                            <Icon name="chevron-small-left" type="Entypo" style={{color:"#fff"}}/>
                         </Button>
                     </Left>
                     <Body style={{flex:4,justifyContent:"center",alignItems:"center"}}>
@@ -260,7 +262,7 @@ class Personal extends Component<Props> {
                         <View style={[{height:68,width:width},styles.heads]}>
                         </View>
                         <View style={[styles.imagehead,{bottom:0,position:"absolute"}]}>
-                            <TouchableOpacity  onPress={() =>
+                            <TouchableHighlight style={{backgroundColor:"#DD5144"}} onPress={() =>
                                 ActionSheet.show(
                                   {
                                     options: BUTTONS,
@@ -288,7 +290,7 @@ class Personal extends Component<Props> {
                                         resizeMode='cover'>
                                     </ImageBackground>
                                 </View>
-                            </TouchableOpacity>
+                            </TouchableHighlight>
                         </View>
                     </View>
                     <View>
