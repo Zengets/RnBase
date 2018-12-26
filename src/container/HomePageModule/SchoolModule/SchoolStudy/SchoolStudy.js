@@ -11,9 +11,7 @@ import {
     Dimensions,
     ScrollView,
     StatusBar,
-    TouchableOpacity,
-    Animated,
-    TouchableNativeFeedback
+   TouchableOpacity,     Animated,
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Swiper from '@nart/react-native-swiper';
@@ -83,7 +81,7 @@ class SchoolStudy extends Component<Props> {
                             {
                                 course.map((item,i)=>{
                                     return(
-                                    <TouchableNativeFeedback key={i}  onPress={()=>{
+                                    <TouchableOpacity key={i}  onPress={()=>{
                                             this.props.navigation.navigate("SchoolBook",{
                                                 id: item.id,
                                                 title:item.name
@@ -99,7 +97,7 @@ class SchoolStudy extends Component<Props> {
                                                 </CardItem>
                                             </Card>
                                         </View>
-                                    </TouchableNativeFeedback>
+                                    </TouchableOpacity>
                                     )
                                 })
                             }
@@ -115,7 +113,7 @@ class SchoolStudy extends Component<Props> {
                             {
                                 vedios.map((item,i)=>{
                                     return(
-                                        <TouchableNativeFeedback key={i}  onPress={()=>{
+                                        <TouchableOpacity key={i}  onPress={()=>{
                                             this.props.navigation.navigate("SchoolVideo",{
                                                 id: item.id,
                                                 title:item.name
@@ -131,7 +129,7 @@ class SchoolStudy extends Component<Props> {
                                                 </CardItem>
                                             </Card>
                                         </View>
-                                    </TouchableNativeFeedback>
+                                    </TouchableOpacity>
                                     )
                                 })
                             }

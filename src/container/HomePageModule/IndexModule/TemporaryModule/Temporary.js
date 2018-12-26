@@ -14,8 +14,7 @@ import {
     StatusBar,
     TouchableOpacity,
     Animated,
-    TextInput,
-    TouchableNativeFeedback
+    TextInput
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { TemporaryItem } from '../../../../components';

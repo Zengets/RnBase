@@ -10,7 +10,6 @@ import {
     ImageBackground,
     Dimensions,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 const { width,height } = Dimensions.get('window')
 const styles = {
@@ -77,13 +76,11 @@ export default class ServiceItem extends React.PureComponent{
 
 
         return (
-            <TouchableNativeFeedback onPress={()=>{pressFn()}}>
-                <View style={styles.container}>
+            <TouchableOpacity style={styles.container} onPress={()=>{pressFn()}}>
                     {
                         style1()
                     }
-                </View>
-            </TouchableNativeFeedback>
+            </TouchableOpacity>
 
 
         );

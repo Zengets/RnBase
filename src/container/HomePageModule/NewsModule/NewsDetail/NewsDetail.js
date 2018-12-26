@@ -14,7 +14,6 @@ import {
     ScrollView,
     WebView,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 import {timetrans} from '../../../../components'
 
@@ -79,7 +78,7 @@ export default class NewsDetail extends React.PureComponent{
                     </View>
                     <ImageBackground resizeMode='cover' style={{width:width-28,height:130,borderRadius:8,marginBottom:14}} source={curitem.imgUrl?{uri:curitem.imgUrl}:require("../../../../assets/images/default.png")}>
                     </ImageBackground>
-                    <WebView style={{width:width-28,height:230,flex:1}} source={{ html: curitem.content, baseUrl: '' }}>
+                    <WebView originWhitelist={"*"}  style={{width:width-28,height:230,flex:1}} source={{ html: curitem.content, baseUrl: '' }}>
                     </WebView>
                     <Button bordered danger transparent iconLeft rounded full style={{width:140,alignSelf:"center",height:40,borderRadius:600,marginTop:16}}>
                         <Icon name="heart" style={{marginLeft:-12,color:"#ff0000"}} type="Entypo"></Icon>

@@ -10,7 +10,6 @@ import {
     ImageBackground,
     Dimensions,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 
 const { width,height } = Dimensions.get('window')
@@ -61,13 +60,13 @@ export default class TemporaryItem extends React.PureComponent{
 
 
         return (
-            <TouchableNativeFeedback  onPress={() =>{onPressFn()}}>
+            <TouchableOpacity style={styles.container} onPress={() =>{onPressFn()}}>
                 <View style={styles.container}>
                     {
                         style1()
                     }
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableOpacity>
 
 
         );

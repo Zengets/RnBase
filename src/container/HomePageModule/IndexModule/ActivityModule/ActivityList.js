@@ -13,7 +13,6 @@ import {
     FlatList,
     StatusBar,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 import { ActivityItem } from '../../../../components'
 import { LargeList } from "react-native-largelist-v2";

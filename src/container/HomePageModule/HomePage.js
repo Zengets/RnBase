@@ -12,9 +12,8 @@ import {
     Dimensions,
     ScrollView,
     StatusBar,
-    TouchableOpacity,
+    TouchableOpacity,     
     Animated,
-    TouchableNativeFeedback
 } from 'react-native';
 import PerCenter from './PerCenterModule/PerCenter'
 import { NewsItem,Titles } from '../../components'
@@ -239,14 +238,13 @@ export default class HomePage extends Component<Props> {
                                 resizeMode='cover'>
                             </ImageBackground>
                         </TouchableOpacity>
-
                     </Left>
                     <Body style={{flex:1,justifyContent:"center",alignItems:"center"}}>
                             <Text style={{color:"#fff",fontSize:20}}>党建</Text>
                     </Body>
                     <Right style={{flex:1}}>
                         <Button transparent onPress={()=>this.props.navigation.navigate("ScanScreen")}>
-                            <Icon type="MaterialCommunityIcons" name="qrcode-scan"></Icon>
+                            <Icon style={{color:"#fff"}} type="MaterialCommunityIcons" name="qrcode-scan"></Icon>
                         </Button>
                     </Right>
                 </Header>
@@ -287,17 +285,17 @@ export default class HomePage extends Component<Props> {
                         {
                             navbar.map((item,i)=>{
                                 return(
-                                    <TouchableNativeFeedback
+                                    <TouchableOpacity
                                         key={i}
                                         onPress={()=>{ navigation.navigate(item.uri);}}
-                                        background={TouchableNativeFeedback.SelectableBackground()}>
+                                        >
                                         <View style={styles.item}>
                                             <Image style={{width:0.14*width,height:0.14*width,marginBottom:10}} source={item.img}></Image>
                                             <Text>
                                                 {item.name}
                                             </Text>
                                         </View>
-                                    </TouchableNativeFeedback>
+                                    </TouchableOpacity>
                                 )
 
                             })
@@ -329,13 +327,13 @@ export default class HomePage extends Component<Props> {
                             {
                                 tabbar.map((item,i)=>{
                                     return(
-                                        <TouchableNativeFeedback key={i} onPress={()=>{this.props.navigation.navigate("Activity",{
+                                        <TouchableOpacity key={i} onPress={()=>{this.props.navigation.navigate("Activity",{
                                             index: i,
                                         })}}>
                                             <View style={{paddingLeft:i==0?0:10}}>
                                                 <Image source={item.img} style={{width:200,height:70}}></Image>
                                             </View>
-                                        </TouchableNativeFeedback>
+                                        </TouchableOpacity>
                                     )
                                 })
                             }

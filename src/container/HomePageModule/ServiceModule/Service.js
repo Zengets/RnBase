@@ -12,7 +12,6 @@ import {
     ScrollView,
     StatusBar,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 import PerCenter from '../PerCenterModule/PerCenter';
 import ServiceList from './ServiceList/ServiceList'

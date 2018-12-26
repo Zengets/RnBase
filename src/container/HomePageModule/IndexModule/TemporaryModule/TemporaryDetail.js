@@ -11,9 +11,7 @@ import {
     Dimensions,
     ScrollView,
     StatusBar,
-    TouchableOpacity,
-    Animated,
-    TouchableNativeFeedback,
+   TouchableOpacity,     Animated,
     WebView,
     Linking,
 } from 'react-native';
@@ -209,7 +207,7 @@ class TemporaryDetail extends Component<Props> {
                                 <Text style={[styles.text1,{paddingTop:8}]}>
                                     工作内容
                                 </Text>
-                                <WebView style={{flex:1,height:88,marginLeft:-8}} source={{ html: curitem.workContent, baseUrl: '' }}>
+                                <WebView originWhitelist={"*"}  style={{flex:1,height:88,marginLeft:-8}} source={{ html: curitem.workContent, baseUrl: '' }}>
                                 </WebView>
                             </Row>
                         </Grid>

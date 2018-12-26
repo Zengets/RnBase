@@ -11,9 +11,7 @@ import {
     Dimensions,
     ScrollView,
     StatusBar,
-    TouchableOpacity,
-    Animated,
-    TouchableNativeFeedback
+   TouchableOpacity,     Animated,
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Swiper from '@nart/react-native-swiper';
@@ -120,7 +118,7 @@ class SchoolExam extends Component<Props> {
                             </Button>
                           </Left>
                           <Body style={{ flex: 3 }}>
-                            <Title style={{ color: "#fff" }}>选择试卷</Title>
+                            <Text style={{ color: "#fff" }}>选择试卷</Text>
                           </Body>
                           <Right />
                         </Header>}

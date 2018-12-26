@@ -14,7 +14,6 @@ import {
     TouchableOpacity,
     Animated,
     WebView,
-    TouchableNativeFeedback,
     ToastAndroid
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';

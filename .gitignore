@@ -4,8 +4,10 @@
 
 # Xcode
 #
+Pods/
 build/
 *.pbxuser
+*.MAMapKit.framework
 !default.pbxuser
 *.mode1v3
 !default.mode1v3
@@ -21,6 +23,8 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
+*.
+
 
 # Android/IntelliJ
 #

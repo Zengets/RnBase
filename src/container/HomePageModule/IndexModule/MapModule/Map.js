@@ -1,7 +1,7 @@
 import React from "react";
 import { LargeList } from "react-native-largelist-v2";
 import { Container,Item,Label, Header, Left, Body, Right, Button, Icon, Fab, Content ,Picker,Textarea } from 'native-base';
-import { Linking,StyleSheet, Text, View,TextInput,Dimensions,PermissionsAndroid,ToastAndroid,TouchableOpacity,Animated,Image,TouchableNativeFeedback,ScrollView } from "react-native";
+import { Linking,StyleSheet, Text, View,TextInput,Dimensions,PermissionsAndroid,ToastAndroid,TouchableOpacity,Animated,Image,ScrollView } from "react-native";
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { ModalTextInput,ModalBottom } from '../../../../components';
 import { MapView } from 'react-native-amap3d'
@@ -172,7 +172,7 @@ export default class Map extends React.Component {
             }else{
                 itemz = curitem;
             }
-            return(<TouchableNativeFeedback key={i} onPress={()=>{
+            return(<TouchableOpacity key={i} onPress={()=>{
                         this.setState({
                             curitem:itemz
                         })
@@ -200,7 +200,7 @@ export default class Map extends React.Component {
                         </Button>
                     </View>
                 </View>
-            </TouchableNativeFeedback>)
+            </TouchableOpacity>)
 
         }
 

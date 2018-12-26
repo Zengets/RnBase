@@ -14,7 +14,6 @@ import {
     TouchableOpacity,
     Animated,
     WebView,
-    TouchableNativeFeedback
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import {timetrans} from '../../../../components'
@@ -72,7 +71,8 @@ const styles={
         width:60,
         height:160,
         position:"absolute",
-        bottom:0
+        bottom:0,
+        alignItems:"center"
     }
 }
 class SchoolBook extends Component<Props> {
@@ -191,7 +191,7 @@ class SchoolBook extends Component<Props> {
                         <Text style={styles.bodys}>
                             简介
                         </Text>
-                        <WebView style={{width:width-14,height:height-269,alignSelf:"center",marginTop:14}} source={{ html: testArr.content, baseUrl: '' }}>
+                        <WebView originWhitelist={"*"}  originWhitelist={"*"} style={{width:width-14,height:height-269,alignSelf:"center",marginTop:14}} source={{ html: testArr.content, baseUrl: '' }}>
                         </WebView>
                     </Animated.View>
 
@@ -216,10 +216,10 @@ class SchoolBook extends Component<Props> {
                 </Animated.View>
                 <Animated.View style={[styles.rbtn,{right:Anim}]}>
                     <View style={{justifyContent:"space-around",alignItems:"center"}}>
-                        <Button bordered rounded full danger style={{width:50,height:50,borderRadius:60,justifyContent:"center",alignItems:"center"}} onPress={()=>{
+                        <Button bordered rounded danger style={{width:45,height:45,justifyContent:"center",alignItems:"center"}} onPress={()=>{
                          Animated.sequence([this.rtOut,this.absoluteOut,this.marginIn]).start();
                         }}>
-                            <Icon name="close" type="EvilIcons" style={{textAlign:"center"}}></Icon>
+                            <Icon name="cross" type="Entypo" style={{textAlign:"center",marginLeft:10}}></Icon>
                         </Button>
                         <Button transparent full danger style={{width:50,height:100,justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
                             <Text style={{paddingBottom:10,marginBottom:10,borderBottomColor:"#333",borderBottomWidth:1}}>

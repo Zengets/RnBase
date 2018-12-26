@@ -15,7 +15,6 @@ import {
     StatusBar,
     WebView,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { timetrans } from '../../../../components'
@@ -76,7 +75,7 @@ export default class NewsDetails extends Component<Props> {
                         </Row>
                     </Col>
                     <Row>
-                        <WebView style={{width:width-28,height:168,alignSelf:"center",backgroundColor:"#f9f9f9"}} source={{ html: curitem.content, baseUrl: '' }}></WebView>
+                        <WebView originWhitelist={"*"}  style={{width:width-28,height:168,alignSelf:"center",backgroundColor:"#f9f9f9"}} source={{ html: curitem.content, baseUrl: '' }}></WebView>
                     </Row>
 
 

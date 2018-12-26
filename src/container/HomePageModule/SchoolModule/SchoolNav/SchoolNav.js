@@ -12,7 +12,6 @@ import {
     ScrollView,
     StatusBar,
     TouchableOpacity,
-    TouchableNativeFeedback
 } from 'react-native';
 import SchoolList from '../SchoolList/SchoolList'
 
@@ -182,12 +181,12 @@ export default class SchoolNav extends Component<Props> {
                     <Text style={{color:"#fff",fontSize:20}}>{type=="0"?"图书":"视频"}</Text>
                     </Body>
                     <Right style={{flex:1}}>
-                        <Button style={{width:50,height:50,justifyContent:"center",alignItems:"center"}} full rounded transparent onPress={()=>{
+                        <Button style={{justifyContent:"center",alignItems:"center",padding:0,margin:0}} full rounded transparent onPress={()=>{
                             this.setState({
                                 layout:layout=="grid"?"list":"grid"
                             })
                         }}>
-                            <Icon style={{marginLeft:-1}} name={layout=="grid"?"list":"grid"} type="Feather"></Icon>
+                            <Icon style={{textAlign:"center"}} name={layout=="grid"?"list":"grid"} type="Feather"></Icon>
                         </Button>
                     </Right>
                 </Header>

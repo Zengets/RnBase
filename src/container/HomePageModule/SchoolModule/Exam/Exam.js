@@ -12,9 +12,7 @@ import {
     Dimensions,
     ScrollView,
     StatusBar,
-    TouchableOpacity,
-    Animated,
-    TouchableNativeFeedback
+   TouchableOpacity,     Animated,
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Titles,SchoolExamItem,Modals } from '../../../../components';
@@ -67,7 +65,7 @@ class ItemAnswer extends Component<Props>{
                     {
                         item.options.map((items,i,arr)=>{
                             return(
-                                <ListItem key={i} style={{width:width*0.8,alignSelf:"center"}}>
+                                <ListItem key={i} style={{width:width*0.8,alignSelf:"center"}} onPress={()=>{pressFn(items)}}>
                                     <Left>
                                         <Text>{items.text}</Text>
                                     </Left>
@@ -78,12 +76,10 @@ class ItemAnswer extends Component<Props>{
                                                     color={"#DD5144"}
                                                     selectedColor={"#DD5144"}
                                                     selected={ item.checked.indexOf(items.value) != -1 }
-                                                    onPress={()=>{pressFn(items)}}
                                                 />:
                                                 <CheckBox
                                                     color={"#DD5144"}
                                                     selectedColor={"#DD5144"}
-                                                    onPress={()=>{pressFn(items)}}
                                                     checked={item.checked.indexOf(items.value)!=-1}/>
                                         }
                                     </Right>
@@ -172,7 +168,7 @@ class Exam extends Component<Props> {
                             </Button>
                           </Left>
                           <Body style={{ flex: 3 }}>
-                            <Title style={{ color: "#fff" }}>选择组织</Title>
+                            <Text style={{ color: "#fff" }}>选择题目</Text>
                           </Body>
                           <Right />
                         </Header>}

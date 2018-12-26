@@ -4795,6 +4795,7 @@ react-native-branch@2.2.5:
 react-native-camera@^1.6.4:
   version "1.6.4"
   resolved "http://registry.npm.taobao.org/react-native-camera/download/react-native-camera-1.6.4.tgz#a7d0f3da8ff07be36c07e14dcae57d822a09013e"
+  integrity sha1-p9Dz2o/we+NsB+FNyuV9gioJAT4=
   dependencies:
     prop-types "^15.6.2"
 
