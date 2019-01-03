@@ -6,21 +6,29 @@
  */
 
 #import "AppDelegate.h"
+#import "RNSplashScreen.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
+  #ifdef DEBUG
+    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  #else
+    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"bundle/index.ios" withExtension:@"jsbundle"];
+  #endif
+  
 
-  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"RnBase"
-                                               initialProperties:nil
+                                                   moduleName:@"RnBase"
+                                                   initialProperties:nil
                                                    launchOptions:launchOptions];
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
 
@@ -30,6 +38,7 @@
   self.window.rootViewController = rootViewController;
   [AMapServices sharedServices].apiKey = @"7bde0458101af86ca3c3d828015b5bd3";
   [self.window makeKeyAndVisible];
+  [RNSplashScreen show];
   return YES;
 }
 
