@@ -11,6 +11,7 @@ import {
     ImageBackground,
     Dimensions,
     Text,
+    AsyncStorage,
     StatusBar
 } from 'react-native';
 import { HttpUtils,BASE_URL,PORT_NAME } from '../../components'
@@ -63,8 +64,31 @@ const styles = StyleSheet.create({
         };
     }
 
+
     componentDidMount() {
         SplashScreen.hide();
+        AsyncStorage.getItem("userName",(error,result)=>{
+            if(error){
+                //some error logs
+            }else{
+                this.setState({
+                    username:result
+                })
+            }
+        })
+        AsyncStorage.getItem("password",(error,result)=>{
+            if(error){
+                //some error logs
+            }else{
+                if(this.props.remember){
+                    this.setState({
+                        password:result
+                    })
+                }else{
+
+                }
+            }
+        })
         setTimeout(()=>{
             StatusBar.setBackgroundColor('rgba(0,0,0,0)')
         },300)
@@ -74,7 +98,6 @@ const styles = StyleSheet.create({
         let {username,password,remember} = this.state;
         setTimeout(()=>{
             StatusBar.setBackgroundColor('#DD5144')
-            this.props.navigation.navigate('Main');
         },300)
 
         if(username==""||password==""){
@@ -85,19 +108,28 @@ const styles = StyleSheet.create({
             })
             return
         }
-
-        HttpUtils.post(BASE_URL+PORT_NAME.login,{
-            userIdcard:username,
-            pwd:password
-        }).then((res) => {
+        let formData = new FormData();
+        formData.append("userName",username);
+        formData.append("password",password);
+        formData.append("orgSeq",0);
+        formData.append("type","app");
+        HttpUtils.postFormData(BASE_URL+PORT_NAME.login,formData).then((res) => {
             if(res.code==0){
-                AsyncStorage.setItem('userIdcard',username);
-                AsyncStorage.setItem('pwd',password);
-                this.props.navigation.navigate('Main');
-                // this.props.navigation.goBack();
+                let results = res.data;
+                AsyncStorage.setItem('userName',username);//用户名
+                AsyncStorage.setItem('password',password);//密码
+                AsyncStorage.setItem('token',res.token);//token
+                AsyncStorage.setItem('is_communist',results.is_communist?results.is_communist:"");//是否是党员
+                AsyncStorage.setItem('usr_id',results.usr_id?results.usr_id.toString():"");//userid
+                AsyncStorage.setItem('partyname',results.partyname?results.partyname:"");//组织名称
+                AsyncStorage.setItem('duty_name',results.duty_name?results.duty_name:"");//职务名称
+
+                AsyncStorage.setItem('allData',JSON.stringify(results));//职务名称
+
+                this.props.navigation.goBack();
             }else{
                 Toast.show({
-                    text: res.message,
+                    text: res.message+"!",
                     buttonText: "确认",
                     duration: 1400
                 })

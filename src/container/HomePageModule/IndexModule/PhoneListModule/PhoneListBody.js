@@ -1,9 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View,TextInput,Dimensions,Animated,TouchableWithoutFeedback,TouchableOpacity,Linking } from "react-native";
 import { LargeList } from "react-native-largelist-v2";
-import { Container, Header, Left, Body, Right, Button, Icon, SwipeRow, Content ,Card, CardItem,Picker,List,ListItem,Thumbnail } from 'native-base';
-import {contacts} from './DataSource';
-import {Modals,ModalBottom} from '../../../../components'
+import { Container, Header, Left, Body, Right, Button, Icon, SwipeRow, Content ,Card, CardItem,Picker,List,ListItem,Thumbnail,Spinner } from 'native-base';
+import {Modals,ModalBottom,HttpUtils,BASE_URL,PORT_NAME,ConvertPinyin,arraySearch, ucfirst} from '../../../../components'
 
 
 
@@ -16,18 +15,105 @@ export default class PhoneListBody extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            isSpin:true,
+            selected:props.selected,
             fadeAnim: new Animated.Value(0),
             cur:"A",
             ifshow:false,
             ifshower:false,
             curitem:{},
+            contacts:[],
+            keyword:""
         }
     }
+    generateBig(){
+        var ch_big = 'A';
+        var str_big = [];
+        for(var i=0;i<26;i++){
+            str_big.push(String.fromCharCode(ch_big.charCodeAt(0)+i))
+        }
+        return str_big;
+    }//zimu
 
 
     componentDidMount(){
-
+        this.genData()
     }
+
+    genData(){
+        this.setState({
+            isSpin:true
+        })
+        let {keyword,selected} = this.state;//selected?selected.id:
+        HttpUtils.get(BASE_URL+PORT_NAME.getContactListForApp+`?keyWord=${keyword}&orgId=${""}&page=0&size=0`).then((res)=>{
+            if(res.code==0){
+                console.log(res)
+                let newdata=[],pastdata = res.data.map((item,i)=>{
+                    item.header = ConvertPinyin(item.name).substring(0,1).toUpperCase();
+                    return item
+                }),letterarr = this.generateBig();
+                letterarr.push("#");
+                letterarr.map((item,i)=>{
+                    let items = [],itemz = [];
+                    pastdata.map((list,index)=>{
+                      if(item == list.header){
+                          items.push(list)
+                      }else if(letterarr.indexOf(list.header)==-1){
+                          itemz.push(list)
+                      }
+                    })
+                    let curitem = {
+                        header: item,
+                        items:item=="#"?itemz:items
+                    }
+                    curitem.items.length==0?null:newdata.push(curitem);
+                })
+                this.setState({
+                    contacts:newdata,
+                    ifshow:false,
+                    ifshower:false,
+                    isSpin:false
+                })
+                console.log(selected.id)
+            }else{
+                console.log(res)
+            }
+
+        }).catch(()=>{
+        })
+    }
+
+    getDetail(key){
+        HttpUtils.get(BASE_URL+PORT_NAME.getContactDetailForApp+`?id=${key.id}`).then((res)=>{
+            if(res.code==0){
+                console.log(res.data)
+                this.setState({
+                    ifshower:true,
+                    ifshow:false,
+                    curitem:res.data,
+                })
+
+
+
+            }else{
+                console.log(res)
+            }
+
+        }).catch(()=>{
+        })
+    }
+
+
+    componentWillReceiveProps(nextProps){
+        if(this.props.selected!=nextProps.selected){
+            this.setState({
+                selected:nextProps.selected
+            },()=>{
+                //this.genData()     //toreset
+            })
+        }
+    }
+
 
     //拨打电话
     linking(url){
@@ -44,7 +130,7 @@ export default class PhoneListBody extends React.Component {
 
 
     render() {
-        let {fadeAnim,cur,ifshow,curitem,ifshower} = this.state;
+        let {fadeAnim,cur,ifshow,curitem,ifshower,contacts,isSpin} = this.state;
 
         const rightRender = (item,i)=>{
             return (
@@ -81,6 +167,11 @@ export default class PhoneListBody extends React.Component {
 
         return (
             <View style={{position:"relative",flex:1}}>
+                {
+                    isSpin?
+                        <Spinner color='red'></Spinner>:
+                        null
+                }
                 <LargeList
                     ref={ref=>(this._scrollView = ref)}
                     style={styles.container}
@@ -116,11 +207,11 @@ export default class PhoneListBody extends React.Component {
                     <Text style={{fontSize:32,color:"#fff"}}>{cur}</Text>
                 </Animated.View>
                 <Modals show={ifshow} str={`是否呼叫${curitem.name}?`} btnstr="拨打" pressFn={()=>{
-                    this.linking(`tel:${curitem.phone}`);
+                    this.linking(`tel:${curitem.mobile}`);
                 }}></Modals>
 
                 <ModalBottom show={ifshower}  pressFn={()=>{
-                    this.linking(`tel:${curitem.phone}`);
+                    this.linking(`tel:${curitem.mobile}`);
                 }} renderFn={()=>{
                     return(
                    <Card style={{flex: 0}} transparent>
@@ -129,7 +220,7 @@ export default class PhoneListBody extends React.Component {
                              <Thumbnail source={require("../../../../assets/images/headtemp.jpg")} />
                             <Body>
                               <Text>{curitem.name}</Text>
-                              <Text style={{marginTop:10}} note numberOfLines={1}>{curitem.phone}</Text>
+                              <Text style={{marginTop:10}} note numberOfLines={1}>{curitem.duty}</Text>
                             </Body>
                           </Left>
                         </CardItem>
@@ -140,7 +231,7 @@ export default class PhoneListBody extends React.Component {
                                   电话号码:
                                 </Text>
                                  <Text style={{flex:1,textAlign:"right"}}>
-                                  {curitem.phone}
+                                  {curitem.mobile}
                                 </Text>
                             </View>
                             <View style={{marginBottom:8,flexDirection:"row",justifyContent:"space-between"}}>
@@ -148,7 +239,7 @@ export default class PhoneListBody extends React.Component {
                                   微信号码:
                                 </Text>
                                  <Text style={{flex:1,textAlign:"right"}}>
-                                  {curitem.phone}
+                                  {curitem.wechat}
                                 </Text>
                             </View>
                              <View style={{marginBottom:8,flexDirection:"row",justifyContent:"space-between"}}>
@@ -156,7 +247,7 @@ export default class PhoneListBody extends React.Component {
                                   QQ号码:
                                 </Text>
                                  <Text style={{flex:1,textAlign:"right"}}>
-                                  {curitem.phone}
+                                  {curitem.qq}
                                 </Text>
                             </View>
                              <View style={{marginBottom:8,flexDirection:"row",justifyContent:"space-between"}}>
@@ -164,7 +255,7 @@ export default class PhoneListBody extends React.Component {
                                   党支部:
                                 </Text>
                                  <Text style={{flex:1,textAlign:"right"}}>
-                                  {curitem.phone}
+                                  {curitem.org}
                                 </Text>
                             </View>
                           </Body>
@@ -192,18 +283,20 @@ export default class PhoneListBody extends React.Component {
 
                 }}></ModalBottom>
 
-
-
-
             </View>
         );
     }
     _renderHeader = () => {
+        let { keyword }= this.state;
         return (
             <TextInput
                 style={styles.search}
+                onChangeText={(keyword) => this.setState({keyword,ifshow:false,ifshower:false})}
+                value={keyword}
                 placeholder="请输入姓名搜索..."
-                onSubmitEditing={()=>this._scrollView.scrollToIndexPath({section:2,row:9},false)}
+                onSubmitEditing={()=>{
+                    this.genData()
+                }}
                 returnKeyType="done"
             />
         );
@@ -211,7 +304,6 @@ export default class PhoneListBody extends React.Component {
     _renderFooter = () => {
         return (
             <Text style={{ marginVertical: 20, alignSelf: "center" }}>
-                This is the footer
             </Text>
         );
     };
@@ -219,34 +311,33 @@ export default class PhoneListBody extends React.Component {
         return (
             <View style={styles.section}>
                 <Text style={{paddingLeft:24}}>
-                    {contacts[section].header}
+                    {this.state.contacts[section].header}
+                </Text>
+                <Text style={{paddingRight:24}}>
+                    {this.state.selected?this.state.selected.name:""}
                 </Text>
             </View>
         );
     };
 
     _renderIndexPath = ({ section: section, row: row }) => {
-        let item = contacts[section].items[row]
+        let item = this.state.contacts[section].items[row]
         return (
-                <ListItem thumbnail  onPress={() =>{
-                            this.setState({
-                                ifshower:true,
-                                ifshow:false,
-                                curitem:item,
-                            })
+                <ListItem thumbnail onPress={() =>{
+                            this.getDetail(item);
                         }}>
                     <Left>
-                        <Thumbnail source={require("../../../../assets/images/headtemp.jpg")} />
+                        <Thumbnail source={item.photo?{uri:item.photo}:require("../../../../assets/images/headtemp.jpg")} />
                     </Left>
                     <Body style={{flex:3}}>
                     <Text>{item.name}</Text>
-                    <Text style={{marginTop:10}} note numberOfLines={1}>{item.phone}</Text>
+                    <Text style={{marginTop:10}} note numberOfLines={1}>{item.usrMobile}</Text>
                     </Body>
                     <Right style={{flex:1,justifyContent:"center",alignItems:"center"}}>
                         <TouchableOpacity>
                             <Button transparent onPress={() =>{
                                 this.setState({
-                                    ifshow:true,
+                                    ifshow:item.usrMobile?true:false,
                                     ifshower:false,
                                     curitem:item,
                                 })
@@ -268,8 +359,9 @@ const styles = StyleSheet.create({
     section: {
         flex: 1,
         backgroundColor: "lightgray",
-        justifyContent: "center",
-        alignItems: "flex-start"
+        flexDirection:"row",
+        justifyContent:"space-between",
+        alignItems:"center"
     },
     row: {
         flex: 1,

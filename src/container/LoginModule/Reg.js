@@ -10,6 +10,7 @@ import {
     ImageBackground,
     Dimensions,
     Text,
+    AsyncStorage,
     StatusBar
 } from 'react-native';
 import { HttpUtils,BASE_URL,PORT_NAME } from '../../components'
@@ -50,7 +51,7 @@ class Reg extends Component<Props> {
         this.state = {
             username:"",
             password:"",
-            remember:props.remember
+            mobile:"",
         };
     }
 
@@ -61,27 +62,26 @@ class Reg extends Component<Props> {
     }
 
     _onPressSubmit = ()=>{
-        let {username,password,remember} = this.state;
+        let {username,password,mobile} = this.state;
         //this.props.navigation.navigate('Main');
-        if(username==""||password==""){
+        if(username==""||password==""||mobile==""){
             Toast.show({
-                text: "用户名/密码/确认密码不可为空...!",
+                text: "用户名/密码/手机号不可为空...!",
                 buttonText: "确认",
                 duration: 1400
             })
             return
         }
-        this.props.navigation.navigate('Main');
-
-        HttpUtils.post(BASE_URL+PORT_NAME.login,{
-            userIdcard:username,
-            pwd:password
-        }).then((res) => {
+        let formData = new FormData();
+        formData.append("loginName",username);
+        formData.append("password",password);
+        formData.append("name",username);
+        formData.append("mobile",mobile);
+        HttpUtils.postFormData(BASE_URL+PORT_NAME.register,formData).then((res) => {
             if(res.code==0){
-                AsyncStorage.setItem('userIdcard',username);
-                AsyncStorage.setItem('pwd',password);
-                this.props.navigation.navigate('Main');
-                // this.props.navigation.goBack();
+                AsyncStorage.setItem('userName',username);
+                AsyncStorage.setItem('password',password);
+                this.props.navigation.goBack();
             }else{
                 Toast.show({
                     text: res.message,
@@ -102,12 +102,9 @@ class Reg extends Component<Props> {
 
     }
 
-    componentWillUnmount() {
-        this.props.onSwitchRem(this.state.remember)
-    }
 
     render() {
-        let {username,password,remember} = this.state;
+        let {username,password,mobile} = this.state;
         return (
 
                 <KeyboardAwareScrollView
@@ -159,8 +156,8 @@ class Reg extends Component<Props> {
                                     <Item style={{marginTop:18}} floatingLabel>
                                         <Label>手机号</Label>
                                         <Input
-                                            onChangeText={(password) => this.setState({password})}
-                                            value={password}
+                                            onChangeText={(mobile) => this.setState({mobile})}
+                                            value={mobile}
                                             clearButtonMode="always"
                                         />
                                     </Item>
@@ -180,7 +177,7 @@ class Reg extends Component<Props> {
                                         </View>
                                     </View>
                                     <View>
-                                        <Button full style={{marginTop:32}} rounded danger>
+                                        <Button onPress={this._onPressSubmit} full style={{marginTop:32}} rounded danger>
                                             <Text style={{color:"#fff",fontSize:16}}>注 册</Text>
                                         </Button>
                                     </View>
@@ -200,18 +197,5 @@ class Reg extends Component<Props> {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        remember: state.remember,
-    }
-}
-const mapDispatchToProps = ( dispatch ) => {
-    return {
-        onSwitchRem: (key) => {
-            dispatch({type:'CHANGE_REM',remember:key})
-        }
-    }
-}
-Reg = connect(mapStateToProps,mapDispatchToProps)(Reg)
 
 export default Reg

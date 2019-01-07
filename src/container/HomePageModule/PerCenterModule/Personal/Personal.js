@@ -2,7 +2,7 @@
  * Created by kurosaki on 2018/12/17.
  */
 import React, { Component } from 'react';
-import { Container, Header, Left, Body, Right, Button,Content, Icon,Picker,List,ListItem,SwipeRow,ActionSheet } from 'native-base';
+import { Container, Header, Left, Body, Right, Button,Content, Icon,Picker,List,ListItem,SwipeRow,ActionSheet,Spinner  } from 'native-base';
 import {
     Text,
     View,
@@ -11,14 +11,15 @@ import {
     Dimensions,
     ScrollView,
     StatusBar,
+    AsyncStorage,
     TouchableOpacity,
     TouchableHighlight,
     Animated,
     NativeModules
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import { ModalTextInput } from '../../../../components'
-
+import { ModalTextInput,HttpUtils,BASE_URL,PORT_NAME } from '../../../../components'
+import {connect} from 'react-redux';
 
 
 var ImagePicker = NativeModules.ImageCropPicker;
@@ -62,9 +63,10 @@ class Personal extends Component<Props> {
     constructor(props){
         super(props);
         this.state={
-            image:require("../../../../assets/images/headtemp.jpg"),
+            image:props.headImg?props.headImg:require("../../../../assets/images/headtemp.jpg"),
             curitem:{},
             ifshow:false,
+            ready:false,
             formvalue:{
                 "qq":"15195593577",
                 "partyname":"蓝湾国际党支部",
@@ -88,8 +90,32 @@ class Personal extends Component<Props> {
             renderarr:[]
         }
     }
+
+
     componentDidMount(){
-        let arr = [],{formvalue} = this.state,name="",sort = -1;
+        this.props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.getUserInfo()
+            }
+        );
+
+    }
+    /*获取用户信息*/
+    getUserInfo(){
+        HttpUtils.post(BASE_URL+PORT_NAME.getUserInfo).then(res=>{
+            if(res.code==0){
+                this.toReset(res.data)
+            }else{
+                alert("获取信息失败")
+            }
+        }).catch((error)=>{
+
+        })
+    }
+    /*reset pages*/
+    toReset(result){
+        let arr = [],formvalue = result,name="",sort = -1;
         for(let i in formvalue){
             switch (i){
                 case "usr_name":
@@ -108,7 +134,7 @@ class Personal extends Component<Props> {
                     name = "党内职务"
                     sort = 3
                     break;
-                case "partyorg_name":
+                case "usr_org":
                     name = "单位"
                     sort = 4
                     break;
@@ -138,14 +164,12 @@ class Personal extends Component<Props> {
         arr.sort((curt,next)=>{
             return curt.sort - next.sort
         })
-
-
-
         this.setState({
-            renderarr:arr
+            ready:true,
+            renderarr:arr,
         })
-
     }
+
     /*拍照*/
     pickSingleWithCamera(cropping) {
         ImagePicker.openCamera({
@@ -157,7 +181,9 @@ class Personal extends Component<Props> {
             this.setState({
                 image: {uri: image.path, width: image.width, height: image.height},
             });
-        }).catch(e => {});
+        }).catch(e => {
+
+        });
     }
 
     /*选择图片*/
@@ -176,6 +202,7 @@ class Personal extends Component<Props> {
             this.setState({
                 image: {uri: image.path, width: image.width, height: image.height, mime: image.mime},
             });
+            this.uploadFile(image)
         }).catch(e => {
             console.log(e);
         });
@@ -191,15 +218,39 @@ class Personal extends Component<Props> {
         });
     }
 
+    //上传头像
+    uploadFile(image){
+        let filedata = new FormData();
+        let file = {uri: image.path, type: 'multipart/form-data', name: image.mine};
+        filedata.append('file',file);
+        HttpUtils.postUpload(BASE_URL+PORT_NAME.updateUserForApp,filedata).then(res=>{
+            if(res.code==0){
+                this.props.onSwitchRem({uri: image.path, width: image.width, height: image.height, mime: image.mime})//修改为网络图片地址，登录，获取用户信息时也要获取
+            }else{
+                alert("上传失败")
+            }
+        }).catch((error)=>{
+        })
+    }
 
-
+    //修改信息
+    updateInfomation(key){
+        HttpUtils.postUpload(BASE_URL+PORT_NAME.updateUserForApp,key).then(res=>{
+            if(res.code==0){
+                this.toReset(res.data);
+            }else{
+                alert("修改失败")
+            }
+        }).catch((error)=>{
+        })
+    }
 
 
     render() {
-        let { formvalue,renderarr,image,curitem,ifshow} = this.state;
+        let { renderarr,image,curitem,ifshow,ready } = this.state;
         let itemcon = (item,i,length)=>{
             return(
-                <ListItem last={i==length-1?true:false} style={{width:i==length-1?width:width-36}} key={i} onPress={()=>{alert(0)}}>
+                <ListItem last={i==length-1?true:false} style={{width:i==length-1?width:width-36}} key={i} onPress={()=>{}}>
                     <Left style={{flex:1}}>
                         <Text>{item.name}</Text>
                     </Left>
@@ -215,13 +266,14 @@ class Personal extends Component<Props> {
                     leftOpenValue={75}
                     rightOpenValue={-50}
                     disableRightSwipe = {true}
+                    disableLeftSwipe = {item.sort==1||item.sort==2||item.sort==3?true:false}
                     body={
                       <View style={{flexDirection:"row",alignItems:"center"}}>
                         <Left style={{flex:1}}>
                             <Text>{item.name}</Text>
                         </Left>
                         <Right style={{flex:2.5}}>
-                            <Text style={{textAlign:"right"}}>{item.value}</Text>
+                            <Text style={{textAlign:"right"}}>{item.value!="null"?item.value:""}</Text>
                         </Right>
                       </View>
                     }
@@ -285,7 +337,7 @@ class Personal extends Component<Props> {
                                 )}>
                                 <View style={[styles.imagehead,{borderColor:"#fff",borderWidth:2}]}>
                                     <ImageBackground
-                                        style={{width:100,height:100}}
+                                        style={{width:96,height:96}}
                                         source={image}
                                         resizeMode='cover'>
                                     </ImageBackground>
@@ -294,6 +346,9 @@ class Personal extends Component<Props> {
                         </View>
                     </View>
                     <View>
+                        {
+                            ready?null:<Spinner  color='red'></Spinner>
+                        }
                         <List style={styles.items}>
                             {
                                 renderarr.map((item,i)=>{
@@ -303,22 +358,56 @@ class Personal extends Component<Props> {
                         </List>
                     </View>
                 </Content>
-                <ModalTextInput show={ifshow} str={`修改${curitem.name}`} value={curitem.value} btnstr="确定" pressFn={(val)=>{
-                    let newarr = renderarr.map((items,i)=>{
-                        if(items.name==curitem.name){
-                            items.value = val
-                        }
-                        return items
-                    })
+                <ModalTextInput show={ifshow} str={`修改${curitem.name}`} value={curitem.value=="null"?"":curitem.value} btnstr="确定" pressFn={(val)=>{
+                      let filedata = new FormData();
+                      switch (curitem.sort){
+                        case "0":
+                            filedata.append('userName',val);
+                            this.updateInfomation(filedata)
+                            break;
+                        case "4":
+                            filedata.append('org',val);
+                            this.updateInfomation(filedata)
+                            break;
+                        case "5":
+                            filedata.append('email',val);
+                            this.updateInfomation(filedata)
+                            break;
+                        case "6":
+                            filedata.append('mobile',val);
+                            this.updateInfomation(filedata)
+                            break;
+                        case "7":
+                            filedata.append('wechat',val);
+                            this.updateInfomation(filedata)
+                            break;
+                        case "8":
+                            filedata.append('qq',val);
+                            this.updateInfomation(filedata)
+                            break;
+                        default:
+                    }
                     this.setState({
-                        renderarr:newarr,
                         ifshow:false
                     })
+
                 }}></ModalTextInput>
             </Container>
         );
     }
 }
-
+const mapStateToProps = (state) => {
+    return {
+        headImg: state.headImg,
+    }
+}
+const mapDispatchToProps = ( dispatch ) => {
+    return {
+        onSwitchRem: (key) => {
+            dispatch({type:'CHANGE_IMAGE',headImg:key})
+        }
+    }
+}
+Personal = connect(mapStateToProps,mapDispatchToProps)(Personal)
 
 export default Personal

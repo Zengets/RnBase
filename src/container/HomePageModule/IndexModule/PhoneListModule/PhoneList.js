@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { Container, Header, Left, Body, Right, Button, Icon,Picker,Spinner } from 'native-base';
+import { Container, Header, Left, Body, Right, Button, Icon,Picker } from 'native-base';
 import {
     Text,
     View,
@@ -12,11 +12,13 @@ import {
     Dimensions,
     ScrollView,
     StatusBar,
-   TouchableOpacity,     Animated,
+    TouchableOpacity,
+    Animated,
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Swiper from '@nart/react-native-swiper';
 import PhoneListBody from './PhoneListBody'
+import {HttpUtils,BASE_URL,PORT_NAME} from '../../../../components'
 
 const { width,height } = Dimensions.get('window')
 const styles={
@@ -28,60 +30,40 @@ class PhoneList extends Component<Props> {
     constructor(props){
         super(props);
         this.state={
-            isSpin:true,
-            selected: "蓝湾国际党支部",
-            testArr:[],
-            options:["蓝湾国际党支部","扬州党支部","蓝湾国际党支部","扬州党支部","蓝湾国际党支部","扬州党支部","蓝湾国际党支部","扬州党支部","蓝湾国际党支部","扬州党支部","蓝湾国际党支部","扬州党支部","蓝湾国际党支部","扬州党支部","蓝湾国际党支部","扬州党支部"]
+            selected:null,
+            options:[]
         }
     }
 
     componentDidMount(){
-        setTimeout(()=>{
-            this.setState({
-                isSpin:false
-            })
-        },200)
+       this.genData()
     }
-    onValueChange(value: string) {
-        let arr1=[{
-            exam:"试卷1",
-            time:"2017-08-01",
-        },{
-            exam:"试卷2",
-            time:"2017-08-01",
-        },{
-            exam:"试卷3",
-            time:"2017-08-01",
-        },{
-            exam:"试卷4",
-            time:"2017-08-01",
-        },{
-            exam:"试卷5",
-            time:"2017-08-01",
-        },],arr2=[{
-            exam:"试卷1",
-            time:"2017-09-01",
-        },{
-            exam:"试卷2",
-            time:"2017-09-01",
-        },{
-            exam:"试卷3",
-            time:"2017-09-01",
-        },{
-            exam:"试卷4",
-            time:"2017-09-01",
-        },{
-            exam:"试卷5",
-            time:"2017-09-01",
-        },]
 
+    genData(){
+        HttpUtils.get(BASE_URL+PORT_NAME.getAllOrgForApp).then((res)=>{
+            if(res.code==0){
+                this.setState({
+                    options:res.data,
+                    selected: res.data[0]
+                })
+            }else{
+
+            }
+        }).catch((error)=>{
+
+        })
+    }
+
+
+
+    onValueChange(value: string) {
         this.setState({
-            selected: value,
-            testArr:value=="待考"?arr1:arr2
+            selected: value
         });
     }
+
     render() {
-        let { selected,testArr,options,isSpin } = this.state;
+        let { selected,options,isSpin } = this.state;
 
         let picker = ()=>{
             return(
@@ -100,13 +82,13 @@ class PhoneList extends Component<Props> {
                         </Header>}
                     mode="dropdown"
                     iosIcon={<Icon name="ios-arrow-down-outline" style={{color:"#fff"}}/>}
-                    selectedValue={this.state.selected}
+                    selectedValue={selected}
                     onValueChange={this.onValueChange.bind(this)}
                 >
                     {
                         options.map((item,i)=>{
                             return(
-                                <Picker.Item label={item} value={item} key={i}/>
+                                <Picker.Item label={item.name} value={item} key={i}/>
                             )
                         })
                     }
@@ -128,12 +110,7 @@ class PhoneList extends Component<Props> {
                         {picker()}
                     </Right>
                 </Header>
-                {
-                    isSpin?
-                        <Spinner color='red'></Spinner>:
-                    null
-                }
-                <PhoneListBody style={{width:width,height:height}}>
+                <PhoneListBody selected={selected} style={{width:width,height:height}}>
                 </PhoneListBody>
 
 

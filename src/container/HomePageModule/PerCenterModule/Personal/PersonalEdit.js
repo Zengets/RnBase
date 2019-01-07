@@ -16,7 +16,7 @@ import {
     WebView,
     TouchableOpacity,
 } from 'react-native';
-import {timetrans,MyUtil} from '../../../../components'
+import {timetrans,MyUtil,HttpUtils,BASE_URL,PORT_NAME} from '../../../../components'
 
 const { width,height } = Dimensions.get('window')
 const styles = {
@@ -92,8 +92,42 @@ export default class PersonalEdit extends React.PureComponent{
     }
 
     componentDidMount(){
-
+        this.getUserInfo()
     }
+    /*获取用户信息*/
+    getUserInfo(){
+        HttpUtils.post(BASE_URL+PORT_NAME.getUserInfo).then(res=>{
+            if(res.code==0){
+                this.setState({
+                    formvalue:res.data
+                })
+            }else{
+                alert("获取信息失败")
+            }
+        }).catch((error)=>{
+
+        })
+    }
+    //修改信息
+    updateInfomation(){
+        let filedata = new FormData(),{formvalue}=this.state;
+        filedata.append('userName',formvalue.usr_name);
+        filedata.append('org',formvalue.usr_org);
+        filedata.append('email',formvalue.email);
+        filedata.append('mobile',formvalue.mobile);
+        filedata.append('wechat',formvalue.wechat);
+        filedata.append('qq',formvalue.qq);
+        HttpUtils.postUpload(BASE_URL+PORT_NAME.updateUserForApp,filedata).then(res=>{
+            if(res.code==0){
+                this.props.navigation.goBack();
+            }else{
+                alert("修改失败")
+            }
+        }).catch((error)=>{
+
+        })
+    }
+
 
     render() {
         let {formvalue,center} = this.state;
@@ -128,9 +162,10 @@ export default class PersonalEdit extends React.PureComponent{
                             </Item>
                         </Row>
                         <Row style={{width:width-28,paddingTop:12,marginBottom:12}}>
-                            <Item floatingLabel style={{flex:1}}>
+                            <Item disabled floatingLabel style={{flex:1}}>
                                 <Label>身份证号</Label>
                                 <Input
+                                    disabled
                                     onChangeText={(idcard) => this.setState({
                                     formvalue:{ ...formvalue, usr_idcard: idcard }
                                 })}
@@ -140,9 +175,10 @@ export default class PersonalEdit extends React.PureComponent{
                             </Item>
                         </Row>
                         <Row style={{width:width-28,paddingTop:12,marginBottom:12}}>
-                            <Item floatingLabel style={{flex:1}}>
+                            <Item disabled floatingLabel style={{flex:1}}>
                                 <Label>所属党支部</Label>
                                 <Input
+                                    disabled
                                     onChangeText={(partyname) => this.setState({
                                     formvalue:{ ...formvalue, partyname: partyname }
                                 })}
@@ -152,9 +188,10 @@ export default class PersonalEdit extends React.PureComponent{
                             </Item>
                         </Row>
                         <Row style={{width:width-28,paddingTop:12,marginBottom:12}}>
-                            <Item floatingLabel style={{flex:1}}>
+                            <Item disabled floatingLabel style={{flex:1}}>
                                 <Label>党内职务</Label>
                                 <Input
+                                    disabled
                                     onChangeText={(duty_name) => this.setState({
                                     formvalue:{ ...formvalue, duty_name: duty_name }
                                 })}
@@ -168,9 +205,9 @@ export default class PersonalEdit extends React.PureComponent{
                                 <Label>单位</Label>
                                 <Input
                                     onChangeText={(partyorg) => this.setState({
-                                    formvalue:{ ...formvalue, partyorg_name: partyorg }
+                                    formvalue:{ ...formvalue, usr_org: partyorg }
                                 })}
-                                    value={formvalue.partyorg_name}
+                                    value={formvalue.usr_org}
                                     clearButtonMode="always"
                                 />
                             </Item>
@@ -225,7 +262,7 @@ export default class PersonalEdit extends React.PureComponent{
                         </Row>
 
                         <Button full danger style={{width:width-28,justifyContent:"center",alignItems:"center",marginBottom:68}} onPress={()=>{
-                            alert(JSON.stringify(formvalue))
+                            this.updateInfomation()
                         }}>
                             <Text style={{color:"#fff",fontSize:16}}>确定</Text>
                         </Button>

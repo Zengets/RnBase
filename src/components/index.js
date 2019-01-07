@@ -12,5 +12,5 @@ import ModalBottom from './ui/ModalBottom';
 import ModalTextInput from './ui/ModalTextInput';
 import { MyUtil } from './util/MyUtil';
 import ScanScreen from './util/ScanScreen';
-
-export {ScanScreen,Header,HttpUtils,BASE_URL,PORT_NAME,timetrans,NewsItem,ServiceItem,ServiceHistoryItem,Titles,SchoolExamItem,SchoolListItem,TemporaryItem,CostHistoryItem,ApplicationItem,NewsListItem,Modals,ModalBottom,ModalTextInput,ActivityItem,MyUtil}
+import { ConvertPinyin,arraySearch, ucfirst } from './util/GetLetter'
+export {ScanScreen,Header,HttpUtils,BASE_URL,PORT_NAME,timetrans,NewsItem,ServiceItem,ServiceHistoryItem,Titles,SchoolExamItem,SchoolListItem,TemporaryItem,CostHistoryItem,ApplicationItem,NewsListItem,Modals,ModalBottom,ModalTextInput,ActivityItem,MyUtil,ConvertPinyin,arraySearch, ucfirst }

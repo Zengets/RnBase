@@ -12,6 +12,7 @@ import {
     ImageBackground,
     Dimensions,
     ScrollView,
+    AsyncStorage,
     StatusBar,
     TouchableOpacity,
     TouchableWithoutFeedback
@@ -42,8 +43,9 @@ export default class PerCenter extends Component<Props> {
         super(props);
         this.state={
             userInfo:{
-                name:"王菁菁",
-                job:"蓝湾国际党支部书记"
+                name:"",
+                partyname:"",
+                dutyname:""
             },
             navbar:{
                 firstNav:[{
@@ -89,6 +91,44 @@ export default class PerCenter extends Component<Props> {
         }
 
     }
+    componentWillMount(){
+        this.props.navigation.addListener(
+            'willFocus',
+            payload => {
+                AsyncStorage.getItem("userName",(error,result)=>{
+                    if(error){
+                        //some error logs
+                    }else{
+                        this.setState({
+                            userInfo:{...this.state.userInfo,name:result?result:""}
+                        })
+                    }
+                })
+                AsyncStorage.getItem("partyname",(error,result)=>{
+                    if(error){
+                        //some error logs
+                    }else{
+                        this.setState({
+                            userInfo:{...this.state.userInfo,partyname:result?result:""}
+                        })
+                    }
+                })
+                AsyncStorage.getItem("duty_name",(error,result)=>{
+                    if(error){
+                        //some error logs
+                    }else{
+                        this.setState({
+                            userInfo:{...this.state.userInfo,dutyname:result?result:""}
+                        })
+                    }
+                })
+            }
+        );
+    }
+
+    componentDidMount(){
+
+    }
 
 
     render() {
@@ -101,7 +141,7 @@ export default class PerCenter extends Component<Props> {
                     this.props.navigation.navigate(item.route)
                 }}>
                     <Left>
-                       <Image style={{width:18,height:18}} source={item.icon}></Image>
+                        <Image style={{width:18,height:18}} source={item.icon}></Image>
                     </Left>
                     <Body>
                         <Text>{item.name}</Text>
@@ -138,7 +178,7 @@ export default class PerCenter extends Component<Props> {
                                             {userInfo.name}
                                         </Text>
                                         <Text style={{color:"#fff",fontSize:14}} numberOfLines={1}>
-                                            {userInfo.job}
+                                            {userInfo.partyname+userInfo.dutyname}
                                         </Text>
                                     </View>
                                 </ImageBackground>
