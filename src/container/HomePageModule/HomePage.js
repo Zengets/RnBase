@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import { Container, Header, Content, H1, H2, H3,Fab, Button, Icon, Left, Right, Body,Title  } from 'native-base';
-import Swiper from '@nart/react-native-swiper';
+import Swiper from 'react-native-swiper';
 import {
     Text,
     View,
@@ -12,11 +12,12 @@ import {
     Dimensions,
     ScrollView,
     StatusBar,
-    TouchableOpacity,     
+    TouchableOpacity,
     Animated,
+    TouchableWithoutFeedback
 } from 'react-native';
 import PerCenter from './PerCenterModule/PerCenter'
-import { NewsItem,Titles } from '../../components'
+import { NewsItem,Titles,HttpUtils,BASE_URL,PORT_NAME,RollingText } from '../../components'
 import SplashScreen from 'react-native-splash-screen';
 
 const { width,height } = Dimensions.get('window')
@@ -107,14 +108,11 @@ export default class HomePage extends Component<Props> {
             inter:null,
             Anim: new Animated.Value(0),  // 初始值设为0
             active: false,
-            noticebar:[{
-                title:"曹明涛1号"
-            },{
-                title:"曹明涛2号"
-            },{
-                title:"曹明涛3号"
-            }],
-            navbar:[{
+            plays:false,
+            bannerList:[{"id":355,"title":"四联村积极开展河道日常巡查保洁工作","url":"http://218.2.128.222:18085/ftp/dangjian/img/e164b31d71b042d89be5462069a03dbe.jpeg"},{"id":296,"title":"扬州市“文明家风•科学家教”亲子大讲堂百场巡讲走进蒋王","url":"http://218.2.128.222:18085/ftp/dangjian/img/02b09501c0214f3fb61fc444797e5bf3.jpeg"},{"id":299,"title":"四联村开展迎接省运会卫生大扫除活动","url":"http://218.2.128.222:18085/ftp/dangjian/img/61b97bfa270e4a94b8995643af9a802e.jpeg"},{"id":298,"title":"余林社区召开社区建设会议","url":"http://218.2.128.222:18085/ftp/dangjian/img/6165485784c7474d9b1701b06d92ecc7.jpeg"}],
+            noticebar:[],
+            navbar:[
+                {
                 name:"通讯录",
                 img:require("../../assets/images/indexicon_03.png"),
                 uri:"PhoneList"
@@ -144,7 +142,8 @@ export default class HomePage extends Component<Props> {
                 uri:"Anti"
             },
             ],
-            tabbar:[{
+            tabbar:[
+                {
                 img:require("../../assets/images/noticepic.png"),
                 uri:"/home"
             },{
@@ -203,10 +202,75 @@ export default class HomePage extends Component<Props> {
         };
     }
 
+    //BANNER
+    getBanner(){
+        HttpUtils.get(BASE_URL+PORT_NAME.queryCarouselForApp).then((res)=>{
+            if(res.code==0){
+                this.setState({
+                    bannerList:res.data
+                })
+            }else{
+            }
+        }).catch((error)=>{
+        })
+    }
+    //公告
+    getNoticebar(){
+        HttpUtils.get(BASE_URL+PORT_NAME.queryArticleListForApp+`?atcType=41&page=1&size=1`).then((res)=>{
+            if(res.code==0){
+                this.setState({
+                    noticebar:res.data
+                })
+            }else{
+
+            }
+        }).catch((error)=>{
+
+        })
+    }
+    //新闻
+    getNewsList(){
+        HttpUtils.get(BASE_URL+PORT_NAME.queryArticleListForApp+`?atcType=6&page=1&size=1`).then((res)=>{
+            if(res.code==0){
+                this.setState({
+                   // newsList:res.data
+                })
+            }else{
+
+            }
+        }).catch((error)=>{
+
+        })
+    }
+
+
+    componentWillMount(){
+        this.getBanner();
+        this.props.navigation.addListener(
+            'willFocus',
+            payload => {
+            this.setState({
+                plays:true
+            })
+            }
+        );
+        this.props.navigation.addListener(
+            'willBlur',
+            payload => {
+                this.setState({
+                    plays:false
+                })
+            }
+        );
+
+
+    }
 
 
 
     componentDidMount() {
+        this.getNoticebar();
+        this.getNewsList();
         try {
             PermissionsAndroid.request(
                 PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -223,8 +287,27 @@ export default class HomePage extends Component<Props> {
 
 
     render() {
-        let {navbar,Anim,noticebar,tabbar,newsList} = this.state,
+        let {navbar,Anim,noticebar,tabbar,newsList,bannerList,plays} = this.state,
             {  navigation } = this.props;
+
+        let renderPic = ()=>{
+            let ItemPic = bannerList.map((item,i)=>{
+                return(
+                    <View style={styles.slide} key={i} title={<Text numberOfLines={1}>{item.title}</Text>}>
+                        <ImageBackground
+                            style={styles.image}
+                            source={{uri:item.url}}
+                            resizeMode='cover'>
+                            <TouchableOpacity style={styles.slide} onPress={()=>{
+                                navigation.navigate("NewsDetail",{id:item.id})
+                            }}>
+                            </TouchableOpacity>
+                        </ImageBackground>
+                    </View>
+                )
+            })
+            return ItemPic
+        }
 
 
         return (
@@ -252,33 +335,14 @@ export default class HomePage extends Component<Props> {
                     <View style={styles.wrapper}>
                         <Swiper
                             height={200}
-                            onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
                             dot={<View style={{backgroundColor: 'rgba(0,0,0,.2)', width: 5, height: 5, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
                             activeDot={<View style={{backgroundColor: '#000', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
                             paginationStyle={{
-                        bottom: -23, left: null, right: 10
-                    }} loop autoplay>
-                            <View style={styles.slide} title={<Text numberOfLines={1}>新闻1标题</Text>}>
-                                <ImageBackground
-                                    style={styles.image}
-                                    source={require('../../assets/images/tts0.png')}
-                                    resizeMode='cover'>
-                                </ImageBackground>
-                            </View>
-                            <View style={styles.slide} title={<Text numberOfLines={1}>新闻2标题</Text>}>
-                                <ImageBackground
-                                    style={styles.image}
-                                    source={require('../../assets/images/tts1.png')}
-                                    resizeMode='cover'>
-                                </ImageBackground>
-                            </View>
-                            <View style={styles.slide} title={<Text numberOfLines={1}>新闻3标题</Text>}>
-                                <ImageBackground
-                                    style={styles.image}
-                                    source={require('../../assets/images/tts2.png')}
-                                    resizeMode='cover'>
-                                </ImageBackground>
-                            </View>
+                                    bottom: -23, left: null, right: 10
+                                }}  autoplay>
+                            {
+                                renderPic()
+                            }
                         </Swiper>
                     </View>
                     <View style={styles.icongroup}>
@@ -306,19 +370,12 @@ export default class HomePage extends Component<Props> {
                             <Image style={{width:86,height:20}} source={require("../../assets/images/noticebar.png")}></Image>
                         </View>
                         <View style={styles.textcover}>
-                            <Swiper style={styles.textcover} height={48} horizontal={false} showsPagination={false} loop autoplay>
-                                {
-                                    noticebar.map((item,i)=>{
-                                        return(
-                                            <View key={i} style={styles.textitem}>
-                                                <Text style={{lineHeight:48}}>
-                                                    {item.title}
-                                                </Text>
-                                            </View>
-                                        )
-                                    })
-                                }
-                            </Swiper>
+                            {
+                                noticebar.length==0?null:<RollingText plays={plays} list = {noticebar} pressFn = {(item)=>{
+                                 navigation.navigate("NewsDetail",{id:item.id})
+                            }}/>
+                            }
+
                         </View>
 
                     </View>
@@ -348,7 +405,8 @@ export default class HomePage extends Component<Props> {
                                     return(
                                         <NewsItem pressFn={()=>{this.props.navigation.navigate("NewsDetail",{
                                             id: item.id,
-                                        })}} item={item} key={i}></NewsItem>
+                                        })}} item={item} key={i}>
+                                        </NewsItem>
                                     )
                                 })
                             }

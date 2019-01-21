@@ -70,7 +70,13 @@ export default class Service extends Component<Props> {
         super()
         this.state={
             page:0,
-            nav:["全部","就业服务","法律服务","教育服务","医疗服务","助老助残","家政服务"],
+            nav:[{name:"全部",id:null},
+                {name:"就业服务",id:1},
+                {name:"法律服务",id:2},
+                {name:"教育服务",id:3},
+                {name:"医疗服务",id:4},
+                {name:"助老助残",id:6},
+                {name:"家政服务",id:7}],
             serviceList:[{
                 items:[
                     {
@@ -155,20 +161,18 @@ export default class Service extends Component<Props> {
                     style={{borderWidth:0}}
                     tabBarUnderlineStyle={{backgroundColor:"#ff2d2d",height:1}}
                     renderTabBar={()=> <ScrollableTab tabBarUnderlineStyle={{backgroundColor:"#ff2d2d",height:1}} style={{borderWidth:0}}/>}
-
                 >
                     {
                         nav.map((item,i)=>{
                             return(
-                                <Tab heading={item} key={i}
+                                <Tab heading={item.name} key={i}
                                      tabStyle={{backgroundColor:"#ffffff",borderWidth:0}}
                                      activeTextStyle={{color:"#ff2d2d",fontWeight:"100"}}
                                      activeTabStyle={{backgroundColor:"#ffffff"}}
                                      textStyle={{color:"#808080",fontWeight:"100"}}>
                                     <View style={{padding:14,flex:1}}>
-                                        <ServiceList page={page} onRef={this.onRef} data = {serviceList}></ServiceList>
+                                        <ServiceList page={page} onRef={this.onRef} type={item.id}></ServiceList>
                                     </View>
-
                                 </Tab>
                             )
                         })

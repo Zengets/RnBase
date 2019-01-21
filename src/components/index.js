@@ -13,4 +13,7 @@ import ModalTextInput from './ui/ModalTextInput';
 import { MyUtil } from './util/MyUtil';
 import ScanScreen from './util/ScanScreen';
 import { ConvertPinyin,arraySearch, ucfirst } from './util/GetLetter'
-export {ScanScreen,Header,HttpUtils,BASE_URL,PORT_NAME,timetrans,NewsItem,ServiceItem,ServiceHistoryItem,Titles,SchoolExamItem,SchoolListItem,TemporaryItem,CostHistoryItem,ApplicationItem,NewsListItem,Modals,ModalBottom,ModalTextInput,ActivityItem,MyUtil,ConvertPinyin,arraySearch, ucfirst }
+import RollingText from "./ui/RollingText"
+
+
+export {ScanScreen,Header,HttpUtils,BASE_URL,PORT_NAME,timetrans,NewsItem,ServiceItem,ServiceHistoryItem,Titles,SchoolExamItem,SchoolListItem,TemporaryItem,CostHistoryItem,ApplicationItem,NewsListItem,Modals,ModalBottom,ModalTextInput,ActivityItem,MyUtil,ConvertPinyin,arraySearch, ucfirst,RollingText }

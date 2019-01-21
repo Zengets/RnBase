@@ -1,5 +1,6 @@
 /**
  * Created by kurosaki on 2018/11/29.
+ *
  */
 import React, { Component } from 'react';
 import {  Container, Header, Content, Tab, Tabs,Toast, ScrollableTab , Button, Icon, Left, Right, Body,Title,Spinner} from 'native-base';
@@ -12,7 +13,7 @@ import {
     StatusBar,
     TouchableOpacity,
 } from 'react-native';
-import { ServiceItem } from '../../../../components'
+import { ServiceItem,HttpUtils,BASE_URL,PORT_NAME } from '../../../../components'
 import { LargeList } from "react-native-largelist-v2";
 import { NormalHeader } from "react-native-spring-scrollview/NormalHeader";
 import { NormalFooter } from "react-native-spring-scrollview/NormalFooter";
@@ -32,21 +33,42 @@ class ServiceList extends React.PureComponent {
         this.state = {
             pageIndex:1,//页码
             allLoaded:false,//加载state
-            data:this.props.data,//this.props.data
+            type:this.props.type,//props.type
+            data:[],//this.props.data
             isSpin:true
         };
     }
+
     componentWillMount(){
         this.setState({
             isSpin:true
         })
     }
-    componentDidMount(){
-        setTimeout(()=>{
+
+    genData(key){
+        let {type} = this.props,
+            {pageIndex}=this.state;
+        HttpUtils.get(BASE_URL+PORT_NAME.queryManageListForApp+`?${type?"typeId="+type:null}&page=${pageIndex}&size=${6}`).then((res)=>{
+            console.log(res)
+            let data = [{items:res.data}]
             this.setState({
-                isSpin:false
+                isSpin:false,
+                allLoaded:res.data.length==0,
+                data:this.state.data.concat(data)
+            },()=>{
+                if(key=="refresh"){
+                    this._largeList.endRefresh();
+                }else{
+                    this._largeList.endLoading();
+                }
             })
-        },400)
+
+        }).catch((e)=>{})
+    }
+
+
+    componentDidMount(){
+        this.genData()
         this.props.onRef(this)
     }
     componentWillReceiveProps(nextprops){
@@ -56,44 +78,25 @@ class ServiceList extends React.PureComponent {
     }
     _onRefresh = () => {
         this._largeList.beginRefresh();
+        this.setState({
+            pageIndex:1,
+        });
         setTimeout(() => {
-            this._largeList.endRefresh();
-            this.state.pageIndex = 0;
-            this.setState({
-                data: this.props.data,
-                allLoaded: this.state.pageIndex  > 5
-            });
-        }, 600);
+            this.genData("fresh");
+        }, 10);
     };
 
 
     _onLoading = () => {
         this._largeList.beginLoading();
         let pageIndex = this.state.pageIndex;
+        this.setState({
+            pageIndex:pageIndex+1,
+        })
         setTimeout(() => {
-            this._largeList.endLoading();
-            let data = [];
-            for (let i = 0; i < 5; i++) {
-                data.push({
-                    id:Math.ceil(Math.random() * 100),
-                    name:"541教育服务",
-                    curnum:3,
-                    totalnum:3,
-                    addr:"河桥街道",
-                    type:"教育服务"
-                });
-            }
-            this.setState({
-                pageIndex:pageIndex+1,
-                allLoaded: pageIndex > 5,
-                data:this.state.data.concat([{items:data}])
-            })
-
-        }, 600);
+            this.genData("load")
+        }, 10);
     };
-
-
-
 
 
     _renderItem = ({ section: section, row: row }) => {

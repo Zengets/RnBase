@@ -16,7 +16,7 @@ import {
     Animated,
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import Swiper from '@nart/react-native-swiper';
+import Swiper from 'react-native-swiper';
 import PhoneListBody from './PhoneListBody'
 import {HttpUtils,BASE_URL,PORT_NAME} from '../../../../components'
 

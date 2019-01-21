@@ -580,13 +580,6 @@
     pouchdb-collections "^1.0.1"
     tiny-queue "^0.2.1"
 
-"@nart/react-native-swiper@^1.5.13":
-  version "1.5.13"
-  resolved "http://registry.npm.taobao.org/@nart/react-native-swiper/download/@nart/react-native-swiper-1.5.13.tgz#293ac58edcb57afb37221a1f69dcfaf1251306de"
-  dependencies:
-    prop-types "^15.5.10"
-    react-native-vertical-view-pager "^0.1.1"
-
 "@react-navigation/core@^3.0.0":
   version "3.0.0"
   resolved "http://registry.npm.taobao.org/@react-navigation/core/download/@react-navigation/core-3.0.0.tgz#042c7fcb99331d7b452868d129b4e1cc3a4c60b9"
@@ -4795,7 +4788,6 @@ react-native-branch@2.2.5:
 react-native-camera@^1.6.4:
   version "1.6.4"
   resolved "http://registry.npm.taobao.org/react-native-camera/download/react-native-camera-1.6.4.tgz#a7d0f3da8ff07be36c07e14dcae57d822a09013e"
-  integrity sha1-p9Dz2o/we+NsB+FNyuV9gioJAT4=
   dependencies:
     prop-types "^15.6.2"
 
@@ -4957,14 +4949,19 @@ react-native-svg@6.2.2:
     lodash "^4.16.6"
     pegjs "^0.10.0"
 
-react-native-svg@6.4.1:
-  version "6.4.1"
-  resolved "http://registry.npm.taobao.org/react-native-svg/download/react-native-svg-6.4.1.tgz#ba696d4da03000883d65a27d2bf8b1a30b252ffe"
-  integrity sha1-umltTaAwAIg9ZaJ9K/ixowslL/4=
+react-native-svg@^8.0.10:
+  version "8.0.10"
+  resolved "http://registry.npm.taobao.org/react-native-svg/download/react-native-svg-8.0.10.tgz#b07e2342d1486220f5fda1a584e316e7d2d1f392"
   dependencies:
     color "^2.0.1"
     lodash "^4.16.6"
     pegjs "^0.10.0"
+
+react-native-swiper@^1.5.14:
+  version "1.5.14"
+  resolved "http://registry.npm.taobao.org/react-native-swiper/download/react-native-swiper-1.5.14.tgz#1c6f949ca377186300f972bb0f30d24062c899aa"
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native-tab-view@^1.0.0, react-native-tab-view@^1.2.0:
   version "1.3.1"
@@ -4987,10 +4984,6 @@ react-native-vector-icons@4.6.0:
     lodash "^4.0.0"
     prop-types "^15.5.10"
     yargs "^8.0.2"
-
-react-native-vertical-view-pager@^0.1.1:
-  version "0.1.1"
-  resolved "http://registry.npm.taobao.org/react-native-vertical-view-pager/download/react-native-vertical-view-pager-0.1.1.tgz#c9ad2f3eb936219ff21cabd6d5842468a5ddbee3"
 
 react-native-video@^4.2.0:
   version "4.2.0"

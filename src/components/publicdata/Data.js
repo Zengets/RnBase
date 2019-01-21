@@ -11,6 +11,11 @@ const PORT_NAME = {
     getAllOrgForApp:"/services/partyOrganize/getAllOrgForApp",
     getContactListForApp:"/services/getContactListForApp",//通讯录列表
     getContactDetailForApp:"/services/getContactDetailForApp",//通讯录详情
+    queryCarouselForApp:"/services/article/queryCarouselForApp",//首页轮播图
+    queryArticleListForApp:"/services/article/queryArticleListForApp",//首页通知公告
+    queryArticleByIdForApp:"/services/article/queryArticleByIdForApp",//通知公告详情
+    queryManageListForApp:"/services/serviceManage/queryManageListForApp",//服务列表
+    queryManageDetailForApp:"/services/serviceManage/queryManageDetailForApp",//服务详情
 
 }
 let timetrans = (date,type)=>{

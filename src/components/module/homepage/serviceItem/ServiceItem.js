@@ -24,12 +24,6 @@ const styles = {
     }
 }
 
-//name:"5411医疗服务",
-//    curnum:1,
-//    totalnum:3,
-//    addr:"河桥街道",
-//    type:"医疗服务"
-
 export default class ServiceItem extends React.PureComponent{
     render() {
         let {item,pressFn} = this.props;
@@ -48,7 +42,7 @@ export default class ServiceItem extends React.PureComponent{
                         <Col style={{width:68,height:30}}>
                             <View style={{width:68,height:30,borderBottomLeftRadius:600,borderTopLeftRadius:600,backgroundColor:item.curnum<item.totalnum?"#34A34F":"#DD5144"}}>
                                 <Text style={{textAlign:"center",lineHeight:30,color:"#ffffff"}}>
-                                    {item.curnum+'/'+item.totalnum}
+                                    {item.now+'/'+item.total}
                                 </Text>
                             </View>
                         </Col>
@@ -58,7 +52,7 @@ export default class ServiceItem extends React.PureComponent{
                             <Row>
                                 <Icon type="Entypo" name="location-pin" style={{fontSize: 16, color: 'lightgrey',lineHeight:30}}></Icon>
                                 <Text style={{textAlign:"left",lineHeight:30}}>
-                                    {item.addr}
+                                    {item.community}
                                 </Text>
                             </Row>
                         </Col>

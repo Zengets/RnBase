@@ -16,7 +16,7 @@ import {
     WebView,
     TouchableOpacity,
 } from 'react-native';
-import {timetrans} from '../../../../components'
+import {timetrans,HttpUtils,BASE_URL,PORT_NAME} from '../../../../components'
 
 const { width,height } = Dimensions.get('window')
 const styles = {
@@ -49,6 +49,27 @@ export default class NewsDetail extends React.PureComponent{
            }
         }
     }
+
+
+    getDetails(){
+        HttpUtils.get(BASE_URL+PORT_NAME.queryArticleByIdForApp+`?atcSeq=${this.state.id}`).then((res)=>{
+            alert(JSON.stringify(res))
+        }).catch((error)=>{
+
+        })
+
+
+
+    }
+
+
+    componentDidMount(){
+        this.getDetails()
+    }
+
+
+
+
 
 
     render() {

@@ -14,7 +14,7 @@ import {
    TouchableOpacity,     Animated,
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import Swiper from '@nart/react-native-swiper';
+import Swiper from 'react-native-swiper';
 import { Titles,SchoolExamItem } from '../../../../components'
 import { withNavigation } from 'react-navigation';
 const { width,height } = Dimensions.get('window')
@@ -160,7 +160,9 @@ class SchoolExam extends Component<Props> {
                                         title:item.exam,
                                         types:"0"
                                     })
-                                }}></SchoolExamItem>
+                                }}>
+
+                                </SchoolExamItem>
                             )
                         })
                     }

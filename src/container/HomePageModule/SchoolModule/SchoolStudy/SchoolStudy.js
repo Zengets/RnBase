@@ -14,7 +14,7 @@ import {
    TouchableOpacity,     Animated,
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import Swiper from '@nart/react-native-swiper';
+import Swiper from 'react-native-swiper';
 import { Titles } from '../../../../components'
 import { withNavigation } from 'react-navigation';
 

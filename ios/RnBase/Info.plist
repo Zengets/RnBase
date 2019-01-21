@@ -4,16 +4,12 @@
 <dict>
 	<key>NSCameraUsageDescription</key>
 	<string>camera is accessed for the first time</string>
-
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>photo library is accessed for the first time</string>
-
 	<key>NSMicrophoneUsageDescription</key>
 	<string>microphone is accessed for the first time</string>
-
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>photo library is accessed for the first time</string>
-
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -50,7 +46,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
